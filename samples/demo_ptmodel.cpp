@@ -1,9 +1,12 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
+#include <filesystem>
+
 
 // using pretrained model 
 
 int main() {
+
     cv::VideoCapture cap(0);
 
     if (!cap.isOpened()) {
@@ -12,8 +15,8 @@ int main() {
     }
 
     // get the full path 
-    cv::String palm_model = "/Users/elvinawibisono/Desktop/designusingc+/Gesture-Recognition/samples/open_palm.xml" ; 
-    cv::String fist_model = "/Users/elvinawibisono/Desktop/designusingc+/Gesture-Recognition/samples/closed_palm.xml"; 
+    cv::String palm_model = "../samples/models/open_palm.xml"; 
+    cv::String fist_model = "../sampmodels/closed_palm.xml"; 
     
     cv::CascadeClassifier palmCascade;
 	cv::CascadeClassifier fistCascade;
