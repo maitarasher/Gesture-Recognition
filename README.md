@@ -10,7 +10,11 @@ Gesture-Recognition Libary in C++
    
 ```brew install opencv```
 
-5. Go to the project on VSCode and execute the following commands in the build folder
+5. Go to the project on VSCode and execute the following commands in the root
+
+```mkdir build```
+
+```cd build```
 
 ```cmake ..```
 
