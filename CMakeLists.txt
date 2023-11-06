@@ -11,7 +11,7 @@ FIND_PACKAGE(OpenCV REQUIRED)
 FIND_PACKAGE(mbedTLS REQUIRED)
 
 SET(SOURCE_FILES
-    samples/opencv_version.cpp
+    samples/demo_ptmodel.cpp
     # Add more source files as needed
 )
 
