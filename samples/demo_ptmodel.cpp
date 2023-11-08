@@ -16,7 +16,7 @@ int main() {
 
     // get the full path 
     cv::String palm_model = "../samples/models/open_palm.xml"; 
-    cv::String fist_model = "../sampmodels/closed_palm.xml"; 
+    cv::String fist_model = "../samples/models/closed_palm.xml"; 
     
     cv::CascadeClassifier palmCascade;
 	cv::CascadeClassifier fistCascade;
