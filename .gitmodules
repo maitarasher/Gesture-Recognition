@@ -1,0 +1,3 @@
+[submodule "src/dependencies/mediapipe"]
+	path = src/dependencies/mediapipe
+	url = https://github.com/elifia-muthia/mediapipe.git
