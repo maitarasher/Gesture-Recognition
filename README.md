@@ -21,3 +21,7 @@ Gesture-Recognition Libary in C++
 ```make```
 
 ```./gesture-project```
+
+To locally get the submodules:
+
+```git submodule update --init```
