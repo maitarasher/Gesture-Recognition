@@ -1,0 +1,13 @@
+/* \page page_install Installation
+
+This page provides details about both building the GREC library for PPT control and ACL transcribe
+as well as using it for other purposes.
+
+## Building the library
+
+## Opencv Library
+
+## MediaPipe Library
+
+**Add different options for macOS /Windows??**
+*/
