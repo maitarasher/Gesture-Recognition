@@ -1,4 +1,4 @@
-# Copyright 2019 The MediaPipe Authors.
+# Copyright 2023 The MediaPipe Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,22 +11,19 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# Description:
+#   Darts-clone is a clone of Darts (Double-ARray Trie System).
 
 licenses(["notice"])
 
-package(default_visibility = ["//mediapipe/examples:__subpackages__"])
+exports_files(["LICENSE"])
 
+package(default_visibility = ["//visibility:public"])
 
-cc_binary(
-    name = "mediapipe_sample",
-    data = [
-        "//src/dependencies/mediapipe/mediapipe/modules/hand_landmark:hand_landmark_full.tflite",
-        "//src/dependencies/mediapipe/mediapipe/modules/palm_detection:palm_detection_full.tflite",
-    ],
-    deps = [
-        "//src/dependencies/mediapipe/mediapipe/mediapipe_samples/sample:mediapipe_sample",
-        "//src/dependencies/mediapipe/mediapipe/graphs/hand_tracking:desktop_tflite_calculators",
+cc_library(
+    name = "darts_clone",
+    hdrs = [
+        "include/darts.h",
     ],
 )
-
-

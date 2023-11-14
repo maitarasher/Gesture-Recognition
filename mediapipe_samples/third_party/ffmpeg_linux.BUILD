@@ -12,21 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-licenses(["notice"])
+licenses(["notice"])  # LGPL
 
-package(default_visibility = ["//mediapipe/examples:__subpackages__"])
+exports_files(["LICENSE"])
 
-
-cc_binary(
-    name = "mediapipe_sample",
-    data = [
-        "//src/dependencies/mediapipe/mediapipe/modules/hand_landmark:hand_landmark_full.tflite",
-        "//src/dependencies/mediapipe/mediapipe/modules/palm_detection:palm_detection_full.tflite",
+cc_library(
+    name = "libffmpeg",
+    linkopts = [
+        "-l:libavcodec.so",
+        "-l:libavformat.so",
+        "-l:libavutil.so",
     ],
-    deps = [
-        "//src/dependencies/mediapipe/mediapipe/mediapipe_samples/sample:mediapipe_sample",
-        "//src/dependencies/mediapipe/mediapipe/graphs/hand_tracking:desktop_tflite_calculators",
-    ],
+    visibility = ["//visibility:public"],
 )
-
-

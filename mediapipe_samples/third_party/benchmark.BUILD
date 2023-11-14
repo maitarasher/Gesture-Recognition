@@ -14,19 +14,16 @@
 
 licenses(["notice"])
 
-package(default_visibility = ["//mediapipe/examples:__subpackages__"])
+exports_files(["LICENSE"])
 
-
-cc_binary(
-    name = "mediapipe_sample",
-    data = [
-        "//src/dependencies/mediapipe/mediapipe/modules/hand_landmark:hand_landmark_full.tflite",
-        "//src/dependencies/mediapipe/mediapipe/modules/palm_detection:palm_detection_full.tflite",
-    ],
-    deps = [
-        "//src/dependencies/mediapipe/mediapipe/mediapipe_samples/sample:mediapipe_sample",
-        "//src/dependencies/mediapipe/mediapipe/graphs/hand_tracking:desktop_tflite_calculators",
-    ],
+cc_library(
+    name = "benchmark",
+    srcs = glob([
+        "src/*.h",
+        "src/*.cc",
+    ]),
+    hdrs = glob(["include/benchmark/*.h"]),
+    copts = ["-DHAVE_POSIX_REGEX"],  # HAVE_STD_REGEX didn't work.
+    includes = ["include"],
+    visibility = ["//visibility:public"],
 )
-
-

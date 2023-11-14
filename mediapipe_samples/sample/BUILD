@@ -19,71 +19,25 @@ package(default_visibility = [
 ])
 
 cc_library(
-    name = "simple_run_graph_main",
-    srcs = ["simple_run_graph_main.cc"],
-    deps = [
-        "//mediapipe/framework:calculator_framework",
-        "//mediapipe/framework/port:file_helpers",
-        "//mediapipe/framework/port:map_util",
-        "//mediapipe/framework/port:parse_text_proto",
-        "//mediapipe/framework/port:ret_check",
-        "//mediapipe/framework/port:status",
-        "//mediapipe/framework/port:statusor",
-        "@com_google_absl//absl/flags:flag",
-        "@com_google_absl//absl/flags:parse",
-        "@com_google_absl//absl/log:absl_log",
-        "@com_google_absl//absl/strings",
-    ],
-)
-
-cc_library(
     name = "mediapipe_sample",
     srcs = ["mediapipe_sample.cc"],
     deps = [
-        "//mediapipe/calculators/util:landmarks_to_render_data_calculator",
-        "//mediapipe/framework/formats:landmark_cc_proto",
-        "//mediapipe/framework:calculator_framework",
-        "//mediapipe/framework/formats:image_frame",
-        "//mediapipe/framework/formats:image_frame_opencv",
-        "//mediapipe/framework/port:file_helpers",
-        "//mediapipe/framework/port:opencv_highgui",
-        "//mediapipe/framework/port:opencv_imgproc",
-        "//mediapipe/framework/port:opencv_video",
-        "//mediapipe/framework/port:parse_text_proto",
-        "//mediapipe/framework/port:status",
-        "//mediapipe/framework/port:commandlineflags",
-        "//mediapipe/util:resource_util",
+        "//src/dependencies/mediapipe/mediapipe/calculators/util:landmarks_to_render_data_calculator",
+        "//src/dependencies/mediapipe/mediapipe/framework/formats:landmark_cc_proto",
+        "//src/dependencies/mediapipe/mediapipe/framework:calculator_framework",
+        "//src/dependencies/mediapipe/mediapipe/framework/formats:image_frame",
+        "//src/dependencies/mediapipe/mediapipe/framework/formats:image_frame_opencv",
+        "//src/dependencies/mediapipe/mediapipe/framework/port:file_helpers",
+        "//src/dependencies/mediapipe/mediapipe/framework/port:opencv_highgui",
+        "//src/dependencies/mediapipe/mediapipe/framework/port:opencv_imgproc",
+        "//src/dependencies/mediapipe/mediapipe/framework/port:opencv_video",
+        "//src/dependencies/mediapipe/mediapipe/framework/port:parse_text_proto",
+        "//src/dependencies/mediapipe/mediapipe/framework/port:status",
+        "//src/dependencies/mediapipe/mediapipe/framework/port:commandlineflags",
+        "//src/dependencies/mediapipe/mediapipe/util:resource_util",
         "@com_google_absl//absl/flags:flag",
         "@com_google_absl//absl/flags:parse",
         "@com_google_absl//absl/log:absl_log",
     ],
 )
 
-
-
-# Linux only.
-# Must have a GPU with EGL support:
-# ex: sudo apt-get install mesa-common-dev libegl1-mesa-dev libgles2-mesa-dev
-# (or similar nvidia/amd equivalent)
-cc_library(
-    name = "demo_run_graph_main_gpu",
-    srcs = ["demo_run_graph_main_gpu.cc"],
-    deps = [
-        "//mediapipe/framework:calculator_framework",
-        "//mediapipe/framework/formats:image_frame",
-        "//mediapipe/framework/formats:image_frame_opencv",
-        "//mediapipe/framework/port:file_helpers",
-        "//mediapipe/framework/port:opencv_highgui",
-        "//mediapipe/framework/port:opencv_imgproc",
-        "//mediapipe/framework/port:opencv_video",
-        "//mediapipe/framework/port:parse_text_proto",
-        "//mediapipe/framework/port:status",
-        "//mediapipe/gpu:gl_calculator_helper",
-        "//mediapipe/gpu:gpu_buffer",
-        "//mediapipe/gpu:gpu_shared_data_internal",
-        "//mediapipe/util:resource_util",
-        "@com_google_absl//absl/flags:flag",
-        "@com_google_absl//absl/flags:parse",
-        "@com_google_absl//absl/log:absl_log",
-    ],
-)
