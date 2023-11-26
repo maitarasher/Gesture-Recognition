@@ -9,7 +9,7 @@ public:
     Stage(int initial_index, double brightness, double rotation)
     :initial_index(initial_index), brightness(brightness), rotation(rotation){};
 
-    cv::Mat process(const cv::Mat& image){
+    cv::Mat process(const cv::Mat& image) const{
         cv::Mat processedImage = increaseBrightness(image, brightness);
         processedImage = rotate(processedImage, rotation);
         return processedImage;
