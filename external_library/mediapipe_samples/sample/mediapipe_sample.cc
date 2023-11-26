@@ -48,7 +48,7 @@ ABSL_FLAG(std::string, output_video_path, "",
 
 //////////////////////
 
-absl::Status RunMPPGraph() {
+absl::Status RunMPPGraph(cv::Mat& inputImage, cv::Mat& outputImage, std::vector<::mediapipe::NormalizedLandmarkList>& multiHandLandmarks) {
   std::string calculator_graph_config_contents;
   MP_RETURN_IF_ERROR(mediapipe::file::GetContents(
       absl::GetFlag(FLAGS_calculator_graph_config_file),
@@ -63,31 +63,31 @@ absl::Status RunMPPGraph() {
   mediapipe::CalculatorGraph graph;
   MP_RETURN_IF_ERROR(graph.Initialize(config));
 
-  ABSL_LOG(INFO) << "Initialize the camera or load the video.";
-  cv::VideoCapture capture;
-  const bool load_video = !absl::GetFlag(FLAGS_input_video_path).empty();
-  if (load_video) {
-    capture.open(absl::GetFlag(FLAGS_input_video_path));
-  } else {
-    capture.open(0);
-  }
-  RET_CHECK(capture.isOpened());
+  // ABSL_LOG(INFO) << "Initialize the camera or load the video.";
+  // cv::VideoCapture capture;
+  // const bool load_video = !absl::GetFlag(FLAGS_input_video_path).empty();
+  // if (load_video) {
+  //   capture.open(absl::GetFlag(FLAGS_input_video_path));
+  // } else {
+  //   capture.open(0);
+  // }
+  // RET_CHECK(capture.isOpened());
 
-  cv::VideoWriter writer;
-  const bool save_video = !absl::GetFlag(FLAGS_output_video_path).empty();
-  if (save_video) {
-  ABSL_LOG(INFO) << "Prepare video writer.";
-      cv::Mat test_frame;
-      capture.read(test_frame);                    // Consume first frame.
-      capture.set(cv::CAP_PROP_POS_AVI_RATIO, 0);  // Rewind to beginning.
-      writer.open(absl::GetFlag(FLAGS_output_video_path),
-  mediapipe::fourcc('a', 'v', 'c', '1'),  // .mp4
-                  capture.get(cv::CAP_PROP_FPS), test_frame.size());
-  RET_CHECK(writer.isOpened());
-    } else {
+  // cv::VideoWriter writer;
+  // const bool save_video = !absl::GetFlag(FLAGS_output_video_path).empty();
+  // if (save_video) {
+  // ABSL_LOG(INFO) << "Prepare video writer.";
+  //     cv::Mat test_frame;
+  //     capture.read(test_frame);                    // Consume first frame.
+  //     capture.set(cv::CAP_PROP_POS_AVI_RATIO, 0);  // Rewind to beginning.
+  //     writer.open(absl::GetFlag(FLAGS_output_video_path),
+  // mediapipe::fourcc('a', 'v', 'c', '1'),  // .mp4
+  //                 capture.get(cv::CAP_PROP_FPS), test_frame.size());
+  // RET_CHECK(writer.isOpened());
+  //   } else {
 
-  cv::namedWindow(kWindowName, /*flags=WINDOW_AUTOSIZE*/ 1);
-    }
+  // cv::namedWindow(kWindowName, /*flags=WINDOW_AUTOSIZE*/ 1);
+    // }
 
 //   cv::VideoWriter writer;
 //   const bool save_video = !absl::GetFlag(FLAGS_output_video_path).empty();
@@ -107,39 +107,42 @@ absl::Status RunMPPGraph() {
   MP_ASSIGN_OR_RETURN(mediapipe::OutputStreamPoller poller_landmark,
               graph.AddOutputStreamPoller(kLandmarksStream));
 
+  MP_ASSIGN_OR_RETURN(mediapipe::OutputStreamPoller presence_poller,
+                   graph.AddOutputStreamPoller("landmark_presence"));
+
   ABSL_LOG(INFO) << "Start running the calculator graph.";
   MP_RETURN_IF_ERROR(graph.StartRun({}));
 
   ABSL_LOG(INFO) << "Start grabbing and processing frames.";
   size_t frame_timestamp = 0;
-  bool grab_frames = true;
-  while (grab_frames) {
+  // bool grab_frames = true;
+  // while (grab_frames) {
     // Capture opencv camera or video frame.
-    cv::Mat camera_frame_raw;
-    capture >> camera_frame_raw;
+    // cv::Mat camera_frame_raw;
+    // capture >> camera_frame_raw;
 
-    if (camera_frame_raw.empty()) {
-      // if (!load_video) {
-      //   ABSL_LOG(INFO) << "Ignore empty frames from camera.";
-      //   continue;
-      // }
-      // ABSL_LOG(INFO) << "Empty frame, end of video reached.";
-      // break;
-      break;
+    // if (camera_frame_raw.empty()) {
+    //   // if (!load_video) {
+    //   //   ABSL_LOG(INFO) << "Ignore empty frames from camera.";
+    //   //   continue;
+    //   // }
+    //   // ABSL_LOG(INFO) << "Empty frame, end of video reached.";
+    //   // break;
+    //   break;
      
-    }
-    cv::Mat camera_frame;
-    cv::cvtColor(camera_frame_raw, camera_frame, cv::COLOR_BGR2RGB);
-    if (!load_video) {
-      cv::flip(camera_frame, camera_frame, /*flipcode=HORIZONTAL*/ 1);
-    }
+    // }
+    cv::Mat inputImgProcessed;
+    cv::cvtColor(inputImage, inputImgProcessed, cv::COLOR_BGR2RGB);
+    // if (!load_video) {
+    //   cv::flip(inputImgProcessed, inputImgProcessed, /*flipcode=HORIZONTAL*/ 1);
+    // }
 
     // Wrap Mat into an ImageFrame.
     auto input_frame = absl::make_unique<mediapipe::ImageFrame>(
-        mediapipe::ImageFormat::SRGB, camera_frame.cols, camera_frame.rows,
+        mediapipe::ImageFormat::SRGB, inputImgProcessed.cols, inputImgProcessed.rows,
         mediapipe::ImageFrame::kDefaultAlignmentBoundary);
     cv::Mat input_frame_mat = mediapipe::formats::MatView(input_frame.get());
-    camera_frame.copyTo(input_frame_mat);
+    inputImgProcessed.copyTo(input_frame_mat);
 
     // Send image packet into the graph.
     // size_t frame_timestamp_us =
@@ -154,41 +157,51 @@ absl::Status RunMPPGraph() {
 
     // Get the graph result packet, or stop if that fails.
     mediapipe::Packet packet;
-    mediapipe:: Packet landmark_packet; 
+    mediapipe::Packet landmark_packet; 
+    mediapipe::Packet presence_packet;
 
-    if (!poller.Next(&packet)) break;
-    if (!poller_landmark.Next(&landmark_packet)) break;
+    if (!poller.Next(&packet)) return absl::Status(absl::StatusCode::kInvalidArgument, "No Output Packet");;
 
+    if (!presence_poller.Next(&presence_packet)) return absl::Status(absl::StatusCode::kInvalidArgument, "No Presence Packet");;
+    
+    auto is_landmark_present = presence_packet.Get<bool>();
+
+    if (is_landmark_present) {
+      if (!poller_landmark.Next(&landmark_packet)) return absl::Status(absl::StatusCode::kInvalidArgument, "No Landmark Packet");;
+      multiHandLandmarks = landmark_packet.Get<std::vector<::mediapipe::NormalizedLandmarkList>>();
+    }
+
+    // if (!poller_landmark.Next(&landmark_packet)) break;
 
     auto& output_frame = packet.Get<mediapipe::ImageFrame>();
-    auto& output_landmarks = landmark_packet.Get<std::vector<::mediapipe::NormalizedLandmarkList>>();
+    // auto& output_landmarks = landmark_packet.Get<std::vector<::mediapipe::NormalizedLandmarkList>>();
 
     // Convert back to opencv for display or saving.
-    cv::Mat output_frame_mat = mediapipe::formats::MatView(&output_frame);
-    cv::cvtColor(output_frame_mat, output_frame_mat, cv::COLOR_RGB2BGR);
-    if (save_video) {
-      // if (!writer.isOpened()) {
-      //   ABSL_LOG(INFO) << "Prepare video writer.";
-      //   writer.open(absl::GetFlag(FLAGS_output_video_path),
-      //               mediapipe::fourcc('a', 'v', 'c', '1'),  // .mp4
-      //               capture.get(cv::CAP_PROP_FPS), output_frame_mat.size());
-      //   RET_CHECK(writer.isOpened());
-      // }
-      writer.write(output_frame_mat);
-    } else {
-      cv::imshow(kWindowName, output_frame_mat);
-      // Press any key to exit.
-      const int pressed_key = cv::waitKey(5);
-      if (pressed_key >= 0 && pressed_key != 255) grab_frames = false;
-    }
+    outputImage = mediapipe::formats::MatView(&output_frame);
+    cv::cvtColor(outputImage, outputImage, cv::COLOR_RGB2BGR);
 
-    for (auto& landmark: output_landmarks) {
-      std::cout << landmark.DebugString();
-    }
-  }
+   
+    // if (save_video) {
+    //   // if (!writer.isOpened()) {
+    //   //   ABSL_LOG(INFO) << "Prepare video writer.";
+    //   //   writer.open(absl::GetFlag(FLAGS_output_video_path),
+    //   //               mediapipe::fourcc('a', 'v', 'c', '1'),  // .mp4
+    //   //               capture.get(cv::CAP_PROP_FPS), output_frame_mat.size());
+    //   //   RET_CHECK(writer.isOpened());
+    //   // }
+    //   writer.write(output_frame_mat);
+    // } else {
+    //   cv::imshow(kWindowName, output_frame_mat);
+    //   // Press any key to exit.
+    //   const int pressed_key = cv::waitKey(5);
+    //   if (pressed_key >= 0 && pressed_key != 255) grab_frames = false;
+    // }
 
-  ABSL_LOG(INFO) << "Shutting down.";
-  if (writer.isOpened()) writer.release();
+    
+  // }
+
+  // ABSL_LOG(INFO) << "Shutting down.";
+  // if (writer.isOpened()) writer.release();
   MP_RETURN_IF_ERROR(graph.CloseInputStream(kInputStream));
   return graph.WaitUntilDone();
 }
@@ -196,14 +209,31 @@ absl::Status RunMPPGraph() {
 int main(int argc, char** argv) {
   google::InitGoogleLogging(argv[0]);
   absl::ParseCommandLine(argc, argv);
-  absl::Status run_status = RunMPPGraph();
-  if (!run_status.ok()) {
-    ABSL_LOG(ERROR) << "Failed to run the graph: " << run_status.message();
-    return EXIT_FAILURE;
-  } else {
-    ABSL_LOG(INFO) << "Success!";
+
+  // Open image
+  std::cout << argv[2] << std::endl;
+  cv::Mat inputImage = cv::imread(argv[2]);
+
+  if (inputImage.empty()) {
+        std::cerr << "Error: Could not open or find the image." << std::endl;
+        return -1;
   }
+
+  cv::Mat outputImage;
+  std::vector<::mediapipe::NormalizedLandmarkList> multiHandLandmarks = std::vector<::mediapipe::NormalizedLandmarkList>();
+  absl::Status run_status = RunMPPGraph(inputImage, outputImage, multiHandLandmarks);
+
+  cv::imwrite("/Users/elifiamuthia/Desktop/output_image.jpg", outputImage);
+
+  for (auto& landmark: multiHandLandmarks) {
+        std::cout << landmark.DebugString();
+  }
+
+  // if (!run_status.ok()) {
+  //   ABSL_LOG(ERROR) << "Failed to run the graph: " << run_status.message();
+  //   return EXIT_FAILURE;
+  // } else {
+  //   ABSL_LOG(INFO) << "Success!";
+  // }
   return EXIT_SUCCESS;
 }
-
-
