@@ -43,7 +43,8 @@ int build_Classifier(string folder_path) {
     }
     return 1;
 }
-
+ 
+//in case we want to implement the function ourselves
 int train_KNN(vector<GestClass> classifier)
 {
     Gest_KNN classifier_KNN;
@@ -51,9 +52,26 @@ int train_KNN(vector<GestClass> classifier)
     //perform training and data_augmentation for each class
     for (const auto &class : classifier) 
     {
-        
+        //create pipelie for augmentation
+        Pipeline pipe;
+        pipeline.add_stge();
+
 
 
     }
+}
+
+//using cv::ml
+cv::Ptr<cv::ml::KNearest> trainKNN(const cv::Mat& trainData, const cv::Mat& labels) {
+    cv::Ptr<cv::ml::KNearest> knn = cv::ml::KNearest::create();
+    
+    // Set KNN parameters
+    knn->setDefaultK(K_VALUE);
+    knn->setIsClassifier(true);
+    
+    // Train the KNN model
+    knn->train(trainData, cv::ml::ROW_SAMPLE, labels);
+
+    return knn;
 }
 
