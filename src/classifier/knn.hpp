@@ -5,11 +5,9 @@
 using namespace std;
 
 
-class Gest_KNN{
-    int K_value;
-    int num_classes;
+class Gest_CLASS{
     string Name;
-    cv::Mat image;
+    int index;
     vector<Point> landmarks;
     //vector<Point> xyz;
 
@@ -18,10 +16,13 @@ class Gest_KNN{
 }
 
 class Gest_KNN{
+    int K_value
     int num_classes;
     std::vector<Gest_Class> Classes;
     cv::Mat Dataset
 }
+
+/*
 
 //we need to add euclideanDistance
 float euclideanDistance(const Point& point_test, const Point& point_check) const {
@@ -29,4 +30,4 @@ float euclideanDistance(const Point& point_test, const Point& point_check) const
     double y = point_test.y - point_check.y;
     double z = point_test.z - point_check.z
     return sqrt(x*x+y*y+z*z);
-}
+}*/
