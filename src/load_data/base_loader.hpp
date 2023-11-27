@@ -1,9 +1,9 @@
 /*
  * @file base_loader.h
  * @author
- * @brief A class for
- * @version
- * @date
+ * @brief A class for getting landmarks
+ * @version 1.0
+ * @date updated Nov 25, 2023
  */
 
 #pragma once
@@ -15,7 +15,8 @@
 #include <string>
 
 // need to import landmark struct/point struct?
-#import //whatever you need
+#import //landmark class to get the landmarks
+#import //pipeline? to run a pieline of images
 
 // include exceptions - write exception/error handlers!
 // need landmarks class?
@@ -28,7 +29,7 @@ namespace fs = filesystem;
 class BaseLoader
 {
     string fpath;
-    // pipeline
+    // pipeline to use to detect landmarks
 public:
     // BaseLoader (Pipeline, path, bool) //add Pipeline class
     // add any public
@@ -64,9 +65,21 @@ public:
         return images;
     }
     //probably need a class landmark? also exception for NoHandDetect
-    vector<int> create_landmarks(string file_path);
+
+    /*
+    @brief: Processes a single image and retrieves the landmarks of this image.
+    @param file_path: the file path of the file to read
+    @param world_landmarks:?
+
+    @return: the list of landmarks detected by MediaPipe or an empy list
+    if no landmarks were found
+    @return list of handedness labels (left,right)
+        */
+    vector<int> create_landmarks(string file_path); {
+
+        
+    }
     
-    //do we need load_landmarks? what df can we use?
      
 };
 
