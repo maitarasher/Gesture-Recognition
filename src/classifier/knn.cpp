@@ -41,7 +41,7 @@ int build_Classifier(string folder_path) {
             i++
     
     }
-    return 1;
+    return 0;
 }
  
 //in case we want to implement the function ourselves
@@ -54,8 +54,33 @@ int train_KNN(vector<GestClass> classifier)
     {
         //create pipelie for augmentation
         Pipeline pipe;
-        pipeline.add_stge();
+        pipeline.add_stage();
+        pipeline.add_stage();
+        
 
+
+
+
+    }
+}
+
+//check parallel knn classifier
+int train_KNN_parallel(vector<GestClass> classifier,int num_threads)
+{
+    Gest_KNN classifier_KNN;
+    classifier_KNN.K_value =K_VALUE;
+    int num_labels = classifier_KNN.Classes.size()
+    //perform training and data_augmentation for each class
+    for (int i = thread_id; i < num_labels; i+=num_threads) 
+    {
+        GestClass class_obj= classifier[i];
+        //create pipelie for augmentation or just run through image processing
+        Pipeline pipe;
+        pipeline.add_stage();
+        pipeline.add_stage();
+
+        //add the whole pipeline with the label and the id of the class to the dataset
+        classifier_KNN.add
 
 
     }
