@@ -7,7 +7,7 @@ using namespace std;
 
 class Gest_CLASS{
     string Name;
-    cv::Mat image;
+    int index;
     vector<Point> landmarks;
     //vector<Point> xyz;
 
