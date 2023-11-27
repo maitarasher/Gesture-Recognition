@@ -24,6 +24,23 @@ https://arxiv.org/pdf/2310.14919v1.pdf
 See the \subpage page_installl for detailed instructions on building, installing, and using the library 
 in your own CMake projects.
 
+
+##DESCRIPTION OF THE STRUCTURE OF THE REPO
+-src 
+    *data_augmentation
+        image goes through rotation/scailing to get more training data_augmentation
+    *dependencies
+        *mediapipe
+            a backbone to extract the landmarks
+    *false-positive Filter
+        filters out landmarks hat are not close enough to any class
+    *classifier
+        predicts given landmarks L one of the gesture classes C
+    
+    *load_data
+        f
+
+
 ## References
 
 **/
