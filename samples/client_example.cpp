@@ -38,20 +38,30 @@ int main() {
         return -1;
     }
 
-    // // Encode the image to JPEG format
-    // std::vector<uchar> imageData;
-    // cv::imencode(".jpg", inputImage, imageData);
 
-    // Send image data to the server
-    // inputImage = (inputImage.reshape(0,1));
-    int imgSize = inputImage.total()*inputImage.elemSize();
 
-    ssize_t bytesSent = send(clientSocket, inputImage.data, imgSize, 0);
+    // Encode the image to JPEG format
+    std::vector<uchar> imageData;
+    cv::imencode(".jpg", inputImage, imageData);
+
+    size_t imageSize = imageData.size();
+    ssize_t sizeSent = send(clientSocket, &imageSize, sizeof(size_t), 0);
+
+    if (sizeSent != sizeof(size_t)) {
+        std::cerr << "Error sending image size" << std::endl;
+        close(clientSocket);
+        return -1;
+    }
+
+    // Send the image data
+    ssize_t bytesSent = send(clientSocket, imageData.data(), imageSize, 0);
+
     if (bytesSent < 0) {
         std::cerr << "Error sending image data" << std::endl;
         close(clientSocket);
         return -1;
     }
+
 
     std::cout << "Image sent!" << std::endl;
 
