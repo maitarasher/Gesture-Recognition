@@ -24,6 +24,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/opt/homebrew/Cellar/cmake/3.27.8/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
   "/opt/homebrew/Cellar/cmake/3.27.8/share/cmake/Modules/Compiler/Clang.cmake"
   "/opt/homebrew/Cellar/cmake/3.27.8/share/cmake/Modules/Compiler/GNU.cmake"
+  "/opt/homebrew/Cellar/cmake/3.27.8/share/cmake/Modules/FindPackageHandleStandardArgs.cmake"
+  "/opt/homebrew/Cellar/cmake/3.27.8/share/cmake/Modules/FindPackageMessage.cmake"
   "/opt/homebrew/Cellar/cmake/3.27.8/share/cmake/Modules/Platform/Apple-AppleClang-C.cmake"
   "/opt/homebrew/Cellar/cmake/3.27.8/share/cmake/Modules/Platform/Apple-AppleClang-CXX.cmake"
   "/opt/homebrew/Cellar/cmake/3.27.8/share/cmake/Modules/Platform/Apple-Clang-C.cmake"
@@ -32,6 +34,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/opt/homebrew/Cellar/cmake/3.27.8/share/cmake/Modules/Platform/Darwin-Initialize.cmake"
   "/opt/homebrew/Cellar/cmake/3.27.8/share/cmake/Modules/Platform/Darwin.cmake"
   "/opt/homebrew/Cellar/cmake/3.27.8/share/cmake/Modules/Platform/UnixPaths.cmake"
+  "/opt/homebrew/opt/opencv@3/share/OpenCV/OpenCVConfig-version.cmake"
+  "/opt/homebrew/opt/opencv@3/share/OpenCV/OpenCVConfig.cmake"
+  "/opt/homebrew/opt/opencv@3/share/OpenCV/OpenCVModules-release.cmake"
+  "/opt/homebrew/opt/opencv@3/share/OpenCV/OpenCVModules.cmake"
   )
 
 # The corresponding makefile is:

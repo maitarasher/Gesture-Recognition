@@ -12,10 +12,10 @@
 
 #include <iostream>
 #include <filesystem>
+#include <opencv2/opencv.hpp>
 
 namespace fs = std::__fs::filesystem;
                
-
 
 // handle gesture 
 void handleGesture(const char* gesture){
@@ -23,7 +23,6 @@ void handleGesture(const char* gesture){
 }
 
 // open an existing Presentation 
-
 void openExistingPresentation(const char* filePath){
 
     char script[256];
@@ -56,13 +55,9 @@ void openNewPresentation(){
 std::string getFullPathFromRelativePath(const char* relativePath) {
     // Get the current working directory
     fs::path currentPath = fs::current_path();
-
     currentPath = currentPath.parent_path().parent_path();
-
-    // Combine the current path with the relative path
     fs::path fullPath = currentPath / relativePath;
 
-    // Convert the path to a string
     return fullPath.string();
 }
 
@@ -72,17 +67,52 @@ int main() {
     std::cout << "Hello, MacOS PowerPoint Application!" << std::endl;
 
     const char* relativePath = "gesture_pptx/test.pptx";
-
     std::string fullPath = getFullPathFromRelativePath(relativePath);
     std::cout << "Full Path: " << fullPath << std::endl;
-
     const char* filePath = fullPath.c_str();
 
     // Open the existing PowerPoint presentation
     openExistingPresentation(filePath);
 
 
-    // openNewPresentation();
+    // Camera capture and gesture recognition
+    cv::VideoCapture cap(0);  // Open the default camera (usually the built-in webcam)
+
+    if (!cap.isOpened()) {
+        std::cerr << "Error: Could not open camera." << std::endl;
+        return -1;
+    }
+
+    cv::namedWindow("Camera Feed", cv::WINDOW_AUTOSIZE);
+
+    while (true) {
+        cv::Mat frame;
+        cap >> frame;  // Capture frame from the camera
+
+        // // Your gesture recognition logic here
+        // // For simplicity, let's assume a basic gesture based on the color of a detected object
+        // cv::Scalar targetColor = cv::Scalar(0, 255, 0);  // Green color as an example
+        // cv::Rect regionOfInterest(100, 100, 50, 50);  // Example region for gesture detection
+        // cv::Mat roi = frame(regionOfInterest);
+
+        // // Check if the average color in the region is close to the target color
+        // double avgColorDiff = cv::norm(cv::mean(roi) - targetColor);
+
+        // if (avgColorDiff < 30.0) {
+        //     // Detected gesture (example: green object detected)
+        //     performPowerPointAction("NextSlide");
+        // }
+
+        cv::imshow("Camera Feed", frame);
+
+        char c = cv::waitKey(1);
+        if (c == 27)  
+            break;
+    }
+
+    cap.release();
+    cv::destroyAllWindows();
+
 
 
    
