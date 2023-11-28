@@ -28,12 +28,12 @@ public:
     double x;
     double y;
     double z;
-Point(): x(0.0), y(0.0), z(0.0) {}
-Point(double x, double y, double z) : x(x), y(y), z(z) {}
+Landmark(): x(0.0), y(0.0), z(0.0) {}
+Landmark(double x, double y, double z) : x(x), y(y), z(z) {}
 
 
     // Function to print the coordinates
-    void printPoint() const {
+    void printLandmark() const {
         std::cout << "(" << x << ", " << y << ", " << z << ")" << std::endl;
     }
 
@@ -50,21 +50,19 @@ Point(double x, double y, double z) : x(x), y(y), z(z) {}
  * @double z
  */
 class Hand_Landmarks {
-    private:
-    vector<Landmark> landmarks(21);
+    public:
+    vector<Landmark> landmarks;
     //int handedness;
 
-    public: 
-    Hand_Landmark(vector<Point>& landmarks) {
-        assert(landmarks.size()==21)
-        this->landmarks=landmarks;
+    // Hand_Landmark(vector<Landmark>& landmarks) {
+    //     assert(landmarks.size()==21);
+    //     this->landmarks=landmarks;
         
-    }
-    Hand_Landmark() {
-
-        this->landmarks.resize(21,0);
+    // }
+    // Hand_Landmark() {
+    //     this->landmarks.resize(21,0);
         
-    }
+    // }
 };
 
 /*
