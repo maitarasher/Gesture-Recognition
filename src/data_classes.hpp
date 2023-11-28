@@ -36,7 +36,8 @@ Point(double x, double y, double z) : x(x), y(y), z(z) {}
     void printPoint() const {
         std::cout << "(" << x << ", " << y << ", " << z << ")" << std::endl;
     }
-}
+
+};
 
 /*
  * @brief Represents all the landmarks returned by the mediapipe for one hand.
@@ -56,18 +57,15 @@ class Hand_Landmarks {
     public: 
     Hand_Landmark(vector<Point>& landmarks) {
         assert(landmarks.size()==21)
-        for(int i=0;i <21; i++)
-        {
-            self.landmarks[i]=landmarks[i];
-        }
+        this->landmarks=landmarks;
+        
     }
     Hand_Landmark() {
-        for(int i=0;i <21; i++)
-        {
-            self.landmarks[i]=0;
-        }
+
+        this->landmarks.resize(21,0);
+        
     }
-}
+};
 
 /*
  * @brief Stores possible names and actions for "labels" for images
