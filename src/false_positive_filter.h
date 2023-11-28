@@ -121,7 +121,7 @@ std::vector<int> bestHandsIndices(Landmark sample, int returnHands = 1);
  */
 private:
     
-    vector<(Landmark, Classifier)> dataset;
+    vector<tuple<Landmark,Classifier>> dataset;
     std::string metric;
     float confidence;
     std::unordered_map<std::string, Representative> representatives;
