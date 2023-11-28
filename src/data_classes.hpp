@@ -77,16 +77,14 @@ class Landmark {
  * ##Class Variables:
  * @string name
  * @string action
- * @double z
  */
-class Gesture {
+class Classifier {
     private:
     string name;
     string action;
-    int index;
     
     public: 
-    Landmark(const string& name, const string& action, int index) {
+    Landmark(const string& name, const string& action) {
         
     }
 }

@@ -5,15 +5,7 @@
 using namespace std;
 
 
-class Gest_CLASS{
-    string Name;
-    int index;
-    vector<Point> landmarks;
-    //vector<Point> xyz;
 
-
-
-}
 
 class Gest_KNN{
     int K_value

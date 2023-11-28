@@ -52,7 +52,7 @@ public:
 
 
 class FalsePositiveFilter {
-/**
+/*
  * @brief Filters out landmarks that are not close enough to any class.
  * First constructs the class representatives,then compares the euclidean distance.
  *
@@ -60,7 +60,7 @@ class FalsePositiveFilter {
  * Gets a dataset of all classes with labels, metric choice, confidence measure
  * 
  * ##Class Variables
- * @vector<> dataset
+ * @vector<(Landmark, Classifier)> dataset of all the viewed pictures with their label
  * @const string metric: specification whether to calculate euclidean or cosine distance
  * @float confidence: confidence parameter
  * @map<string, Representative>
@@ -69,22 +69,59 @@ class FalsePositiveFilter {
  * 
  */
 public:
-    // constructor
-    FalsePositiveFilter(const vector<Classifiers>& dataset, const sstring& metric = "cosine", const float confidence = 0.9);
+    FalsePositiveFilter(const vector<(cv::Mat,Classifiers)>& dataset, const string& metric = "cosine", const float confidence = 0.9);
+/*
+ * @brief Constructs the FalsePositiveFilter with dataset of all classes, metric,and confidence level
+ */
 
     void constructRepresentatives();
+/*
+ * @brief Builds the representatives of each class. Constructed by taking the mean
+ * of all the landmarks within a class.
+ * @param p1: self, must have access to self.dataset
+ * @return populates the map of [str, Representative]
+ */
 
-    tuple<float, int> closestRepresentative(const cv::Mat& sampleLandmarks, const cv::Mat& sampleHandedness);
+    tuple<float, int> closestRepresentative(const Landmark& sample);
+/*
+ * @brief Finds the closest representative to the sample using the specified similarity metric
+ * @param sample: Landmarks information (21*3 vector) of the sample+ handness information of the sample
+ * @return tuple of similiarity score and the class closest to the sample
+ */
 
-    std::vector<int> bestHandsIndices(const cv::Mat& landmarks, const cv::Mat& handedness, int returnHands = 1);
+    bool is_relevant(Landmark sample);
+/*
+ * @brief Checks of a sample is relevant, if it is close enough to any class.
+ * @param sample: sample to check if is relevant
+ * @return True or False if sample is close to any class
+ */
 
-    static float cosineSimilarity(const cv::Mat& v1, const cv::Mat& v2);
+std::vector<int> bestHandsIndices(Landmark sample, int returnHands = 1);
+/*
+ * @brief Produces a list of indices of hands to keep
+ * @param sample: all landmarks and handness information of sample picture
+ * @param return hands: number of hands to return (1 is a default)
+ * @return list of indices of hands to keep
+ */
 
-    static float euclideanSimilarity(const cv::Mat& v1, const cv::Mat& v2);
+    static float cosineSimilarity(const Point& p1, const Point& p2);
+/*
+ * @brief Computes cosine similiarity of two points
+ * @param p1: the first point
+ * @param p2: the second point
+ * @return similiarity
+ */
 
+    static float euclideanSimilarity(const Point& p1, const Point& p2);
+/*
+ * @brief Computes Euclidean similiarity of two points
+ * @param v1: the first vector/or version with a point
+ * @param v2: the second vector
+ * @return similiarity
+ */
 private:
     
-    vector<Gesture> dataset;
+    vector<(Landmark, Classifier)> dataset;
     std::string metric;
     float confidence;
     std::unordered_map<std::string, Representative> representatives;
