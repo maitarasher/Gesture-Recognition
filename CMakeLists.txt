@@ -13,6 +13,7 @@ SET(SOURCE_FILES
     src/load_data/folder_loader.cpp
     src/feature_extraction/stage.hpp
     src/feature_extraction/pipeline.hpp
+    src/data_classes.hpp
 )
 
 INCLUDE_DIRECTORIES(
