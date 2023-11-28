@@ -86,6 +86,8 @@ int train_KNN_parallel(vector<GestClass> classifier,int num_threads)
     }
 }
 
+
+
 //using cv::ml
 cv::Ptr<cv::ml::KNearest> trainKNN(const cv::Mat& trainData, const cv::Mat& labels) {
     cv::Ptr<cv::ml::KNearest> knn = cv::ml::KNearest::create();
