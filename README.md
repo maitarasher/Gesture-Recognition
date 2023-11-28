@@ -22,9 +22,13 @@ Gesture-Recognition Libary in C++
 
 ```./gesture-project```
 
-To locally get the submodules:
+To locally get the submodules the first time:
 
 ```git submodule update --init```
+
+For any time after that use the command:
+
+```git submodule update --recursive --remote```
 
 ## Running Mediapipe
 1. Install bazel https://bazel.build/install/bazelisk
