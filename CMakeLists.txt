@@ -7,20 +7,23 @@ SET(CMAKE_CXX_STANDARD 20)
 SET(CMAKE_BUILD_TYPE Release)
 
 FIND_PACKAGE(OpenCV REQUIRED)
-FIND_PACKAGE(mbedTLS REQUIRED)
 
 SET(SOURCE_FILES
-    samples/client_example.cpp
-    # Add more source files as needed
+    gesture_asl/asl_application.cpp
+    src/load_data/folder_loader.cpp
+    src/feature_extraction/stage.hpp
+    src/feature_extraction/pipeline.hpp
 )
 
-INCLUDE_DIRECTORIES(${OpenCV_INCLUDE_DIRS})
-INCLUDE_DIRECTORIES(${MBEDTLS_INCLUDE_DIR})
-INCLUDE_DIRECTORIES(${YAML-CPP_INCLUDE_DIRS})
+INCLUDE_DIRECTORIES(
+    ${OpenCV_INCLUDE_DIRS}
+    src/feature_extraction
+    src/load_data
+)
+
 
 ADD_EXECUTABLE(gesture_project ${SOURCE_FILES})
 
 TARGET_LINK_LIBRARIES(gesture_project ${OpenCV_LIBS})
-TARGET_LINK_LIBRARIES(gesture_project ${MBEDTLS_LIBRARY})
-TARGET_LINK_LIBRARIES(gesture_project ${YAML-CPP_LIBRARIES})
+
 

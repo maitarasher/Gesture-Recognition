@@ -23,30 +23,21 @@ using namespace std;
  * @double y
  * @double z
  */
-class Point {
-private:
+class Landmark {
+public:
     double x;
     double y;
     double z;
-public:
 Point(): x(0.0), y(0.0), z(0.0) {}
 Point(double x, double y, double z) : x(x), y(y), z(z) {}
 
-    // Getter methods
-    double getX() const { return x; }
-    double getY() const { return y; }
-    double getZ() const { return z; }
-
-    // Setter methods
-    void setX(double newX) { x = newX; }
-    void setY(double newY) { y = newY; }
-    void setZ(double newZ) { z = newZ; }
 
     // Function to print the coordinates
     void printPoint() const {
         std::cout << "(" << x << ", " << y << ", " << z << ")" << std::endl;
     }
-}
+
+};
 
 /*
  * @brief Represents all the landmarks returned by the mediapipe for one hand.
@@ -58,16 +49,23 @@ Point(double x, double y, double z) : x(x), y(y), z(z) {}
  * @double y
  * @double z
  */
-class Landmark {
+class Hand_Landmarks {
     private:
-    vector<Point> landmarks(21);
-    int handedness;
+    vector<Landmark> landmarks(21);
+    //int handedness;
 
     public: 
-    Landmark(vector<Point>& landmarks, int handedness) {
-
+    Hand_Landmark(vector<Point>& landmarks) {
+        assert(landmarks.size()==21)
+        this->landmarks=landmarks;
+        
     }
-}
+    Hand_Landmark() {
+
+        this->landmarks.resize(21,0);
+        
+    }
+};
 
 /*
  * @brief Stores possible names and actions for "labels" for images
@@ -78,7 +76,7 @@ class Landmark {
  * @string name
  * @string action
  */
-class Classifier {
+/*class Label {
     private:
     string name;
     string action;
@@ -87,4 +85,4 @@ class Classifier {
     Landmark(const string& name, const string& action) {
         
     }
-}
+}*/
