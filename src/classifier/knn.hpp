@@ -5,21 +5,17 @@
 using namespace std;
 
 
+//using cv::ml
+cv::Ptr<cv::ml::KNearest> trainKNN(const cv::Mat& trainData, const cv::Mat& labels) {
+    cv::Ptr<cv::ml::KNearest> knn = cv::ml::KNearest::create();
+    
+    // Set KNN parameters
+    knn->setDefaultK(K_VALUE);
+    knn->setIsClassifier(true);
+    
+    // Train the KNN model
+    knn->train(trainData, cv::ml::ROW_SAMPLE, labels);
 
-
-class Gest_KNN{
-    int K_value
-    int num_classes;
-    std::vector<Gest_Class> Classes;
-    cv::Mat Dataset
+    return knn;
 }
 
-/*
-
-//we need to add euclideanDistance
-float euclideanDistance(const Point& point_test, const Point& point_check) const {
-    double x = point_test.x - point_check.x;
-    double y = point_test.y - point_check.y;
-    double z = point_test.z - point_check.z
-    return sqrt(x*x+y*y+z*z);
-}*/

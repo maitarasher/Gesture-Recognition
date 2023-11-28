@@ -24,23 +24,13 @@ using namespace std;
  * @double z
  */
 class Landmark {
-private:
+public:
     double x;
     double y;
     double z;
-public:
 Point(): x(0.0), y(0.0), z(0.0) {}
 Point(double x, double y, double z) : x(x), y(y), z(z) {}
 
-    // Getter methods
-    double getX() const { return x; }
-    double getY() const { return y; }
-    double getZ() const { return z; }
-
-    // Setter methods
-    void setX(double newX) { x = newX; }
-    void setY(double newY) { y = newY; }
-    void setZ(double newZ) { z = newZ; }
 
     // Function to print the coordinates
     void printPoint() const {
@@ -61,11 +51,21 @@ Point(double x, double y, double z) : x(x), y(y), z(z) {}
 class Hand_Landmarks {
     private:
     vector<Landmark> landmarks(21);
-    int handedness;
+    //int handedness;
 
     public: 
-    Hand_Landmark(vector<Point>& landmarks, int handedness) {
-
+    Hand_Landmark(vector<Point>& landmarks) {
+        assert(landmarks.size()==21)
+        for(int i=0;i <21; i++)
+        {
+            self.landmarks[i]=landmarks[i];
+        }
+    }
+    Hand_Landmark() {
+        for(int i=0;i <21; i++)
+        {
+            self.landmarks[i]=0;
+        }
     }
 }
 
@@ -78,7 +78,7 @@ class Hand_Landmarks {
  * @string name
  * @string action
  */
-class Label {
+/*class Label {
     private:
     string name;
     string action;
@@ -87,4 +87,4 @@ class Label {
     Landmark(const string& name, const string& action) {
         
     }
-}
+}*/
