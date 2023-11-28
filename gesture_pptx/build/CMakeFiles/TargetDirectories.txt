@@ -1,0 +1,3 @@
+/Users/elvinawibisono/Desktop/designusingc+/Gesture-Recognition/gesture_pptx/build/CMakeFiles/CrossPlatformPowerPoint.dir
+/Users/elvinawibisono/Desktop/designusingc+/Gesture-Recognition/gesture_pptx/build/CMakeFiles/edit_cache.dir
+/Users/elvinawibisono/Desktop/designusingc+/Gesture-Recognition/gesture_pptx/build/CMakeFiles/rebuild_cache.dir
