@@ -14,21 +14,19 @@
 const int PORT = 8080;
 const char* SERVER_IP = "127.0.0.1";
 
-std::vector<std::vector<Landmark>> parseLandmarks(const std::string& input) {
+Hand_Landmarks parseLandmarks(const std::string& input) {
     std::regex landmarkRegex(R"regex(landmark \{\s*x: ([\d.-]+)\s*y: ([\d.-]+)\s*z: ([\d.-]+)\s*\})regex");
     std::smatch match;
-    std::vector<std::vector<Landmark>> landmarks;
+    Hand_Landmarks landmarks;
 
     auto it = input.cbegin();
     while (std::regex_search(it, input.cend(), match, landmarkRegex)) {
-        std::vector<Landmark> landmarkGroup;
 
         double x = std::stod(match[1].str());
         double y = std::stod(match[2].str());
         double z = std::stod(match[3].str());
-        landmarkGroup.emplace_back(x, y, z);
 
-        landmarks.push_back(landmarkGroup);
+        landmarks.landmarks.push_back(Landmark(x, y, z));
         it = match.suffix().first;
     }
 
@@ -80,7 +78,7 @@ int main() {
     std::vector<ImageData> images = loadImgsFromFolder(folderPath);
     std::cout << "Finished loading images\n";
 
-
+    std::vector<std::vector<Hand_Landmarks>> all_images_landmarks;
     // Iterate over all images
     for (const ImageData& imageData : images)
     {
@@ -136,7 +134,7 @@ int main() {
             ssize_t bytesRead = 0;
             const size_t bufferSize = 4056;
             std::vector<char> landmarkBuffer(bufferSize);
-            std::vector<std::vector<std::vector<Landmark>>> landmarks;
+            std::vector<Hand_Landmarks> frame_landmarks;
             // receive landmarks
             for (int i = 0; i < numOfLandmarks; ++i) {        
                 bytesRead = recv(clientSocket, landmarkBuffer.data(), bufferSize, 0);
@@ -148,9 +146,9 @@ int main() {
 
                 std::string landmarkString(landmarkBuffer.data(), bytesRead);
 
-                std::vector<std::vector<Landmark>> landmarks_parsed = parseLandmarks(landmarkString);
+                Hand_Landmarks landmarks_parsed = parseLandmarks(landmarkString);
 
-                landmarks.emplace_back(landmarks_parsed);
+                frame_landmarks.emplace_back(landmarks_parsed);
 
                 // Clear the buffer for the next iteration
                 landmarkBuffer.clear();
@@ -158,22 +156,12 @@ int main() {
             }
 
 
-            // how to access landmarks
-            for (const auto& group : landmarks) {
-                for (const auto& landmark : group) {
-                    for (const auto& coords : landmark) {
-                        std::cout << "x: " << coords.x << " y: " << coords.y << " z: " << coords.z << '\n';
-                    }
-                    std::cout << "----\n"; // Separate each vector
-                }
-                std::cout << "====\n"; // Separate each group
-            }
-
             // (b) The first landmark corresponding to at least one hand being detected is selected
 
             // (c) Optional apply False Positive filter
 
             // (d) Add landmark to the Data Structure along with the label
+
         }
       }
       else
@@ -183,6 +171,8 @@ int main() {
     }
 
     close(clientSocket);
+
+    std::cout << all_images_landmarks[0]
 
     // (5) Split the Data into train and test
 

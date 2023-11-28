@@ -50,19 +50,34 @@ Landmark(double x, double y, double z) : x(x), y(y), z(z) {}
  * @double z
  */
 class Hand_Landmarks {
-    public:
-    vector<Landmark> landmarks;
-    //int handedness;
+public:
+    std::vector<Landmark> landmarks;
 
-    // Hand_Landmark(vector<Landmark>& landmarks) {
-    //     assert(landmarks.size()==21);
-    //     this->landmarks=landmarks;
-        
-    // }
-    // Hand_Landmark() {
-    //     this->landmarks.resize(21,0);
-        
-    // }
+    // Constructor with parameter
+    Hand_Landmarks(const std::vector<Landmark>& landmarks) {
+        assert(landmarks.size() == 21);
+        this->landmarks = landmarks;
+    }
+
+    // Default constructor
+    Hand_Landmarks() {
+        this->landmarks.resize(21);  // Resizing with default-constructed Landmark objects
+    }
+
+    // Function to print hand landmarks
+    std::string printHandLandmarks() const {
+        std::ostringstream oss;
+        oss << "Hand_Landmarks: [";
+        for (const auto& landmark : landmarks) {
+            oss << landmark.printLandmark() << ", ";
+        }
+        // Remove the trailing comma and space
+        if (!landmarks.empty()) {
+            oss.seekp(-2, std::ios_base::end);
+        }
+        oss << "]";
+        return oss.str();
+    }
 };
 
 /*
