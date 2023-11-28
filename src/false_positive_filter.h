@@ -15,6 +15,7 @@
 #include <string>
 #include <stdexcept>
 #include <opencv2/core.hpp>
+using namespace std;
 
 
 class Representative {
@@ -26,23 +27,26 @@ class Representative {
  * Initialize a new class using construct_representatives within the FalsePositiveFilter
  * 
  * ##Class Variables:
- * @vector<float> mean_landmarks: 3*1 vector of xyz mean coordinates
+ * @vector<double> mean_landmarks: 3*1 vector of xyz mean coordinates
  * @int handness: 0 stands for left, 1 stands for right hand
  * @string action: action associated with the class
+ * @string class_name 
  */
 public:
-    vector<double> mean_landmarks;
+    vector<Point> mean_landmarks;
     int handedness;
-    string action;
+    Classifier label;
     
     //or 
     //Point mean_landmarks
 
     // constructor
-    Representative(const vector<double>& meanLandmarks, const string& handedness, const string& action) {
+    Representative(const vector<double>& meanLandmarks, const string& handedness, const string& action, const string& class_name) {
         self.meanLandmarks = meanLandmarks;
         self.handedness = handedness;
         self.action = action;
+        self.class_name = class_name;
+        label = //construct
     }
 };
 
@@ -56,18 +60,21 @@ class FalsePositiveFilter {
  * Gets a dataset of all classes with labels, metric choice, confidence measure
  * 
  * ##Class Variables
- * @vector<vector<Point>
+ * @vector<> dataset
+ * @const string metric: specification whether to calculate euclidean or cosine distance
+ * @float confidence: confidence parameter
+ * @map<string, Representative>
  *
  * ## Class Functions
  * 
  */
 public:
     // constructor
-    FalsePositiveFilter(const vector<float>& dataset, const std::string& metric = "cosine", const float confidence = 0.9);
+    FalsePositiveFilter(const vector<Classifiers>& dataset, const sstring& metric = "cosine", const float confidence = 0.9);
 
     void constructRepresentatives();
 
-    std::tuple<float, int> closestRepresentative(const cv::Mat& sampleLandmarks, const cv::Mat& sampleHandedness);
+    tuple<float, int> closestRepresentative(const cv::Mat& sampleLandmarks, const cv::Mat& sampleHandedness);
 
     std::vector<int> bestHandsIndices(const cv::Mat& landmarks, const cv::Mat& handedness, int returnHands = 1);
 
@@ -77,7 +84,7 @@ public:
 
 private:
     
-    vector<float> dataset;
+    vector<Gesture> dataset;
     std::string metric;
     float confidence;
     std::unordered_map<std::string, Representative> representatives;

@@ -12,7 +12,17 @@
 #include <opencv2/opencv.hpp>
 using namespace std;
 
-//do we need  different class for Point2D?
+/*
+ * @brief Stores an xyz coordinates of one point in the image (one point in landmarks)
+ *
+ * ## Construction and deconstruction
+ * Initialize a new class using construct_representatives within the FalsePositiveFilter
+ * 
+ * ##Class Variables:
+ * @double x
+ * @double y
+ * @double z
+ */
 class Point {
 private:
     double x;
@@ -22,7 +32,7 @@ public:
 Point(): x(0.0), y(0.0), z(0.0) {}
 Point(double x, double y, double z) : x(x), y(y), z(z) {}
 
-// Getter methods
+    // Getter methods
     double getX() const { return x; }
     double getY() const { return y; }
     double getZ() const { return z; }
@@ -38,13 +48,45 @@ Point(double x, double y, double z) : x(x), y(y), z(z) {}
     }
 }
 
+/*
+ * @brief Represents all the landmarks returned by the mediapipe for one hand.
+ *
+ * ## Construction and deconstruction
+ * 
+ * ##Class Variables:
+ * @double x
+ * @double y
+ * @double z
+ */
 class Landmark {
     private:
     vector<Point> landmarks(21);
     int handedness;
+
     public: 
     Landmark(vector<Point>& landmarks, int handedness) {
 
     }
-    //get mean?
+}
+
+/*
+ * @brief Stores possible names and actions for "labels" for images
+ *
+ * ## Construction and deconstruction
+ * 
+ * ##Class Variables:
+ * @string name
+ * @string action
+ * @double z
+ */
+class Gesture {
+    private:
+    string name;
+    string action;
+    int index;
+    
+    public: 
+    Landmark(const string& name, const string& action, int index) {
+        
+    }
 }
