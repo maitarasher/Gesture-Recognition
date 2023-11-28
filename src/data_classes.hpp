@@ -23,7 +23,7 @@ using namespace std;
  * @double y
  * @double z
  */
-class Point {
+class Landmark {
 private:
     double x;
     double y;
@@ -58,13 +58,13 @@ Point(double x, double y, double z) : x(x), y(y), z(z) {}
  * @double y
  * @double z
  */
-class Landmark {
+class Hand_Landmarks {
     private:
-    vector<Point> landmarks(21);
+    vector<Landmark> landmarks(21);
     int handedness;
 
     public: 
-    Landmark(vector<Point>& landmarks, int handedness) {
+    Hand_Landmark(vector<Point>& landmarks, int handedness) {
 
     }
 }
@@ -78,7 +78,7 @@ class Landmark {
  * @string name
  * @string action
  */
-class Classifier {
+class Label {
     private:
     string name;
     string action;
