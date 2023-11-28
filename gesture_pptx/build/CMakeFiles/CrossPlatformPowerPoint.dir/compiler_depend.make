@@ -32,6 +32,7 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/arm/limits.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/arm/signal.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/arm/types.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/assert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/adjacent_find.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/all_of.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/any_of.h \
@@ -455,6 +456,7 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__thread/poll_with_backoff.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__thread/timed_backoff_policy.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__threading_support \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__tree \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__tuple_dir/apply_cv.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__tuple_dir/make_tuple_types.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__tuple_dir/pair_like.h \
@@ -623,10 +625,12 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/bitset \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/cctype \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/cerrno \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/cfloat \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/chrono \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/climits \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/cmath \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/compare \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/complex \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/concepts \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/cstdarg \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/cstddef \
@@ -638,9 +642,12 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/cwchar \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/cwctype \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/deque \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/errno.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/filesystem \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/float.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/fstream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/initializer_list \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/iomanip \
@@ -651,15 +658,20 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/iterator \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/limits \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/limits.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/list \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/locale \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/locale.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/map \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/math.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/memory \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/mutex \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/new \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/optional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/ostream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/queue \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/ratio \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/set \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/sstream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/stddef.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/stdexcept \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/stdint.h \
@@ -682,6 +694,7 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/errno.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/float.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/libkern/_OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/libkern/arm/OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/limits.h \
@@ -807,19 +820,315 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/xlocale/_wchar.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/xlocale/_wctype.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/__stddef_max_align_t.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_bf16.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_neon.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/float.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/limits.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/calib3d.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/calib3d/calib3d_c.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/affine.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/async.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/base.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/bufferpool.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/check.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/core_c.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/cuda.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/cuda.inl.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/cuda_types.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/cv_cpu_dispatch.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/cvdef.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/cvstd.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/cvstd.inl.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/fast_math.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/hal/interface.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/mat.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/mat.inl.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/matx.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/neon_utils.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/operations.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/optim.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/ovx.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/persistence.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/ptr.inl.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/saturate.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/traits.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/types.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/types_c.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/utility.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/version.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/vsx_utils.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/dnn.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/dnn/dict.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/dnn/dnn.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/dnn/dnn.inl.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/dnn/layer.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/dnn/dnn.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/dnn/utils/inference_engine.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/features2d.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/all_indices.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/allocator.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/any.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/autotuned_index.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/composite_index.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/config.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/defines.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/dist.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/dynamic_bitset.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/flann_base.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/general.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/ground_truth.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/heap.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/hierarchical_clustering_index.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/index_testing.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/kdtree_index.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/kdtree_single_index.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/kmeans_index.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/linear_index.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/logger.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/lsh_index.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/lsh_table.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/matrix.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/miniflann.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/nn_index.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/params.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/random.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/result_set.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/sampling.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/saving.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/timer.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/highgui.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/highgui/highgui_c.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/imgcodecs.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/imgcodecs/imgcodecs_c.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/imgproc.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/imgproc/imgproc_c.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/imgproc/types_c.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/ml.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/ml/ml.inl.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/objdetect.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/objdetect/detection_based_tracker.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/objdetect/objdetect_c.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/opencv.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/opencv_modules.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/photo.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/photo/photo_c.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/shape.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/shape/emdL1.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/shape/hist_cost.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/shape/shape_distance.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/shape/shape_transformer.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/blenders.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/camera.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/exposure_compensate.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/matchers.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/motion_estimators.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/seam_finders.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/util.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/util_inl.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/warpers.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/warpers_inl.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/warpers.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/superres.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/superres/optical_flow.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/video.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/video/background_segm.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/video/tracking.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/video/tracking_c.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videoio.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videoio/videoio_c.h \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/deblurring.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/fast_marching.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/fast_marching_inl.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/frame_source.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/global_motion.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/inpainting.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/log.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/motion_core.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/motion_stabilizing.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/optical_flow.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/outlier_rejection.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/ring_buffer.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/stabilizer.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/wobble_suppression.hpp \
+  /opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/xfeatures2d/cuda.hpp
 
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/xfeatures2d/cuda.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/wobble_suppression.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/stabilizer.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/log.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/inpainting.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/fast_marching.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/deblurring.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videoio/videoio_c.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videoio.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/video/tracking_c.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/video/tracking.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/video/background_segm.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/video.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/superres/optical_flow.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/warpers.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/util.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/seam_finders.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/motion_estimators.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/matchers.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/exposure_compensate.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/camera.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/shape/shape_distance.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/shape/hist_cost.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/shape/emdL1.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/shape.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/warpers_inl.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/photo/photo_c.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/opencv.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/objdetect/objdetect_c.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/objdetect/detection_based_tracker.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/objdetect.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/ml/ml.inl.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/ml.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/imgproc/types_c.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/imgproc/imgproc_c.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/imgproc.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/imgcodecs/imgcodecs_c.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/imgcodecs.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/sampling.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/random.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/miniflann.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/logger.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/linear_index.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/kmeans_index.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/index_testing.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/heap.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/ground_truth.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/general.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/dist.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/config.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/composite_index.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/autotuned_index.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/allocator.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/features2d.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/dnn/utils/inference_engine.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/dnn/dnn.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/dnn.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/vsx_utils.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/utility.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/types_c.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/types.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/traits.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/saturate.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/operations.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/neon_utils.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/fast_math.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/cvstd.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/cvdef.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/cv_cpu_dispatch.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/cuda_types.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/core_c.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/check.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/bufferpool.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/async.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/saving.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/calib3d/calib3d_c.h:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core.hpp:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/limits.h:
+
+/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/float.h:
+
+/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_bf16.h:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/__stddef_max_align_t.h:
 
@@ -831,17 +1140,17 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/xlocale/_ctype.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/xlocale.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/wctype.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/wchar.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/types.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/syslimits.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/resource.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_any_of.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/make_const_lvalue_ref.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/qos.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__functional/operations.h:
 
@@ -853,8 +1162,6 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_useconds_t.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_ucontext.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_u_int8_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_u_int16_t.h:
@@ -862,6 +1169,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/common_type.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_u_char.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/hal/interface.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/alignment_of.h:
 
@@ -915,10 +1224,6 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_symbol_aliasing.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/tuple:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/wait.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_caddr_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__bit/bit_log2.h:
@@ -936,6 +1241,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_pthread/_pthread_key_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_pthread/_pthread_cond_t.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/cuda.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/stdint.h:
 
@@ -966,6 +1273,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/malloc/_malloc.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/machine/types.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/dynamic_bitset.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/machine/signal.h:
 
@@ -1005,7 +1314,19 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/stdexcept:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_member_pointer.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/sstream:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/set:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/ratio:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_ucontext.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__memory_resource/polymorphic_allocator.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/queue:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/optional:
 
@@ -1039,11 +1360,13 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/iosfwd:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/lsh_table.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/ios:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/includes.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/signal.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/includes.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/functional:
 
@@ -1071,6 +1394,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_rune_t.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/motion_core.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/cstdarg:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_equal_range.h:
@@ -1092,6 +1417,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_rotate.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/wctype.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/lsh_index.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/bitset:
 
@@ -1179,6 +1506,12 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/make_signed.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/qos.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_any_of.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/make_const_lvalue_ref.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_trivially_destructible.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_trivially_copy_constructible.h:
@@ -1197,7 +1530,9 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_reference.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_polymorphic.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__fwd/tuple.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/float.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__node_handle:
 
@@ -1229,6 +1564,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_function.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/defines.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_floating_point.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/exception:
@@ -1251,6 +1588,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_core_convertible.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/cfloat:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__utility/unreachable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/_types/_wctrans_t.h:
@@ -1259,6 +1598,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_convertible.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/shape/shape_transformer.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_constructible.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/stdio.h:
@@ -1266,6 +1607,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/add_cv.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_class.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/fast_marching_inl.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_char_like_type.h:
 
@@ -1284,6 +1627,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_allocator.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/vector:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/float.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__memory/allocate_at_least.h:
 
@@ -1318,6 +1663,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/xlocale/_wctype.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/machine/limits.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/dnn/layer.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_implicitly_default_constructible.h:
 
@@ -1361,6 +1708,12 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_seek_set.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_polymorphic.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_partial_sort.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__tree:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__threading_support:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/partition_copy.h:
@@ -1391,6 +1744,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__ranges/dangling.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/photo.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__chrono/system_clock.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__ranges/access.h:
@@ -1398,12 +1753,6 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__random/uniform_random_bit_generator.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__random/uniform_int_distribution.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/stdio.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__ranges/subrange.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/time.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__mutex_base:
 
@@ -1423,7 +1772,11 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__memory/unique_ptr.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/optim.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__memory/uninitialized_algorithms.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/list:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__memory/temporary_buffer.h:
 
@@ -1434,6 +1787,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__memory/construct_at.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_nothrow_convertible.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/matrix.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__memory/compressed_pair.h:
 
@@ -1481,11 +1836,9 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/adjacent_find.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/deque:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__iterator/mergeable.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/_xlocale.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/errno.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__iterator/iterator.h:
 
@@ -1507,8 +1860,6 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_minmax.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__fwd/tuple.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__compare/compare_three_way.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/cerrno:
@@ -1526,6 +1877,10 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__chrono/day.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__assert:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/optical_flow.hpp:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/persistence.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__functional/perfect_forward.h:
 
@@ -1547,9 +1902,17 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__functional/invoke.h:
 
+/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_neon.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_size_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/disjunction.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/errno.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/_xlocale.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/frame_source.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__concepts/semiregular.h:
 
@@ -1570,6 +1933,10 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_binary_search.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__functional/bind.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__chrono/statically_widen.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/complex:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__functional/binary_negate.h:
 
@@ -1596,10 +1963,6 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/cwctype:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__format/concepts.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/min.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/cdefs.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/is_sorted.h:
 
@@ -1667,6 +2030,10 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__functional/not_fn.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/iterator:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/map:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__concepts/swappable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_trivially_move_assignable.h:
@@ -1713,13 +2080,19 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_move_constructible.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/ptr.inl.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__concepts/assignable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__concepts/arithmetic.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/hierarchical_clustering_index.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_remove.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/appleapiopts.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/cvstd.inl.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_prev_permutation.h:
 
@@ -1730,6 +2103,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_stable_partition.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__compare/synth_three_way.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/params.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__compare/ordering.h:
 
@@ -1751,9 +2126,13 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/_types/_uint16_t.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/timer.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__chrono/year_month_day.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__chrono/year_month.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/matx.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_pthread/_pthread_condattr_t.h:
 
@@ -1773,21 +2152,15 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__chrono/time_point.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/syslimits.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/type_identity.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__chrono/steady_clock.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__chrono/statically_widen.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__chrono/monthday.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__format/format_fwd.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__fwd/get.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__memory_resource/polymorphic_allocator.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__chrono/month_weekday.h:
 
@@ -1820,6 +2193,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_search_n.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__bsd_locale_defaults.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/warpers.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/remove.h:
 
@@ -1877,8 +2252,6 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/stable_partition.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/xlocale.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/sort_heap.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/iterator_operations.h:
@@ -1907,11 +2280,15 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/set_intersection.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/dnn/dict.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__concepts/constructible.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__functional/ranges_operations.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/sample.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/reverse_copy.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_replace_if.h:
 
@@ -1933,6 +2310,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/_types/_uint64_t.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/version.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/stdlib.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_push_heap.h:
@@ -1941,13 +2320,25 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_upper_bound.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/mat.inl.hpp:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/time.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/stdio.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__ranges/subrange.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_unique.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__compare/strong_order.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__chrono/convert_to_timespec.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/any.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/rotate_copy.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/motion_stabilizing.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_is_permutation.h:
 
@@ -1989,9 +2380,13 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__concepts/invocable.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/calib3d.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/chrono:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__concepts/common_reference_with.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/flann_base.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/partition_point.h:
 
@@ -1999,21 +2394,19 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_partition_copy.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/nn_index.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_find_if.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__iterator/concepts.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__config:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/wctype.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_partition.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/rotate.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/uniform_random_bit_generator_adaptor.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_partial_sort.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_move_assignable.h:
 
@@ -2047,6 +2440,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_none_of.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/kdtree_single_index.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_remove_if.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_max.h:
@@ -2059,6 +2454,10 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__filesystem/path.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/wait.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/tuple:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__functional/binder1st.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__memory/uses_allocator_construction.h:
@@ -2066,6 +2465,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_lexicographical_compare.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__iterator/prev.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/outlier_rejection.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__bit_reference:
 
@@ -2085,6 +2486,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_inplace_merge.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/global_motion.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/math.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_includes.h:
@@ -2095,11 +2498,17 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_generate.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/dnn/dnn.inl.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_fill_n.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_find_end.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/kdtree_index.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_base_of.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/fstream:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_find.h:
 
@@ -2107,9 +2516,13 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/bit:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/base.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_fill.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_union.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/mat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_equal.h:
 
@@ -2127,13 +2540,15 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_copy_if.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/affine.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/string.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/generate_n.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_iterator_concept.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/iterator:
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/ovx.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/inplace_merge.h:
 
@@ -2181,17 +2596,9 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/add_rvalue_reference.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__compare/compare_partial_order_fallback.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_max_element.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/partial_sort_copy.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_replace.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__functional/weak_result_type.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_member_pointer.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__functional/unary_negate.h:
 
@@ -2202,6 +2609,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__memory/shared_ptr.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__iterator/back_insert_iterator.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/opencv_modules.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__filesystem/file_type.h:
 
@@ -2219,6 +2628,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_for_each_n.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/util_inl.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/__wctype.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__functional/function.h:
@@ -2226,6 +2637,10 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_fsblkcnt_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/is_compound.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_max_element.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__compare/compare_partial_order_fallback.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__fwd/array.h:
 
@@ -2241,11 +2656,21 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_merge.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/highgui/highgui_c.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/core/cuda.inl.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_move.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__iterator/iter_swap.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/stitching/detail/blenders.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_fd_clr.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/cdefs.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/min.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/make_projected.h:
 
@@ -2257,7 +2682,11 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_partial_sort_copy.h:
 
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/all_indices.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/partition.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/superres.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__compare/is_eq.h:
 
@@ -2266,6 +2695,8 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/remove_copy_if.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/_wctype.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/highgui.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/is_heap_until.h:
 
@@ -2278,6 +2709,10 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/remove_reference.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/find_if.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/partial_sort_copy.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/is_permutation.h:
 
@@ -2361,7 +2796,11 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/clamp.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/assert.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/arm/limits.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/flann/result_set.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/ranges_sort_heap.h:
 
@@ -2405,13 +2844,13 @@ CMakeFiles/CrossPlatformPowerPoint.dir/gesture_pptx.cpp.o: /Users/elvinawibisono
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/copy_if.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/reverse_copy.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/remove_extent.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__type_traits/remove_const.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__bit/bit_floor.h:
+
+/opt/homebrew/Cellar/opencv@3/3.4.16_10/include/opencv2/videostab/ring_buffer.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__algorithm/max.h:
 
