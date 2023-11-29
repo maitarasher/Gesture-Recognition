@@ -16,19 +16,20 @@
 const int PORT = 8080;
 const char* SERVER_IP = "127.0.0.1";
 
-int main() {
+int main(int argc, char* argv[]){
+
+    // Check if the folder path is provided as a command-line argument
+    if (argc != 2){
+      std::cerr << "Usage: " << argv[0] << " <folder_path>" << std::endl;
+      return -1;
+    }
 
     // (1) create a client socket and connect to the MediaPipe Server
 
-    ////////////// uncomment below code ///////
-
     int clientSocket = connectToServer(PORT, SERVER_IP);
-
     if (clientSocket == -1) {
         return -1;
     }
-
-    ////////////// uncomment above code ////////
 
     // (2) Create Pipeline structure
 
@@ -41,13 +42,16 @@ int main() {
     my_pipeline.add_stage(15.0, 45.0);
     my_pipeline.add_stage(15.0, 90.0);
 
-    // (3) Load images by folder - call folder_loader, ImageData contians the image_path and the classlabel
     // std::string folderPath = "/Users/elifiamuthia/Desktop/asl_dataset/asl_alphabet_train/";
-    std::string folderPath = "/Users/maitarasher/Desktop/gesture_data/subsample";
+    // std::string folderPath = "/Users/maitarasher/Desktop/gesture_data/subsample";
+    // Extract the folder path from the command-line arguments
+    std::string folderPath = argv[1];
+    // (3) Load images by folder - call folder_loader, ImageData contians the image_path and the classlabel
     std::vector<ImageData> images = loadImgsFromFolder(folderPath);
     std::cout << "Finished loading images\n";
 
     std::vector<Hand_Landmarks> all_images_landmarks;
+    std::vector<int> all_labels;
     // std::vector<int> all_images_labels;
     // Iterate over all images
     for (const ImageData& imageData : images)
@@ -75,11 +79,11 @@ int main() {
             }
 
             // (b) Add landmark to the Data Structure
+            // (c) Add landmarks to the class labels Data Structure
             for (Hand_Landmarks& lm : landmarks) {
                 all_images_landmarks.push_back(lm);
+                all_labels.push_back(imageData.label);
             }
-
-            // (c) Add landmarks to the class labels Data Structure
 
             // (d) The first landmarks corresponding to at least one hand being detected is selected
             std::cout << "\nGetting landmarks for " << imageData.filePath << " landmarks.size(): " << landmarks.size() << "\n";
