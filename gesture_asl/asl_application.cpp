@@ -86,7 +86,7 @@ int main(int argc, char* argv[]){
             }
 
             // (d) The first landmarks corresponding to at least one hand being detected is selected
-            std::cout << "\nGetting landmarks for " << imageData.filePath << " landmarks.size(): " << landmarks.size() << "\n";
+            std::cout << "\nGetting landmarks for " << imageData.filePath << " landmarks.size(): " << landmarks.size() << "imageData.label: " << imageData.label << "\n";
             if (landmarks.size() > 0) break;
         }
       }
@@ -95,11 +95,22 @@ int main(int argc, char* argv[]){
           std::cerr << "Error loading image: " << imageData.filePath << std::endl;
       }
     }
+    std::cout << "finshed getting Landmarks for all images\n";
+    std::cout << "all_images_landmarks.size(): " << all_images_landmarks.size() << "\n";
+    std::cout << "all_labels.size(): " << all_labels.size() << "\n";
 
-    // (5) Split the Data into train and test
-    /* HANDLED IN KNN Classifier */
 
+    // (5) NOAM - Save the two vectors all_images_landmarks, all_labels in txt or json file
+
+
+    // The rest of the code below can be in a seprate program once ready
+    // (6) Load the data
+
+    // (5) Split the Data into train and test /* HANDLED IN KNN Classifier */
     // (6) Train the data using K classiffier
+    // Create KNN classifier
+    float accuracy = KNN_build(all_images_landmarks, all_labels);
+    std::cout << "accuracy: " << accuracy << "\n";
 
     // (7) Get results
 
