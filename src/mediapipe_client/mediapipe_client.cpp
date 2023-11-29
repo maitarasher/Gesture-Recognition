@@ -68,7 +68,6 @@ bool getLandmarksFromServer(int clientSocket, const cv::Mat& inputImage, std::ve
 
     std::cout << "Image sent!" << std::endl;
 
-
     // Receive the size of the landmarks data
     size_t landmarksSize;
     ssize_t sizeReceived = recv(clientSocket, &landmarksSize, sizeof(size_t), 0);
