@@ -68,6 +68,7 @@ Landmark(vector<float>& point) {
         landmark_vector.push_back(z);
         return landmark_vector;   
     }
+
 };
 
 /*
