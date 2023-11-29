@@ -45,6 +45,14 @@ Landmark(vector<float>& point) {
         }
     }
 
+    // Function to convert Landmark to a cv::row vector
+    cv::Mat toMatRow() const {
+        cv::Mat row(1, 3, CV_32F);
+        row.at<float>(0, 0) = x;
+        row.at<float>(0, 1) = y;
+        row.at<float>(0, 2) = z;
+        return row;
+    }
     // Function to print the coordinates
     void print()  {
         cout << "(" << x << ", " << y << ", " << z << ")" << endl;
@@ -79,6 +87,19 @@ class Hand_Landmarks {
     // Constructor to initialize the vector with specific Landmark objects
     Hand_Landmarks(const vector<Landmark>& initialLandmarks) : landmarks(initialLandmarks) {}
 
+    //function to convert the Hand_Landmarks to cv Matrix for data manipulations
+    cv::Mat toMatRow() const {
+        cv::Mat matRow(1, 63, CV_32F);
+        int colIndex = 0;
+
+        for (const Landmark& landmark : landmarks) {
+            cv::Mat landmarkRow = landmark.toMatRow();
+            landmarkRow.copyTo(matRow(cv::Rect(colIndex, 0, 3, 1)));
+            colIndex += 3;
+        }
+
+        return matRow;
+    }
     // Print function to display the contents of Hand_Landmarks
     void print() const {
         for (const Landmark& landmark : landmarks) {
