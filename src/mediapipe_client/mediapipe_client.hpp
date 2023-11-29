@@ -9,7 +9,7 @@
 #include <arpa/inet.h>
 #include <regex>
 #include <opencv2/opencv.hpp>
-#include "./data_classes.hpp"
+#include "../data_classes.hpp"
 
 // Function to connect to the server
 int connectToServer(const int PORT, const char* SERVER_IP);

@@ -10,7 +10,8 @@
 #include "../src/feature_extraction/stage.hpp"
 #include "../src/load_data/folder_loader.hpp"
 #include "../src/data_classes.hpp"
-#include "../src/mediapipe_client.hpp"
+#include "../src/mediapipe_client/mediapipe_client.hpp"
+#include "../src/classifier/knn.hpp"
 
 const int PORT = 8080;
 const char* SERVER_IP = "127.0.0.1";
@@ -41,11 +42,12 @@ int main() {
     my_pipeline.add_stage(15.0, 90.0);
 
     // (3) Load images by folder - call folder_loader, ImageData contians the image_path and the classlabel
-    std::string folderPath = "/Users/elifiamuthia/Desktop/gesture_data/subsample";
+    std::string folderPath = "/Users/elifiamuthia/Desktop/asl_dataset/asl_alphabet_train/";
     std::vector<ImageData> images = loadImgsFromFolder(folderPath);
     std::cout << "Finished loading images\n";
 
-    std::vector<std::vector<Hand_Landmarks>> all_images_landmarks;
+    std::vector<Hand_Landmarks> all_images_landmarks;
+    // std::vector<int> all_images_labels;
     // Iterate over all images
     for (const ImageData& imageData : images)
     {
@@ -64,13 +66,19 @@ int main() {
             // cv::waitKey(1000);
 
             // (a) Get landmarks for each augmented image in the Pipeline by sending a the image to the server and getting a reposnd
-
+            std::vector<Hand_Landmarks> landmarks;
+            bool success = getLandmarksFromServer(clientSocket, inputImage, landmarks);
+            if (success == false) {
+                return -1;
+            }
             // (b) The first landmark corresponding to at least one hand being detected is selected
 
             // (c) Optional apply False Positive filter
 
             // (d) Add landmark to the Data Structure along with the label
-
+            for (Hand_Landmarks& lm : landmarks) {
+                all_images_landmarks.push_back(lm);
+            }
         }
       }
       else
@@ -80,6 +88,7 @@ int main() {
     }
 
     // (5) Split the Data into train and test
+    /* HANDLED IN KNN Classifier */
 
     // (6) Train the data using K classiffier
 
@@ -89,25 +98,25 @@ int main() {
 
 
     ///// SEND VIDEO TO MEDIAPIPE, GET LANDMARKS BACK, GET ACTION FROM CLASSIFIER, DO ACTION
-    cv::VideoCapture capture;
-    capture.open(0);
-    bool grab_frames = true;
-    while (grab_frames) {
-        cv::Mat inputImage;
-        capture >> inputImage;
+    // cv::VideoCapture capture;
+    // capture.open(0);
+    // bool grab_frames = true;
+    // while (grab_frames) {
+    //     cv::Mat inputImage;
+    //     capture >> inputImage;
 
-        std::vector<Hand_Landmarks> landmarks;
-        bool success = getLandmarksFromServer(clientSocket, inputImage, landmarks);
-        if (success == false) {
-            return -1;
-        }
+    //     std::vector<Hand_Landmarks> landmarks;
+    //     bool success = getLandmarksFromServer(clientSocket, inputImage, landmarks);
+    //     if (success == false) {
+    //         return -1;
+    //     }
 
-        // std::cout << landmarks.size() << std::endl;
+    //     // std::cout << landmarks.size() << std::endl;
 
 
-        // TODO
-        // RUN LANDMARKS THROUGH CLASSIFIER AND GET CORRESPONDING ACTION    
-    }
+    //     // TODO
+    //     // RUN LANDMARKS THROUGH CLASSIFIER AND GET CORRESPONDING ACTION    
+    // }
     close(clientSocket);
 
     return 0;

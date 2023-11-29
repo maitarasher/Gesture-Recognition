@@ -14,15 +14,17 @@ SET(SOURCE_FILES
     src/feature_extraction/stage.hpp
     src/feature_extraction/pipeline.hpp
     src/data_classes.hpp
-    src/mediapipe_client.hpp
-    src/mediapipe_client.cpp
+    src/mediapipe_client/mediapipe_client.hpp
+    src/mediapipe_client/mediapipe_client.cpp
+    src/classifier/knn.hpp
 )
 
 INCLUDE_DIRECTORIES(
     ${OpenCV_INCLUDE_DIRS}
     src/feature_extraction
     src/load_data
-    src
+    src/mediapipe_client
+    src/classifier
 )
 
 
