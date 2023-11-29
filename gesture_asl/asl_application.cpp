@@ -11,7 +11,7 @@
 #include "../src/load_data/folder_loader.hpp"
 #include "../src/data_classes.hpp"
 #include "../src/mediapipe_client/mediapipe_client.hpp"
-#include "../src/classifier/knn.hpp"
+//#include "../src/classifier/knn.hpp"
 
 const int PORT = 8080;
 const char* SERVER_IP = "127.0.0.1";
@@ -42,7 +42,8 @@ int main() {
     my_pipeline.add_stage(15.0, 90.0);
 
     // (3) Load images by folder - call folder_loader, ImageData contians the image_path and the classlabel
-    std::string folderPath = "/Users/elifiamuthia/Desktop/asl_dataset/asl_alphabet_train/";
+    // std::string folderPath = "/Users/elifiamuthia/Desktop/asl_dataset/asl_alphabet_train/";
+    std::string folderPath = "/Users/maitarasher/Desktop/gesture_data/subsample";
     std::vector<ImageData> images = loadImgsFromFolder(folderPath);
     std::cout << "Finished loading images\n";
 
@@ -71,14 +72,17 @@ int main() {
             if (success == false) {
                 return -1;
             }
-            // (b) The first landmark corresponding to at least one hand being detected is selected
 
-            // (c) Optional apply False Positive filter
-
-            // (d) Add landmark to the Data Structure along with the label
+            // (b) Add landmark to the Data Structure
             for (Hand_Landmarks& lm : landmarks) {
                 all_images_landmarks.push_back(lm);
             }
+
+            // (c) Add landmarks to the class labels Data Structure
+
+            // (d) The first landmarks corresponding to at least one hand being detected is selected
+            std::cout << "\nGetting landmarks for " << imageData.filePath << " landmarks.size(): " << landmarks.size() << "\n";
+            if (landmarks.size() > 0) break;
         }
       }
       else
@@ -115,7 +119,7 @@ int main() {
 
 
     //     // TODO
-    //     // RUN LANDMARKS THROUGH CLASSIFIER AND GET CORRESPONDING ACTION    
+    //     // RUN LANDMARKS THROUGH CLASSIFIER AND GET CORRESPONDING ACTION
     // }
     close(clientSocket);
 
