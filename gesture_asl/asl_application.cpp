@@ -11,7 +11,7 @@
 #include "../src/load_data/folder_loader.hpp"
 #include "../src/data_classes.hpp"
 #include "../src/mediapipe_client/mediapipe_client.hpp"
-//#include "../src/classifier/knn.hpp"
+#include "../src/classifier/knn.hpp"
 
 const int PORT = 8080;
 const char* SERVER_IP = "127.0.0.1";
@@ -60,10 +60,11 @@ int main() {
         for (const Stage &stage : my_pipeline.getStages()){
             cv::Mat inputImage = stage.process(image);
 
-            // Show the original and processed images for each stage
-            // std::cout << "Class Label: " << imageData.classLabel << std::endl;
+            //Show the original and processed images for each stage
+            // std::cout << "Class String: " << imageData.classStr << std::endl;
+            // std::cout << "Class Label: " << imageData.label << std::endl;
             // cv::imshow("Original Image", image);
-            // cv::imshow("Brightened Image", processedImage);
+            // cv::imshow("Brightened Image", inputImage);
             // cv::waitKey(1000);
 
             // (a) Get landmarks for each augmented image in the Pipeline by sending a the image to the server and getting a reposnd

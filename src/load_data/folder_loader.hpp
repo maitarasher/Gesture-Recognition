@@ -7,7 +7,8 @@
 struct ImageData {
     //cv::Mat image;
     std::string filePath;
-    std::string classLabel;
+    std::string classStr;
+    int label;
 };
 
 std::vector<ImageData> loadImgsFromFolder(const std::string& folderPath);
