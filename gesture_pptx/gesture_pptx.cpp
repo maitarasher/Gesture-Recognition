@@ -10,12 +10,8 @@
 // #include "../src/feature_extraction/stage.hpp"
 // #include "../src/load_data/folder_loader.hpp"
 
-#include <cstring>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <regex>
+#include "../src/mediapipe_client/mediapipe_client.hpp"
+#include "../src/data_classes.hpp"
 
 #include <iostream>
 #include <filesystem>
@@ -25,35 +21,6 @@ namespace fs = std::__fs::filesystem;
 
 const int PORT = 8080;
 const char* SERVER_IP = "127.0.0.1"; 
-
-class Landmark {
-public:
-    double x, y, z;
-
-    Landmark(double x, double y, double z) : x(x), y(y), z(z) {}
-};
-
-std::vector<std::vector<Landmark>> parseLandmarks(const std::string& input) {
-    std::regex landmarkRegex(R"regex(landmark \{\s*x: ([\d.-]+)\s*y: ([\d.-]+)\s*z: ([\d.-]+)\s*\})regex");
-    std::smatch match;
-    std::vector<std::vector<Landmark>> landmarks;
-
-    auto it = input.cbegin();
-    while (std::regex_search(it, input.cend(), match, landmarkRegex)) {
-        std::vector<Landmark> landmarkGroup;
-
-        double x = std::stod(match[1].str());
-        double y = std::stod(match[2].str());
-        double z = std::stod(match[3].str());
-        landmarkGroup.emplace_back(x, y, z);
-
-        landmarks.push_back(landmarkGroup);
-        it = match.suffix().first;
-    }
-
-    return landmarks;
-}
-
 
 //  PPTX CODE 
 // handle gesture 
@@ -134,25 +101,11 @@ int main() {
 
     // model 
 
-    int clientSocket = socket(AF_INET, SOCK_STREAM, 0);
-    if (clientSocket < 0) {
-        std::cerr << "Error creating socket" << std::endl;
+    // Establish connection with server
+    int clientSocket = connectToServer(PORT, SERVER_IP);
+    if (clientSocket == -1) {
         return -1;
     }
-
-    sockaddr_in serverAddress;
-    memset(&serverAddress, 0, sizeof(serverAddress));
-    serverAddress.sin_family = AF_INET;
-    serverAddress.sin_port = htons(PORT);
-    inet_pton(AF_INET, SERVER_IP, &(serverAddress.sin_addr));
-
-    if (connect(clientSocket, reinterpret_cast<sockaddr*>(&serverAddress), sizeof(serverAddress)) < 0) {
-        std::cerr << "Error connecting to the server" << std::endl;
-        close(clientSocket);
-        return -1;
-    }
-
-    std::cout << "Connected to server!" << std::endl;
 
 
     // Camera capture and gesture recognition
@@ -165,91 +118,26 @@ int main() {
 
     cv::namedWindow("Camera Feed", cv::WINDOW_AUTOSIZE);
 
-    while (true) {
-        // cv::Mat frame;
-        // cap >> frame;  // Capture frame from the camera
-        cv::Mat inputImage; 
-        cap >> inputImage;
+    cv::VideoCapture capture;
+    capture.open(0);
+    bool grab_frames = true;
+    while (grab_frames) {
+        cv::Mat inputImage;
+        capture >> inputImage;
 
-        // Encode the image to JPEG format
-        std::vector<uchar> imageData;
-        cv::imencode(".jpg", inputImage, imageData);
-
-        size_t imageSize = imageData.size();
-        ssize_t sizeSent = send(clientSocket, &imageSize, sizeof(size_t), 0);
-
-        if (sizeSent != sizeof(size_t)) {
-            std::cerr << "Error sending image size. Sent: " << sizeSent << " bytes" << std::endl;
-            close(clientSocket);
+        std::vector<Hand_Landmarks> landmarks;
+        bool success = getLandmarksFromServer(clientSocket, inputImage, landmarks);
+        if (success == false) {
             return -1;
         }
 
-        // Send the image data
-        ssize_t bytesSent = send(clientSocket, imageData.data(), imageSize, 0);
+        // std::cout << landmarks.size() << std::endl;
 
-        if (bytesSent < 0) {
-            std::cerr << "Error sending image data" << std::endl;
-            close(clientSocket);
-            return -1;
-        }
 
-        std::cout << "Image sent!" << std::endl;
-
-        // Receive the number of landmarks
-        size_t numOfLandmarks;
-        ssize_t sizeReceived = recv(clientSocket, &numOfLandmarks, sizeof(size_t), 0);
-
-        if (sizeReceived != sizeof(size_t)) {
-            std::cerr << "Error receiving image size. Received: " << sizeReceived<< std::endl;
-            close(clientSocket);
-            return -1;
-        }
-
-        ssize_t bytesRead = 0;
-        const size_t bufferSize = 4056;
-        std::vector<char> landmarkBuffer(bufferSize);
-        std::vector<std::vector<std::vector<Landmark>>> landmarks;
-        // receive landmarks
-        for (int i = 0; i < numOfLandmarks; ++i) {        
-            bytesRead = recv(clientSocket, landmarkBuffer.data(), bufferSize, 0);
-            if (bytesRead < 0) {
-                std::cerr << "Error receiving landmark data" << std::endl;
-                close(clientSocket);
-                return -1;
-            }
-
-            std::string landmarkString(landmarkBuffer.data(), bytesRead);
-
-            std::vector<std::vector<Landmark>> landmarks_parsed = parseLandmarks(landmarkString);
-
-            landmarks.emplace_back(landmarks_parsed);
-
-            // Clear the buffer for the next iteration
-            // landmarkBuffer.clear();
-            landmarkBuffer.resize(bufferSize);
-        }
-
-        // // Your gesture recognition logic here
-        // // For simplicity, let's assume a basic gesture based on the color of a detected object
-        // cv::Scalar targetColor = cv::Scalar(0, 255, 0);  // Green color as an example
-        // cv::Rect regionOfInterest(100, 100, 50, 50);  // Example region for gesture detection
-        // cv::Mat roi = frame(regionOfInterest);
-
-        // // Check if the average color in the region is close to the target color
-        // double avgColorDiff = cv::norm(cv::mean(roi) - targetColor);
-
-        // if (avgColorDiff < 30.0) {
-        //     // Detected gesture (example: green object detected)
-        //     handleGesture("NextSlide");
-        // }
-
-        // cv::imshow("Camera Feed", frame);
-        cv::imshow("Camera Feed", inputImage);
-
-        char c = cv::waitKey(1);
-        if (c == 27)  
-            break;
+        // TODO
+        // RUN LANDMARKS THROUGH CLASSIFIER AND GET CORRESPONDING ACTION
     }
+    close(clientSocket);
 
     cap.release();
     cv::destroyAllWindows();
