@@ -97,64 +97,6 @@ int main() {
             // cv::waitKey(1000);
 
             // (a) Get landmarks for each augmented image in the Pipeline by sending a the image to the server and getting a reposnd
-            // Encode the image to JPEG format
-            std::vector<uchar> imageData;
-            cv::imencode(".jpg", inputImage, imageData);
-
-            size_t imageSize = imageData.size();
-            ssize_t sizeSent = send(clientSocket, &imageSize, sizeof(size_t), 0);
-
-            if (sizeSent != sizeof(size_t)) {
-                std::cerr << "Error sending image size" << std::endl;
-                close(clientSocket);
-                return -1;
-            }
-
-            // Send the image data
-            ssize_t bytesSent = send(clientSocket, imageData.data(), imageSize, 0);
-
-            if (bytesSent < 0) {
-                std::cerr << "Error sending image data" << std::endl;
-                close(clientSocket);
-                return -1;
-            }
-
-            std::cout << "Image sent!" << std::endl;
-
-            // Receive the number of landmarks
-            size_t numOfLandmarks;
-            ssize_t sizeReceived = recv(clientSocket, &numOfLandmarks, sizeof(size_t), 0);
-
-            if (sizeReceived != sizeof(size_t)) {
-                std::cerr << "Error receiving image size" << std::endl;
-                close(clientSocket);
-                return -1;
-            }
-
-            ssize_t bytesRead = 0;
-            const size_t bufferSize = 4056;
-            std::vector<char> landmarkBuffer(bufferSize);
-            std::vector<Hand_Landmarks> frame_landmarks;
-            // receive landmarks
-            for (int i = 0; i < numOfLandmarks; ++i) {        
-                bytesRead = recv(clientSocket, landmarkBuffer.data(), bufferSize, 0);
-                if (bytesRead < 0) {
-                    std::cerr << "Error receiving landmark data" << std::endl;
-                    close(clientSocket);
-                    return -1;
-                }
-
-                std::string landmarkString(landmarkBuffer.data(), bytesRead);
-
-                Hand_Landmarks landmarks_parsed = parseLandmarks(landmarkString);
-
-                frame_landmarks.emplace_back(landmarks_parsed);
-
-                // Clear the buffer for the next iteration
-                landmarkBuffer.clear();
-                landmarkBuffer.resize(bufferSize);
-            }
-
 
             // (b) The first landmark corresponding to at least one hand being detected is selected
 
@@ -170,10 +112,6 @@ int main() {
       }
     }
 
-    close(clientSocket);
-
-    std::cout << all_images_landmarks[0]
-
     // (5) Split the Data into train and test
 
     // (6) Train the data using K classiffier
@@ -182,87 +120,92 @@ int main() {
 
     // (8) Use the model for parsing the gestures in a recorded video stream - retrurn script of words
 
-    ////////////// change below code to accommodate the above ////////
 
-    // Load an example image (replace with your image loading code)
-    // cv::Mat inputImage = cv::imread("/Users/elifiamuthia/Desktop/test-image.jpg");
-    // if (inputImage.empty()) {
-    //     std::cerr << "Error loading image" << std::endl;
-    //     close(clientSocket);
-    //     return -1;
-    // }
+    ///// SEND VIDEO TO MEDIAPIPE, GET LANDMARKS BACK, GET ACTION FROM CLASSIFIER, DO ACTION
+    cv::VideoCapture capture;
+    capture.open(0);
+    bool grab_frames = true;
+    while (grab_frames) {
+        cv::Mat inputImage;
+        capture >> inputImage;
 
-    // // Encode the image to JPEG format
-    // std::vector<uchar> imageData;
-    // cv::imencode(".jpg", inputImage, imageData);
-    //
-    // size_t imageSize = imageData.size();
-    // ssize_t sizeSent = send(clientSocket, &imageSize, sizeof(size_t), 0);
-    //
-    // if (sizeSent != sizeof(size_t)) {
-    //     std::cerr << "Error sending image size" << std::endl;
-    //     close(clientSocket);
-    //     return -1;
-    // }
-    //
-    // // Send the image data
-    // ssize_t bytesSent = send(clientSocket, imageData.data(), imageSize, 0);
-    //
-    // if (bytesSent < 0) {
-    //     std::cerr << "Error sending image data" << std::endl;
-    //     close(clientSocket);
-    //     return -1;
-    // }
-    //
-    // std::cout << "Image sent!" << std::endl;
-    //
-    // // Receive the number of landmarks
-    // size_t numOfLandmarks;
-    // ssize_t sizeReceived = recv(clientSocket, &numOfLandmarks, sizeof(size_t), 0);
-    //
-    // if (sizeReceived != sizeof(size_t)) {
-    //     std::cerr << "Error receiving image size" << std::endl;
-    //     close(clientSocket);
-    //     return -1;
-    // }
-    //
-    // ssize_t bytesRead = 0;
-    // const size_t bufferSize = 4056;
-    // std::vector<char> landmarkBuffer(bufferSize);
-    // std::vector<std::vector<std::vector<Landmark>>> landmarks;
-    // // receive landmarks
-    // for (int i = 0; i < numOfLandmarks; ++i) {
-    //     bytesRead = recv(clientSocket, landmarkBuffer.data(), bufferSize, 0);
-    //     if (bytesRead < 0) {
-    //         std::cerr << "Error receiving landmark data" << std::endl;
-    //         close(clientSocket);
-    //         return -1;
-    //     }
-    //
-    //     std::string landmarkString(landmarkBuffer.data(), bytesRead);
-    //
-    //     std::vector<std::vector<Landmark>> landmarks_parsed = parseLandmarks(landmarkString);
-    //
-    //     landmarks.emplace_back(landmarks_parsed);
-    //
-    //     // Clear the buffer for the next iteration
-    //     landmarkBuffer.clear();
-    //     landmarkBuffer.resize(bufferSize);
-    // }
-    //
-    //
-    // // how to access landmarks
-    // for (const auto& group : landmarks) {
-    //     for (const auto& landmark : group) {
-    //         for (const auto& coords : landmark) {
-    //             std::cout << "x: " << coords.x << " y: " << coords.y << " z: " << coords.z << '\n';
-    //         }
-    //         std::cout << "----\n"; // Separate each vector
-    //     }
-    //     std::cout << "====\n"; // Separate each group
-    // }
-    //
-    // close(clientSocket);
+        // Encode the image to JPEG format
+        std::vector<uchar> imageData;
+        cv::imencode(".jpg", inputImage, imageData);
+
+        size_t imageSize = imageData.size();
+        ssize_t sizeSent = send(clientSocket, &imageSize, sizeof(size_t), 0);
+
+        if (sizeSent != sizeof(size_t)) {
+            std::cerr << "Error sending image size" << std::endl;
+            close(clientSocket);
+            return -1;
+        }
+
+        // Send the image data
+        ssize_t bytesSent = send(clientSocket, imageData.data(), imageSize, 0);
+
+        if (bytesSent < 0) {
+            std::cerr << "Error sending image data" << std::endl;
+            close(clientSocket);
+            return -1;
+        }
+
+        std::cout << "Image sent!" << std::endl;
+
+
+        // Receive the size of the landmarks data
+        size_t landmarksSize;
+        ssize_t sizeReceived = recv(clientSocket, &landmarksSize, sizeof(size_t), 0);
+
+        if (sizeReceived != sizeof(size_t)) {
+            std::cerr << "Error receiving landmarks size" << std::endl;
+            close(clientSocket);
+            return -1;
+        }
+
+        // Receive the concatenated landmarks string
+        std::vector<char> landmarksBuffer;
+        landmarksBuffer.resize(landmarksSize);
+        size_t totalBytesReceived = 0;
+
+        while (totalBytesReceived < landmarksSize) {
+            ssize_t bytesRead = recv(clientSocket, landmarksBuffer.data() + totalBytesReceived, landmarksSize - totalBytesReceived, 0);
+
+            if (bytesRead <= 0) {
+                std::cerr << "Error receiving landmarks data" << std::endl;
+                close(clientSocket);
+                return -1;
+            }
+
+            totalBytesReceived += bytesRead;
+        }
+
+        // Convert the received data to a string
+        std::string receivedData(landmarksBuffer.data(), landmarksBuffer.size());
+
+        // Split the concatenated string into individual landmark strings using the custom delimiter
+        std::vector<Hand_Landmarks> landmarks;
+        size_t delimiterPos = receivedData.find("##LANDMARK_DELIMITER##");
+        while (delimiterPos != std::string::npos) {
+            std::string landmarkString = receivedData.substr(0, delimiterPos);
+
+            // Process each individual landmark string
+            Hand_Landmarks landmarks_parsed = parseLandmarks(landmarkString);
+            landmarks.emplace_back(landmarks_parsed);
+
+            // Move to the next delimiter
+            receivedData.erase(0, delimiterPos + 20);  // Assuming "##LANDMARK_DELIMITER##" has a length of 20
+            delimiterPos = receivedData.find("##LANDMARK_DELIMITER##");
+        }
+
+        std::cout << "Number of Landmarks: " << landmarks.size();
+
+
+        // TODO
+        // RUN LANDMARKS THROUGH CLASSIFIER AND GET CORRESPONDING ACTION    
+    }
+    close(clientSocket);
 
     return 0;
 }
