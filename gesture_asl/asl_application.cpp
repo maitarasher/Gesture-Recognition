@@ -172,7 +172,7 @@ int main() {
 
     close(clientSocket);
 
-    std::cout << all_images_landmarks[0]
+    std::cout << all_images_landmarks[0];
 
     // (5) Split the Data into train and test
 
