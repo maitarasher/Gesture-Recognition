@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 #include <numeric>
+#include <algorithm>
+#include <random>
 #include <opencv2/opencv.hpp>
 using namespace std;
 
@@ -17,11 +19,15 @@ cv::Ptr<cv::ml::KNearest> KNN_build(const std::vector<Hand_Landmarks>& all_data,
     int train_size = static_cast<int>(train_percentage * total_size); 
     int test_size = static_cast<int>(total_size-train_size);
 
-    // Shuffle the indices to randomly select samples for training 
+    /// Shuffle the indices to randomly select samples for training 
     std::vector<int> indx(total_size);
     //fill with range from 0 to total_size-1
     std::iota(indx.begin(), indx.end(), 0); 
-    std::random_shuffle(indx.begin(), indx.end());  
+    // Use a random number generator engine
+    unsigned seed = chrono::high_resolution_clock::now().time_since_epoch().count();
+    mt19937 gen(seed);
+    // Shuffle the vector
+    shuffle(indx.begin(), indx.end(), gen);
 
     // Separate the indices for training and testing
     std::vector<int> train_indx(indx.begin(), indx.begin() + total_size);
