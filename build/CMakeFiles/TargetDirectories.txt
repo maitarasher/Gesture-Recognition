@@ -1,0 +1,3 @@
+/Users/elvinawibisono/Desktop/designusingc+/Gesture-Recognition/build/CMakeFiles/gesture_project.dir
+/Users/elvinawibisono/Desktop/designusingc+/Gesture-Recognition/build/CMakeFiles/edit_cache.dir
+/Users/elvinawibisono/Desktop/designusingc+/Gesture-Recognition/build/CMakeFiles/rebuild_cache.dir
