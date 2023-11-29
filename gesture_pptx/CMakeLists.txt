@@ -5,9 +5,20 @@ set(CMAKE_CXX_STANDARD 20)
 
 find_package(OpenCV REQUIRED)
 
-include_directories(${OpenCV_INCLUDE_DIRS})
+SET(SOURCE_FILES
+    gesture_pptx.cpp
+    # src/load_data/folder_loader.cpp
+    # src/feature_extraction/stage.hpp
+    # src/feature_extraction/pipeline.hpp
+    # src/data_classes.hpp
+)
 
-add_executable(CrossPlatformPowerPoint gesture_pptx.cpp)
+include_directories(
+    ${OpenCV_INCLUDE_DIRS})
+    # src/feature_extraction
+    # src/load_data)
+
+add_executable(CrossPlatformPowerPoint ${SOURCE_FILES})
 
 target_link_libraries(CrossPlatformPowerPoint PRIVATE ${OpenCV_LIBS})
 
