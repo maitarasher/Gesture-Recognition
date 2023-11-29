@@ -7,6 +7,7 @@ using namespace std;
 
 
 //using cv::ml build KNN model
+//after getting KNearest model can use kNearest->findNearest(...)
 
 cv::Ptr<cv::ml::KNearest> KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<int>& all_labels) {
     
