@@ -22,14 +22,16 @@ using namespace std;
  * @float y
  * @float z
  */
+
+//TESTED
 class Landmark {
 public:
-    double x;
-    double y;
-    double z;
+    float x;
+    float y;
+    float z;
 Landmark(): x(0.0), y(0.0), z(0.0) {}
-Landmark(double x, double y, double z) : x(x), y(y), z(z) {}
-Landmark(const std::vector<double>& point) {
+Landmark(float x, float y, float z) : x(x), y(y), z(z) {}
+Landmark(vector<float>& point) {
         if (point.size() == 3) {
             x = point[0];
             y = point[1];
@@ -39,29 +41,29 @@ Landmark(const std::vector<double>& point) {
             x = 0.0;
             y = 0.0;
             z = 0.0;
-            std::cerr << "Warning: Invalid vector size for Landmark constructor. Default values used." << std::endl;
+            cerr << "Warning: Invalid vector size for Landmark constructor. Default values used." << std::endl;
         }
     }
 
+    // Function to convert Landmark to a cv::row vector
+    cv::Mat toMatRow() const {
+        cv::Mat row(1, 3, CV_32F);
+        row.at<float>(0, 0) = x;
+        row.at<float>(0, 1) = y;
+        row.at<float>(0, 2) = z;
+        return row;
+    }
     // Function to print the coordinates
     void print()  {
-        std::cout << "(" << x << ", " << y << ", " << z << ")" << std::endl;
+        cout << "(" << x << ", " << y << ", " << z << ")" << endl;
     }
 
     vector<float> toVector() {
-        vector<float> landmark_vector;
-        
+        vector<float> landmark_vector; 
         landmark_vector.push_back(x);
         landmark_vector.push_back(y);
         landmark_vector.push_back(z);
         return landmark_vector;   
-
-    }
-
-    std::string toString() const {
-        std::ostringstream oss;
-        oss << "(" << x << ", " << y << ", " << z << ")";
-        return oss.str();
     }
 
 };
@@ -78,32 +80,35 @@ Landmark(const std::vector<double>& point) {
  */
 class Hand_Landmarks {
     public:
-    std::vector<Landmark> landmarks;
+    vector<Landmark> landmarks;
+    //int handedness;
+    
+    // Constructor to initialize the vector with 21 default Landmark objects
+    Hand_Landmarks() : landmarks(21, Landmark()) {}
+    // Constructor to initialize the vector with specific Landmark objects
+    Hand_Landmarks(const vector<Landmark>& initialLandmarks) : landmarks(initialLandmarks) {}
 
-    Hand_Landmarks(const std::vector<Landmark>& landmarks) {
-        assert(landmarks.size() == 21);
-        this->landmarks = landmarks;
-    }
+    //function to convert the Hand_Landmarks to cv Matrix for data manipulations
+    cv::Mat toMatRow() const {
+        cv::Mat matRow(1, 63, CV_32F);
+        int colIndex = 0;
 
-    Hand_Landmarks() {
-        this->landmarks.resize(21, Landmark());
-    }
-
-    // Function to convert Hand_Landmarks to a string
-    std::string toString() const {
-        std::ostringstream oss;
-        oss << "Hand_Landmarks: [";
-        for (const auto& landmark : landmarks) {
-            oss << landmark.toString() << ", ";
+        for (const Landmark& landmark : landmarks) {
+            cv::Mat landmarkRow = landmark.toMatRow();
+            landmarkRow.copyTo(matRow(cv::Rect(colIndex, 0, 3, 1)));
+            colIndex += 3;
         }
-        // Remove the trailing comma and space
-        if (!landmarks.empty()) {
-            oss.seekp(-2, std::ios_base::end);
+
+        return matRow;
+    }
+    // Print function to display the contents of Hand_Landmarks
+    void print() const {
+        for (const Landmark& landmark : landmarks) {
+            cout << "(" << landmark.x << ", " << landmark.y << ", " << landmark.z << ")" << endl;
         }
-        oss << "]";
-        return oss.str();
     }
 };
+
 
 /*
  * @brief Stores possible names and actions for "labels" for images
