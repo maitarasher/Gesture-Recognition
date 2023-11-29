@@ -11,12 +11,18 @@ SET(SOURCE_FILES
     # src/feature_extraction/stage.hpp
     # src/feature_extraction/pipeline.hpp
     # src/data_classes.hpp
+    ../src/mediapipe_client/mediapipe_client.hpp
+    ../src/mediapipe_client/mediapipe_client.cpp
+    ../src/data_classes.hpp
 )
 
 include_directories(
-    ${OpenCV_INCLUDE_DIRS})
+    ${OpenCV_INCLUDE_DIRS}
+    ../src/mediapipe_client
     # src/feature_extraction
     # src/load_data)
+)
+    
 
 add_executable(CrossPlatformPowerPoint ${SOURCE_FILES})
 
