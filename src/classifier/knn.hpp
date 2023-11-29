@@ -13,8 +13,10 @@ using namespace std;
 //using cv::ml build KNN model
 //after getting KNearest model can use kNearest->findNearest(...)
 
-cv::Ptr<cv::ml::KNearest> KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<int>& all_labels) {
-    
+//right now returns accuracy later change to KNN
+//cv::Ptr<cv::ml::KNearest> KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<int>& all_labels) {
+float KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<int>& all_labels) {
+
     // Split the data into training and testing sets
     float train_percentage = 0.8;
     int total_size = static_cast<int>(all_data.size());
@@ -32,8 +34,8 @@ cv::Ptr<cv::ml::KNearest> KNN_build(const std::vector<Hand_Landmarks>& all_data,
     shuffle(indx.begin(), indx.end(), gen);
 
     // Separate the indices for training and testing
-    std::vector<int> train_indx(indx.begin(), indx.begin() + total_size);
-    std::vector<int> test_indx(indx.begin() + total_size, indx.end());
+    std::vector<int> train_indx(indx.begin(), indx.begin() + train_size);
+    std::vector<int> test_indx(indx.begin() + train_size, indx.end());
     
     // Create training  dataset
     std::vector<Hand_Landmarks> train_data(train_size);
@@ -42,6 +44,7 @@ cv::Ptr<cv::ml::KNearest> KNN_build(const std::vector<Hand_Landmarks>& all_data,
         train_data[i] = all_data[train_indx[i]];
         train_labels[i] = all_labels[train_indx[i]];
     }
+
 
     //Create test dataset
     std::vector<Hand_Landmarks> test_data(test_size);
@@ -62,7 +65,7 @@ cv::Ptr<cv::ml::KNearest> KNN_build(const std::vector<Hand_Landmarks>& all_data,
     
     //Conver test Hand_Landmarks
     cv::Mat test_data_cvMat(test_size, 63, CV_32F);
-    cv::Mat test_labels_cvMat(test_size, 1, CV_32S);
+    cv::Mat test_labels_cvMat(test_size, 1, CV_32F);
     for (int i = 0; i < test_size; ++i) {
         cv::Mat matRow = test_data[i].toMatRow();
         matRow.copyTo(test_data_cvMat.row(i));
@@ -88,12 +91,13 @@ cv::Ptr<cv::ml::KNearest> KNN_build(const std::vector<Hand_Landmarks>& all_data,
     //can also use confusion Matrix(?)
     cv::Mat correctLabels = (eval == test_labels_cvMat);
     double accuracy = cv::countNonZero(correctLabels) / static_cast<double>(test_labels_cvMat.rows);
+    /*
     if(accuracy>90) {
         return knn;
     }
     else {
         //do data augmentation and run the model again
-    }
-    return knn;
+    }*/
+    return accuracy;
 }
 
