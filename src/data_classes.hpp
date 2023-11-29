@@ -29,8 +29,11 @@ public:
     float x;
     float y;
     float z;
+//Default constructor , sets all coordinates to 0
 Landmark(): x(0.0), y(0.0), z(0.0) {}
+
 Landmark(float x, float y, float z) : x(x), y(y), z(z) {}
+
 Landmark(vector<float>& point) {
         if (point.size() == 3) {
             x = point[0];
