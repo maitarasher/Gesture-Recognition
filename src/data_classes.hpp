@@ -58,6 +58,12 @@ Landmark(const std::vector<double>& point) {
 
     }
 
+    std::string toString() const {
+        std::ostringstream oss;
+        oss << "(" << x << ", " << y << ", " << z << ")";
+        return oss.str();
+    }
+
 };
 
 /*
@@ -69,24 +75,33 @@ Landmark(const std::vector<double>& point) {
  * @double x
  * @double y
  * @double z
- 
+ */
 class Hand_Landmarks {
-    private:
-    vector<Landmark> landmarks(21);
-    //int handedness;
+    public:
+    std::vector<Landmark> landmarks;
 
-    public: 
-    //Construct with vector
-    Hand_Landmark(vector<Point>& landmarks) {
-        assert(landmarks.size()==21)
-        this->landmarks=landmarks;
-        
+    Hand_Landmarks(const std::vector<Landmark>& landmarks) {
+        assert(landmarks.size() == 21);
+        this->landmarks = landmarks;
     }
-    //Default constructor
-    Hand_Landmark() {
 
-        this->landmarks.resize(21,0);
-        
+    Hand_Landmarks() {
+        this->landmarks.resize(21, Landmark());
+    }
+
+    // Function to convert Hand_Landmarks to a string
+    std::string toString() const {
+        std::ostringstream oss;
+        oss << "Hand_Landmarks: [";
+        for (const auto& landmark : landmarks) {
+            oss << landmark.toString() << ", ";
+        }
+        // Remove the trailing comma and space
+        if (!landmarks.empty()) {
+            oss.seekp(-2, std::ios_base::end);
+        }
+        oss << "]";
+        return oss.str();
     }
 };
 
