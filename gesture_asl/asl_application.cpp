@@ -9,6 +9,7 @@
 #include "../src/feature_extraction/pipeline.hpp"
 #include "../src/feature_extraction/stage.hpp"
 #include "../src/load_data/folder_loader.hpp"
+#include "../src/load_data/save_and_read.cpp"
 #include "../src/data_classes.hpp"
 #include "../src/mediapipe_client/mediapipe_client.hpp"
 #include "../src/classifier/knn.hpp"
@@ -20,8 +21,8 @@ int main(int argc, char* argv[]){
 
     // Check if the folder path is provided as a command-line argument
     if (argc != 2){
-      std::cerr << "Usage: " << argv[0] << " <folder_path>" << std::endl;
-      return -1;
+        std::cerr << "Usage: " << argv[0] << " <folder_path>" << std::endl;
+        return -1;
     }
 
     // (1) create a client socket and connect to the MediaPipe Server
@@ -44,6 +45,7 @@ int main(int argc, char* argv[]){
 
     // std::string folderPath = "/Users/elifiamuthia/Desktop/asl_dataset/asl_alphabet_train/";
     // std::string folderPath = "/Users/maitarasher/Desktop/gesture_data/subsample";
+    // std::string folderPath = "/Users/noamzaid/data/test/subsample";
     // Extract the folder path from the command-line arguments
     std::string folderPath = argv[1];
     // (3) Load images by folder - call folder_loader, ImageData contians the image_path and the classlabel
@@ -56,44 +58,44 @@ int main(int argc, char* argv[]){
     // Iterate over all images
     for (const ImageData& imageData : images)
     {
-      cv::Mat image = cv::imread(imageData.filePath);
-      // Check if the image was loaded
-      if (!image.empty())
-      {
-        // (4) Use Pipeline for each image - augment the image
-        for (const Stage &stage : my_pipeline.getStages()){
-            cv::Mat inputImage = stage.process(image);
+        cv::Mat image = cv::imread(imageData.filePath);
+        // Check if the image was loaded
+        if (!image.empty())
+        {
+            // (4) Use Pipeline for each image - augment the image
+            for (const Stage &stage : my_pipeline.getStages()){
+                cv::Mat inputImage = stage.process(image);
 
-            //Show the original and processed images for each stage
-            // std::cout << "Class String: " << imageData.classStr << std::endl;
-            // std::cout << "Class Label: " << imageData.label << std::endl;
-            // cv::imshow("Original Image", image);
-            // cv::imshow("Brightened Image", inputImage);
-            // cv::waitKey(1000);
+                //Show the original and processed images for each stage
+                // std::cout << "Class String: " << imageData.classStr << std::endl;
+                // std::cout << "Class Label: " << imageData.label << std::endl;
+                // cv::imshow("Original Image", image);
+                // cv::imshow("Brightened Image", inputImage);
+                // cv::waitKey(1000);
 
-            // (a) Get landmarks for each augmented image in the Pipeline by sending a the image to the server and getting a reposnd
-            std::vector<Hand_Landmarks> landmarks;
-            bool success = getLandmarksFromServer(clientSocket, inputImage, landmarks);
-            if (success == false) {
-                return -1;
+                // (a) Get landmarks for each augmented image in the Pipeline by sending a the image to the server and getting a reposnd
+                std::vector<Hand_Landmarks> landmarks;
+                bool success = getLandmarksFromServer(clientSocket, inputImage, landmarks);
+                if (success == false) {
+                    return -1;
+                }
+
+                // (b) Add landmark to the Data Structure
+                // (c) Add landmarks to the class labels Data Structure
+                for (Hand_Landmarks& lm : landmarks) {
+                    all_images_landmarks.push_back(lm);
+                    all_labels.push_back(imageData.label);
+                }
+
+                // (d) The first landmarks corresponding to at least one hand being detected is selected
+                std::cout << "\nGetting landmarks for " << imageData.filePath << " landmarks.size(): " << landmarks.size() << " imageData.label: " << imageData.label << "\n";
+                if (landmarks.size() > 0) break;
             }
-
-            // (b) Add landmark to the Data Structure
-            // (c) Add landmarks to the class labels Data Structure
-            for (Hand_Landmarks& lm : landmarks) {
-                all_images_landmarks.push_back(lm);
-                all_labels.push_back(imageData.label);
-            }
-
-            // (d) The first landmarks corresponding to at least one hand being detected is selected
-            std::cout << "\nGetting landmarks for " << imageData.filePath << " landmarks.size(): " << landmarks.size() << " imageData.label: " << imageData.label << "\n";
-            if (landmarks.size() > 0) break;
         }
-      }
-      else
-      {
-          std::cerr << "Error loading image: " << imageData.filePath << std::endl;
-      }
+        else
+        {
+            std::cerr << "Error loading image: " << imageData.filePath << std::endl;
+        }
     }
     std::cout << "finshed getting Landmarks for all images\n";
     std::cout << "all_images_landmarks.size(): " << all_images_landmarks.size() << "\n";
@@ -109,8 +111,8 @@ int main(int argc, char* argv[]){
     // (5) Split the Data into train and test /* HANDLED IN KNN Classifier */
     // (6) Train the data using K classiffier
     // Create KNN classifier
-    float accuracy = KNN_build(all_images_landmarks, all_labels);
-    std::cout << "accuracy: " << accuracy << "\n";
+    //float accuracy = KNN_build(all_images_landmarks, all_labels);
+    //std::cout << "accuracy: " << accuracy << "\n";
 
     // (7) Get results
 
@@ -138,6 +140,25 @@ int main(int argc, char* argv[]){
     //     // RUN LANDMARKS THROUGH CLASSIFIER AND GET CORRESPONDING ACTION
     // }
     close(clientSocket);
+
+    // Write and read the landmarks:
+    saveToCSV(all_images_landmarks , "../gesture_asl/data/landmarks.csv");
+    std::vector<Hand_Landmarks> all_images_landmarks_from_csv = readFromCSV("../gesture_asl/data/landmarks.csv");
+
+    // Write and read the labels:
+    saveLabelsToCSV(all_labels, "../gesture_asl/data/labels.csv");
+    std::vector<float> all_labels_from_csv = readLabelsFromCSV("../gesture_asl/data/labels.csv");
+
+    // printing the landmarks and labels for testing purposes
+    // (ONLY WHEN USING SMALL AMOUNTS OF DATA): 
+
+    for (const Hand_Landmarks& handLandmarks : all_images_landmarks_from_csv) {
+        handLandmarks.print();
+        cout << endl; // Optional: for better readability between each Hand_Landmarks
+    }
+
+    for (const float& label : all_labels_from_csv)
+        std::cout << label << std::endl;
 
     return 0;
 }
