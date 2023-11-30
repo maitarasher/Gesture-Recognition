@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <random>
 #include <opencv2/opencv.hpp>
+#include <opencv2/ml/ml.hpp>
 using namespace std;
 
 
@@ -15,7 +16,7 @@ using namespace std;
 
 //right now returns accuracy later change to KNN
 //cv::Ptr<cv::ml::KNearest> KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<int>& all_labels) {
-float KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<int>& all_labels) {
+float KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<float>& all_labels) {
 
     // Split the data into training and testing sets
     float train_percentage = 0.8;
@@ -39,7 +40,7 @@ float KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<int>& 
     
     // Create training  dataset
     std::vector<Hand_Landmarks> train_data(train_size);
-    std::vector<int> train_labels(train_size);
+    std::vector<float> train_labels(train_size);
     for (int i = 0; i < train_size; ++i) {
         train_data[i] = all_data[train_indx[i]];
         train_labels[i] = all_labels[train_indx[i]];
@@ -48,7 +49,7 @@ float KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<int>& 
 
     //Create test dataset
     std::vector<Hand_Landmarks> test_data(test_size);
-    std::vector<int> test_labels(test_size);
+    std::vector<float> test_labels(test_size);
     for (int i = 0; i < test_size; ++i) {
         test_data[i] = all_data[test_indx[i]];
         test_labels[i] = all_labels[test_indx[i]];
@@ -60,7 +61,7 @@ float KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<int>& 
     for (int i = 0; i < train_size; ++i) {
         cv::Mat matRow = train_data[i].toMatRow();
         matRow.copyTo(train_data_cvMat.row(i));
-        train_labels_cvMat.at<int>(i, 0) = train_labels[i];
+        train_labels_cvMat.at<float>(i, 0) = train_labels[i];
     }
     
     //Conver test Hand_Landmarks
@@ -69,7 +70,7 @@ float KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<int>& 
     for (int i = 0; i < test_size; ++i) {
         cv::Mat matRow = test_data[i].toMatRow();
         matRow.copyTo(test_data_cvMat.row(i));
-        test_labels_cvMat.at<int>(i, 0) = test_labels[i];
+        test_labels_cvMat.at<float>(i, 0) = test_labels[i];
     }
 
     //Create KNN model within cv::ml::KNearest
@@ -91,13 +92,11 @@ float KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<int>& 
     //can also use confusion Matrix(?)
     cv::Mat correctLabels = (eval == test_labels_cvMat);
     double accuracy = cv::countNonZero(correctLabels) / static_cast<double>(test_labels_cvMat.rows);
-    /*
+    
     if(accuracy>90) {
-        return knn;
+        cout<<"high accuracy"<<endl;
     }
-    else {
-        //do data augmentation and run the model again
-    }*/
+    
     return accuracy;
 }
 
