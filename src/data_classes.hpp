@@ -83,6 +83,7 @@ class Hand_Landmarks {
     vector<Landmark> landmarks;
     //int handedness;
     
+    Hand_Landmarks() : landmarks() {}
     // Constructor to initialize the vector with specific Landmark objects
     Hand_Landmarks(const vector<Landmark>& initialLandmarks) : landmarks(initialLandmarks) {}
 
