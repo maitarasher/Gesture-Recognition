@@ -25,13 +25,17 @@ int connectToServer(const int PORT, const char* SERVER_IP) {
 }
 
 Hand_Landmarks parseLandmarks(const std::string& input) {
-    std::regex landmarkRegex(R"regex(landmark \{\s*x: ([\d.-]+)\s*y: ([\d.-]+)\s*z: ([\d.-]+)\s*\})regex");
+    std::string test_input = input;
+    test_input.erase(std::remove_if(test_input.begin(), test_input.end(), [](unsigned char c) {
+        return std::isspace(c) || !std::isprint(c);
+    }), test_input.end());
+
+    std::regex landmarkRegex(R"regex(x:\s*([\d.-]+)\s*y:\s*([\d.-]+)\s*z:\s*([\d.-]+))regex");
     std::smatch match;
     Hand_Landmarks landmarks;
 
-    auto it = input.cbegin();
-    while (std::regex_search(it, input.cend(), match, landmarkRegex)) {
-
+    auto it = test_input.cbegin();
+    while (std::regex_search(it, test_input.cend(), match, landmarkRegex)) {
         double x = std::stod(match[1].str());
         double y = std::stod(match[2].str());
         double z = std::stod(match[3].str());
