@@ -51,7 +51,7 @@ int main(int argc, char* argv[]){
     std::cout << "Finished loading images\n";
 
     std::vector<Hand_Landmarks> all_images_landmarks;
-    std::vector<int> all_labels;
+    std::vector<float> all_labels;
     // std::vector<int> all_images_labels;
     // Iterate over all images
     for (const ImageData& imageData : images)
@@ -86,7 +86,7 @@ int main(int argc, char* argv[]){
             }
 
             // (d) The first landmarks corresponding to at least one hand being detected is selected
-            std::cout << "\nGetting landmarks for " << imageData.filePath << " landmarks.size(): " << landmarks.size() << "imageData.label: " << imageData.label << "\n";
+            std::cout << "\nGetting landmarks for " << imageData.filePath << " landmarks.size(): " << landmarks.size() << " imageData.label: " << imageData.label << "\n";
             if (landmarks.size() > 0) break;
         }
       }

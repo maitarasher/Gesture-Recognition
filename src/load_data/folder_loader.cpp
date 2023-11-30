@@ -15,7 +15,7 @@ std::vector<ImageData> loadImgsFromFolder(const std::string& folderPath)
       return images; // Return empty vector since the folder path is invalid
     }
 
-    int label = 1;
+    float label = 0.;
 
     // Iterate over subfolders to get class labels
     for (const auto &classEntry : std::filesystem::directory_iterator(folderPath))
@@ -35,7 +35,7 @@ std::vector<ImageData> loadImgsFromFolder(const std::string& folderPath)
                 images.push_back(imageData);
 
             }
-            label++;
+            label += 1.;
         }
     }
     return images;
