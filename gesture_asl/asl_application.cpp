@@ -102,21 +102,39 @@ int main(int argc, char* argv[]){
     std::cout << "all_labels.size(): " << all_labels.size() << "\n";
 
 
-    // (5) NOAM - Save the two vectors all_images_landmarks, all_labels in txt or json file
-
+    // (5) Save the two vectors all_images_landmarks, all_labels in csv files
+    saveToCSV(all_images_landmarks , "../gesture_asl/data/pptx_data_landmarks.csv");
+    saveLabelsToCSV(all_labels, "../gesture_asl/data/pptx_data_labels.csv");
 
     // The rest of the code below can be in a seprate program once ready
     // (6) Load the data
+    std::vector<Hand_Landmarks> all_images_landmarks_from_csv = readFromCSV("../gesture_asl/data/pptx_data_landmarks.csv");
+    std::vector<float> all_labels_from_csv = readLabelsFromCSV("../gesture_asl/data/pptx_data_labels.csv");
 
-    // (5) Split the Data into train and test /* HANDLED IN KNN Classifier */
-    // (6) Train the data using K classiffier
+    // printing the landmarks and labels for testing purposes
+    // (ONLY WHEN USING SMALL AMOUNTS OF DATA):
+    int num = 1;
+    for (const Hand_Landmarks& handLandmarks : all_images_landmarks_from_csv){
+        std::cout << "handLandmark num " << num << " label: " << all_labels_from_csv[num-1] <<"\n";
+        handLandmarks.print();
+        cout << endl; // Optional: for better readability between each Hand_Landmarks
+        num++;
+    }
+
+    // for (const float& label : all_labels_from_csv)
+    //     std::cout << label << std::endl;
+
+
+
+    // (7) Split the Data into train and test /* HANDLED IN KNN Classifier */
+    // (8) Train the data using K classiffier
     // Create KNN classifier
     //float accuracy = KNN_build(all_images_landmarks, all_labels);
     //std::cout << "accuracy: " << accuracy << "\n";
 
-    // (7) Get results
+    // (9) Get results
 
-    // (8) Use the model for parsing the gestures in a recorded video stream - retrurn script of words
+    // (10) Use the model for parsing the gestures in a recorded video stream - retrurn script of words
 
 
     ///// SEND VIDEO TO MEDIAPIPE, GET LANDMARKS BACK, GET ACTION FROM CLASSIFIER, DO ACTION
@@ -140,25 +158,5 @@ int main(int argc, char* argv[]){
     //     // RUN LANDMARKS THROUGH CLASSIFIER AND GET CORRESPONDING ACTION
     // }
     close(clientSocket);
-
-    // Write and read the landmarks:
-    saveToCSV(all_images_landmarks , "../gesture_asl/data/landmarks.csv");
-    std::vector<Hand_Landmarks> all_images_landmarks_from_csv = readFromCSV("../gesture_asl/data/landmarks.csv");
-
-    // Write and read the labels:
-    saveLabelsToCSV(all_labels, "../gesture_asl/data/labels.csv");
-    std::vector<float> all_labels_from_csv = readLabelsFromCSV("../gesture_asl/data/labels.csv");
-
-    // printing the landmarks and labels for testing purposes
-    // (ONLY WHEN USING SMALL AMOUNTS OF DATA): 
-
-    for (const Hand_Landmarks& handLandmarks : all_images_landmarks_from_csv) {
-        handLandmarks.print();
-        cout << endl; // Optional: for better readability between each Hand_Landmarks
-    }
-
-    for (const float& label : all_labels_from_csv)
-        std::cout << label << std::endl;
-
     return 0;
 }
