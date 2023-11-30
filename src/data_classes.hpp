@@ -15,7 +15,6 @@ using namespace std;
 /*
  * @brief Stores an xyz coordinates of one landmark in the image 
  * ## Construction and deconstruction
- * Default construction is (0,0,0), can construct from 3 floats or from a vector
  * 
  * ##Class Variables:
  * @float x
@@ -29,8 +28,6 @@ public:
     float x;
     float y;
     float z;
-//Default constructor , sets all coordinates to 0
-Landmark(): x(0.0), y(0.0), z(0.0) {}
 
 Landmark(float x, float y, float z) : x(x), y(y), z(z) {}
 
@@ -86,8 +83,6 @@ class Hand_Landmarks {
     vector<Landmark> landmarks;
     //int handedness;
     
-    // Constructor to initialize the vector with 21 default Landmark objects
-    Hand_Landmarks() : landmarks(21, Landmark()) {}
     // Constructor to initialize the vector with specific Landmark objects
     Hand_Landmarks(const vector<Landmark>& initialLandmarks) : landmarks(initialLandmarks) {}
 
@@ -112,25 +107,3 @@ class Hand_Landmarks {
     }
 };
 
-
-/*
- * @brief Stores possible names and actions for "labels" for images
- *
- * ## Construction and deconstruction
- * 
- * ##Class Variables:
- * @string name
- * @string action
- */
-/*class Label {
-    private:
-    string name;
-    string action;
-    
-    public: 
-    Landmark(const string& name, const string& action) {
-        
-    }
-}*/
-
-//test

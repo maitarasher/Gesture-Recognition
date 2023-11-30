@@ -39,19 +39,19 @@ float KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<float>
     std::vector<int> test_indx(indx.begin() + train_size, indx.end());
     
     // Create training  dataset
-    std::vector<Hand_Landmarks> train_data(train_size);
+    std::vector<Hand_Landmarks> train_data;
     std::vector<float> train_labels(train_size);
     for (int i = 0; i < train_size; ++i) {
-        train_data[i] = all_data[train_indx[i]];
+        train_data.push_back(all_data[train_indx[i]]);
         train_labels[i] = all_labels[train_indx[i]];
     }
 
 
     //Create test dataset
-    std::vector<Hand_Landmarks> test_data(test_size);
+    std::vector<Hand_Landmarks> test_data;
     std::vector<float> test_labels(test_size);
     for (int i = 0; i < test_size; ++i) {
-        test_data[i] = all_data[test_indx[i]];
+        test_data.push_back(all_data[test_indx[i]]);
         test_labels[i] = all_labels[test_indx[i]];
     }
     
@@ -89,7 +89,6 @@ float KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<float>
     knn->findNearest(test_data_cvMat, 1, eval);
 
     //check the evaluation results of test data, for now using the simplest Accuracy
-    //can also use confusion Matrix(?)
     cv::Mat correctLabels = (eval == test_labels_cvMat);
     double accuracy = cv::countNonZero(correctLabels) / static_cast<double>(test_labels_cvMat.rows);
     
