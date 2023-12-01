@@ -91,6 +91,7 @@ int main() {
 
     std::cout << "Hello, MacOS PowerPoint Application!" << std::endl;
 
+    // get the powerpoint file 
     const char* relativePath = "gesture_pptx/test.pptx";
     std::string fullPath = getFullPathFromRelativePath(relativePath);
     std::cout << "Full Path: " << fullPath << std::endl;
@@ -109,12 +110,12 @@ int main() {
 
 
     // Camera capture and gesture recognition
-    cv::VideoCapture cap(0);  // Open the default camera (usually the built-in webcam)
+    // cv::VideoCapture cap(0);  // Open the default camera (usually the built-in webcam)
 
-    if (!cap.isOpened()) {
-        std::cerr << "Error: Could not open camera." << std::endl;
-        return -1;
-    }
+    // if (!cap.isOpened()) {
+    //     std::cerr << "Error: Could not open camera." << std::endl;
+    //     return -1;
+    // }
 
     cv::namedWindow("Camera Feed", cv::WINDOW_AUTOSIZE);
 
@@ -139,7 +140,7 @@ int main() {
     }
     close(clientSocket);
 
-    cap.release();
+    // cap.release();
     cv::destroyAllWindows();
 
 
