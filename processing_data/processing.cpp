@@ -9,10 +9,10 @@
 #include <regex>
 #include "../src/feature_extraction/pipeline.hpp"
 #include "../src/feature_extraction/stage.hpp"
-#include "../src/load_data/folder_loader.cpp"
+#include "../src/load_data/folder_loader.hpp"
 #include "../src/load_data/save_and_read.cpp"
 #include "../src/data_classes.hpp"
-#include "../src/mediapipe_client/mediapipe_client.cpp"
+#include "../src/mediapipe_client/mediapipe_client.hpp"
 #include "../src/classifier/knn.hpp"
 
 const int PORT = 8080;
@@ -127,4 +127,3 @@ int main(int argc, char* argv[]){
     close(clientSocket);
     return 0;
 }
-
