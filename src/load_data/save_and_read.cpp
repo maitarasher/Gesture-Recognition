@@ -23,7 +23,7 @@ std::vector<Hand_Landmarks> readFromCSV(const std::string& filename) {
     std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Error file not found " << filename << std::endl;
-        return labelStringMap;
+        //return labelStringMap; (This variable is not declared(?))
     }
 
     std::string line;
@@ -67,7 +67,7 @@ std::vector<float> readLabelsFromCSV(const std::string& filename) {
 
     if (!file.is_open()) {
         std::cerr << "Error file not found " << filename << std::endl;
-        return labelStringMap;
+        //return labelStringMap; Not Declared
     }
     std::string line;
 
@@ -78,7 +78,7 @@ std::vector<float> readLabelsFromCSV(const std::string& filename) {
 }
 
 //CHECK saveMaptoCSV
-oid saveMapToCSV(const std::unordered_map<float, std::string>& stringLabelMap, const std::string& filename) {
+void saveMapToCSV(const std::unordered_map<float, std::string>& stringLabelMap, const std::string& filename) {
     std::ofstream file(filename);   
     //check the file is open
     if (!file.is_open()) {
@@ -87,7 +87,7 @@ oid saveMapToCSV(const std::unordered_map<float, std::string>& stringLabelMap, c
     }
 
     for (const auto& pair : stringLabelMap) {
-        file << pair.label << ","<<pair.string<<"\n";
+        file << pair.first << ","<<pair.second<<"\n";
     }
     file.close();
 }
@@ -99,7 +99,7 @@ std::unordered_map<float,std::string> readMapFromCSV(const std::string& filename
     //check that the file is open
     if (!file.is_open()) {
         std::cerr << "Error file not found " << filename << std::endl;
-        return labelStringMap;
+        //return labelStringMap; (Not declared yet)
     }
     std::string line;
 
@@ -110,9 +110,9 @@ std::unordered_map<float,std::string> readMapFromCSV(const std::string& filename
         
         if(std::getline(iss,value, ',')) {
             try {
-                key = std::stof(value);
+                float key = std::stof(value);
                 if (std::getline(iss,value, ',')) {
-                    labelStringMap[key] = value;
+                    stringLabelMap[key] = value;
                 }
             }
             catch (const std::invalid_argument& e) {
