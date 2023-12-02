@@ -151,7 +151,7 @@ int main(int argc, char* argv[]) {
         }
 
         std::cout << prev_gesture << "\t" << curr_gesture << std::endl;
-        if (prev_gesture != curr_gesture && curr_gesture == "palm") {
+        if (prev_gesture != curr_gesture && curr_gesture == "ok") {
             std::cout << "START SLIDE\n";
             handleGesture("StartSlide");
         }
