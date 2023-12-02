@@ -20,15 +20,15 @@ const char* SERVER_IP = "127.0.0.1";
 int main(int argc, char* argv[]){
     // (1) create a client socket and connect to the MediaPipe Server
 
-    // int clientSocket = connectToServer(PORT, SERVER_IP);
-    // if (clientSocket == -1) {
-    //     return -1;
-    // }
+    int clientSocket = connectToServer(PORT, SERVER_IP);
+    if (clientSocket == -1) {
+        return -1;
+    }
 
     // (6) Load the data
-    // std::vector<Hand_Landmarks> all_images_landmarks_from_csv = readFromCSV("../gesture_asl/data/pptx_data_landmarks.csv");
-    // std::vector<float> all_labels_from_csv = readLabelsFromCSV("../gesture_asl/data/pptx_data_labels.csv");
-    // std::unordered_map<float, std::string> stringLabelMap = readMapFromCSV("../gesture_asl/data/asl_labels.csv")
+    std::vector<Hand_Landmarks> all_images_landmarks_from_csv = readFromCSV("../gesture_asl/data/asl_landmarks.csv");
+    std::vector<float> all_labels_from_csv = readLabelsFromCSV("../gesture_asl/data/asl_labels.csv");
+    std::unordered_map<float, std::string> stringLabelMap = readMapFromCSV("../gesture_asl/data/asl_label_map.csv");
 
     // // get number of classes - 
     // std::set<float> unique_classes(all_labels_from_csv.begin(), all_labels_from_csv.end());
@@ -36,8 +36,7 @@ int main(int argc, char* argv[]){
 
     // // (8) Train the data using K classiffier
     // // Create KNN classifier
-    // cv::Ptr<cv::ml::KNearest> knn = KNN_build(all_images_landmarks_from_csv, all_labels_from_csv);
-    // std::cout << "accuracy: " << accuracy << "\n";
+    cv::Ptr<cv::ml::KNearest> knn = KNN_build(all_images_landmarks_from_csv, all_labels_from_csv);
 
     ///// SEND VIDEO TO MEDIAPIPE, GET LANDMARKS BACK, GET ACTION FROM CLASSIFIER, DO ACTION
     cv::VideoCapture capture;
@@ -54,40 +53,42 @@ int main(int argc, char* argv[]){
         cv::Mat inputImage;
         capture >> inputImage;
 
-        // std::vector<Hand_Landmarks> landmarks;
-        // bool success = getLandmarksFromServer(clientSocket, inputImage, landmarks);
-        // if (success == false) {
-        //     return -1;
-        // }
+        std::vector<Hand_Landmarks> landmarks;
+        bool success = getLandmarksFromServer(clientSocket, inputImage, landmarks);
+        if (success == false) {
+            return -1;
+        }
 
-        // // std::cout << landmarks.size() << std::endl;
+        // std::cout << landmarks.size() << std::endl;
 
-        // // TODO
-        // // RUN LANDMARKS THROUGH CLASSIFIER 
+        // TODO
+        // RUN LANDMARKS THROUGH CLASSIFIER 
         
-        // std::vector<std::string> frame_label_preds;
-        // for (auto& lm : landmarks) {
-        //     cv::Mat result;
-        //     cv::Mat input_cvMat(1, 63, CV_32F);
-        //     input_cvMat = lm.toMatRow();
-        //     knn->findNearest(input_cvMat, 3, result);
+        std::string text;
+        for (auto& lm : landmarks) {
+            cv::Mat result;
+            cv::Mat input_cvMat(1, 63, CV_32F);
+            input_cvMat = lm.toMatRow();
+            knn->findNearest(input_cvMat, 3, result);
 
-        //     int predict = result.at<float>(0, 0);
+            float predict = result.at<float>(0, 0);
 
-        //     // convert class prediction number into string class label
+            // convert class prediction number into string class label
+            text = stringLabelMap[predict];
+        }
 
-        // }
-
-        std::string text = "A"; // THE PREDICTION
+        // std::string text = "A"; // THE PREDICTION
 
         int fontScale = 8;
         int textBaseline = 0;
-        int thickness = 30;  // Thickness of the text
+        int thickness = 30;
+        cv::Scalar outlineColor(0, 0, 0);
+        cv::Scalar textColor(255, 255, 255);
 
-        // Get the size of the text
-        cv::Size textSize = cv::getTextSize(text, cv::FONT_HERSHEY_SIMPLEX, fontScale, thickness, &textBaseline);
-        cv::Point textPosition(frameWidth - textSize.width - 20, frameHeight - 20);
-        cv::putText(inputImage, text, textPosition, cv::FONT_HERSHEY_SIMPLEX, fontScale, cv::Scalar(255, 255, 255), thickness);
+        cv::Size textSize = cv::getTextSize(text, cv::FONT_HERSHEY_SIMPLEX, fontScale, thickness, nullptr);
+        cv::Point textPosition(frameWidth - textSize.width - 100, frameHeight - 20);
+        cv::putText(inputImage, text, textPosition, cv::FONT_HERSHEY_SIMPLEX, fontScale, outlineColor, thickness + 10);
+        cv::putText(inputImage, text, textPosition, cv::FONT_HERSHEY_SIMPLEX, fontScale, textColor, thickness);
 
         cv::imshow("ASL Application", inputImage);
 
@@ -107,5 +108,5 @@ int main(int argc, char* argv[]){
 
     }
     // close(clientSocket);
-    return 0;
+    return 0;   
 }

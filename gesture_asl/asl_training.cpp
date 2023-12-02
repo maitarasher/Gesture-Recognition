@@ -105,19 +105,20 @@ int main(int argc, char* argv[]){
     std::cout << "finshed getting Landmarks for all images\n";
     std::cout << "all_images_landmarks.size(): " << all_images_landmarks.size() << "\n";
     std::cout << "all_labels.size(): " << all_labels.size() << "\n";
+    std::cout << "stringLabelMap.size(): " << stringLabelMap.size() << "\n";
 
 
     // (5) Save the two vectors all_images_landmarks, all_labels in csv files
-    saveToCSV(all_images_landmarks , "../gesture_asl/data/asl_landmarks.csv");
-    saveLabelsToCSV(all_labels, "../gesture_asl/data/asl_labels.csv");
+    saveToCSV(all_images_landmarks , "../gesture_asl/data/ppt_landmarks.csv");
+    saveLabelsToCSV(all_labels, "../gesture_asl/data/ppt_labels.csv");
 
     // (5.2) Save the map to csv_file
-    saveMapToCSV(stringLabelMap, "../gesture_asl/data/asl_labels.csv")
+    saveMapToCSV(stringLabelMap, "../gesture_asl/data/ppt_label_map.csv");
 
     // The rest of the code below can be in a seprate program once ready
     // (6) Load the data
-    std::vector<Hand_Landmarks> all_images_landmarks_from_csv = readFromCSV("../gesture_asl/data/pptx_data_landmarks.csv");
-    std::vector<float> all_labels_from_csv = readLabelsFromCSV("../gesture_asl/data/pptx_data_labels.csv");
+    // std::vector<Hand_Landmarks> all_images_landmarks_from_csv = readFromCSV("../gesture_asl/data/pptx_data_landmarks.csv");
+    // std::vector<float> all_labels_from_csv = readLabelsFromCSV("../gesture_asl/data/pptx_data_labels.csv");
 
     // printing the landmarks and labels for testing purposes
     // (ONLY WHEN USING SMALL AMOUNTS OF DATA):
