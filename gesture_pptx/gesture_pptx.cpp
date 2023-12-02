@@ -1,17 +1,7 @@
-// #include <iostream>
-// #include <cstring>
-// #include <sys/socket.h>
-// #include <netinet/in.h>
-// #include <unistd.h>
-// #include <opencv2/opencv.hpp>
-// #include <arpa/inet.h>
-// #include <regex>
-// #include "../src/feature_extraction/pipeline.hpp"
-// #include "../src/feature_extraction/stage.hpp"
-// #include "../src/load_data/folder_loader.hpp"
-
 #include "../src/mediapipe_client/mediapipe_client.hpp"
 #include "../src/data_classes.hpp"
+#include "../src/load_data/save_and_read.cpp"
+#include "../src/classifier/knn.hpp"
 
 #include <iostream>
 #include <filesystem>
@@ -87,15 +77,31 @@ std::string getFullPathFromRelativePath(const char* relativePath) {
 }
 
 
-int main() {
+int main(int argc, char* argv[]) {
+
+    // Check if the folder path is provided as a command-line argument
+    // if (argc != 2){
+    //     std::cerr << "Usage: " << argv[0] << " <folder_path>" << std::endl;
+    //     return -1;
+    // }
 
     std::cout << "Hello, MacOS PowerPoint Application!" << std::endl;
 
-    // get the powerpoint file 
     const char* relativePath = "gesture_pptx/test.pptx";
     std::string fullPath = getFullPathFromRelativePath(relativePath);
     std::cout << "Full Path: " << fullPath << std::endl;
     const char* filePath = fullPath.c_str();
+
+    /** TRAINING **/
+
+    // prepare data
+    std::vector<Hand_Landmarks> all_images_landmarks_from_csv = readFromCSV("../../data/pptx/landmarks.csv");
+    std::vector<float> all_labels_from_csv = readLabelsFromCSV("../../data/pptx/labels.csv");
+    std::unordered_map<float, std::string> stringLabelMap = readMapFromCSV("../../data/pptx/map.csv");
+
+    cv::Ptr<cv::ml::KNearest> knn = KNN_build(all_images_landmarks_from_csv, all_labels_from_csv);
+
+    /** APPLICATION **/
 
     // Open the existing PowerPoint presentation
     openExistingPresentation(filePath);
@@ -110,18 +116,23 @@ int main() {
 
 
     // Camera capture and gesture recognition
-    // cv::VideoCapture cap(0);  // Open the default camera (usually the built-in webcam)
+    cv::VideoCapture cap(0);  // Open the default camera (usually the built-in webcam)
 
-    // if (!cap.isOpened()) {
-    //     std::cerr << "Error: Could not open camera." << std::endl;
-    //     return -1;
-    // }
+    if (!cap.isOpened()) {
+        std::cerr << "Error: Could not open camera." << std::endl;
+        return -1;
+    }
 
-    cv::namedWindow("Camera Feed", cv::WINDOW_AUTOSIZE);
+    cv::namedWindow("PPT Controls - Video Feed", cv::WINDOW_AUTOSIZE);
 
     cv::VideoCapture capture;
     capture.open(0);
+
+    int frameWidth = static_cast<int>(capture.get(cv::CAP_PROP_FRAME_WIDTH));
+    int frameHeight = static_cast<int>(capture.get(cv::CAP_PROP_FRAME_HEIGHT));
+
     bool grab_frames = true;
+    std::string prev_gesture = "";
     while (grab_frames) {
         cv::Mat inputImage;
         capture >> inputImage;
@@ -131,16 +142,56 @@ int main() {
         if (success == false) {
             return -1;
         }
+        
+        std::cout << "Here!\n";
 
-        // std::cout << landmarks.size() << std::endl;
+        std::string curr_gesture;
+        for (auto& lm : landmarks) {
+            cv::Mat result;
+            cv::Mat input_cvMat(1, 63, CV_32F);
+            input_cvMat = lm.toMatRow();
+            knn->findNearest(input_cvMat, stringLabelMap.size(), result);
+
+            float predict = result.at<float>(0, 0);
+
+            // convert class prediction number into string class label
+            curr_gesture = stringLabelMap[predict];
+        }
+
+        if (prev_gesture != curr_gesture && curr_gesture == "palm") {
+            handleGesture("StartSlide");
+        }
+        else if (prev_gesture != curr_gesture && curr_gesture == "fist") {
+            handleGesture("EndSlide");
+        }
 
 
-        // TODO
-        // RUN LANDMARKS THROUGH CLASSIFIER AND GET CORRESPONDING ACTION
+        int fontScale = 4;
+        int textBaseline = 0;
+        int thickness = 30;
+        cv::Scalar outlineColor(0, 0, 0);
+        cv::Scalar textColor(255, 255, 255);
+
+        cv::Size textSize = cv::getTextSize(curr_gesture, cv::FONT_HERSHEY_SIMPLEX, fontScale, thickness, nullptr);
+        cv::Point textPosition(frameWidth - textSize.width - 500, frameHeight - 20);
+        cv::putText(inputImage, curr_gesture, textPosition, cv::FONT_HERSHEY_SIMPLEX, fontScale, outlineColor, thickness + 10);
+        cv::putText(inputImage, curr_gesture, textPosition, cv::FONT_HERSHEY_SIMPLEX, fontScale, textColor, thickness);
+
+
+        cv::imshow("PPT Controls - Video Feed", inputImage);
+        int key = cv::waitKey(1);
+
+        // Check for user input (press 'q' to exit)
+        if (key == 'q') {
+            break;
+        }
+
+        prev_gesture = curr_gesture;
+
     }
     close(clientSocket);
 
-    // cap.release();
+    cap.release();
     cv::destroyAllWindows();
 
 
