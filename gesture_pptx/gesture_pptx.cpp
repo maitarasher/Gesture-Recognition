@@ -19,19 +19,19 @@ void handleGesture(const char* gesture){
     std::cout << "Gesture Recognized: " << gesture << std::endl;
 
     if (strcmp(gesture, "NextSlide") == 0){
-        system("osascript -e 'tell application \"Microsoft PowerPoint\"' -e 'go to next slide of slide show window 1' -e 'end tell'");
+        system("osascript -e 'tell application \"Microsoft PowerPoint\"' -e 'go to next slide slide show view of slide show window 1' -e 'end tell'");
         std::cout << "Moving to the next slide!" << std::endl;
     }
     else if(strcmp(gesture, "PrevSlide") == 0){
-        system("osascript -e 'tell application \"Microsoft PowerPoint\"' -e 'go to previous slide of slide show window 1' -e 'end tell'");
+        system("osascript -e 'tell application \"Microsoft PowerPoint\"' -e 'go to previous slide slide show view of slide show window 1' -e 'end tell'");
         std::cout << "Moving to the previous slide!" << std::endl;
     }
     else if(strcmp(gesture, "StartSlide") == 0){
-        system("osascript -e 'tell application \"Microsoft PowerPoint\"' -e 'start slide show of slide show window 1' -e 'end tell'");
+        system("osascript -e 'tell application \"Microsoft PowerPoint\"' -e 'activate' -e 'run slide show slide show settings of active presentation' -e 'end tell'");
         std::cout << "Starting slideshow!" << std::endl;
     }
     else if(strcmp(gesture, "EndSlide") == 0){
-        system("osascript -e 'tell application \"Microsoft PowerPoint\"' -e 'end slide show of slide show window 1' -e 'end tell'");
+        system("osascript -e 'tell application \"Microsoft PowerPoint\"' -e 'exit slide show slide show view of slide show window of active presentation' -e 'end tell'");
         std::cout << "Ending slideshow!" << std::endl;
     }
 
@@ -78,12 +78,6 @@ std::string getFullPathFromRelativePath(const char* relativePath) {
 
 
 int main(int argc, char* argv[]) {
-
-    // Check if the folder path is provided as a command-line argument
-    // if (argc != 2){
-    //     std::cerr << "Usage: " << argv[0] << " <folder_path>" << std::endl;
-    //     return -1;
-    // }
 
     std::cout << "Hello, MacOS PowerPoint Application!" << std::endl;
 
@@ -142,8 +136,6 @@ int main(int argc, char* argv[]) {
         if (success == false) {
             return -1;
         }
-        
-        std::cout << "Here!\n";
 
         std::string curr_gesture;
         for (auto& lm : landmarks) {
@@ -158,17 +150,28 @@ int main(int argc, char* argv[]) {
             curr_gesture = stringLabelMap[predict];
         }
 
-        if (prev_gesture != curr_gesture && curr_gesture == "palm") {
+        std::cout << prev_gesture << "\t" << curr_gesture << std::endl;
+        if (prev_gesture != curr_gesture && curr_gesture == "ok") {
+            std::cout << "START SLIDE\n";
             handleGesture("StartSlide");
         }
         else if (prev_gesture != curr_gesture && curr_gesture == "fist") {
+            std::cout << "END SLIDE\n";
             handleGesture("EndSlide");
+        }
+        else if (prev_gesture == "stop_inverted" && curr_gesture == "stop") {
+            std::cout << "NEXT SLIDE\n";
+            handleGesture("NextSlide");
+        }
+        else if (prev_gesture == "stop" && curr_gesture == "stop") {
+            std::cout << "PREV SLIDE\n";
+            handleGesture("PrevSlide");
         }
 
 
         int fontScale = 4;
         int textBaseline = 0;
-        int thickness = 30;
+        int thickness = 20;
         cv::Scalar outlineColor(0, 0, 0);
         cv::Scalar textColor(255, 255, 255);
 
