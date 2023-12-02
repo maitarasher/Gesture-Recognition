@@ -28,8 +28,9 @@ int main(int argc, char* argv[]){
     // (6) Load the data
     // std::vector<Hand_Landmarks> all_images_landmarks_from_csv = readFromCSV("../gesture_asl/data/pptx_data_landmarks.csv");
     // std::vector<float> all_labels_from_csv = readLabelsFromCSV("../gesture_asl/data/pptx_data_labels.csv");
+    // std::unordered_map<float, std::string> stringLabelMap = readMapFromCSV("../gesture_asl/data/asl_labels.csv")
 
-    // // get number of classes
+    // // get number of classes - 
     // std::set<float> unique_classes(all_labels_from_csv.begin(), all_labels_from_csv.end());
     // std::size_t classes_count = unique_classes.size();
 

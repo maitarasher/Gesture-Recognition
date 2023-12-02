@@ -15,8 +15,8 @@ using namespace std;
 //after getting KNearest model can use kNearest->findNearest(...)
 
 //right now returns accuracy later change to KNN
-//cv::Ptr<cv::ml::KNearest> KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<int>& all_labels) {
-float KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<float>& all_labels) {
+cv::Ptr<cv::ml::KNearest> KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<int>& all_labels) {
+//float KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<float>& all_labels) {
 
     // Split the data into training and testing sets
     float train_percentage = 0.8;
@@ -96,6 +96,6 @@ float KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<float>
         cout<<"high accuracy"<<endl;
     }
     
-    return accuracy;
+    return knn;
 }
 

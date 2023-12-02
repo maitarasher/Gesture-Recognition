@@ -3,6 +3,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
+#include <unordered_map>
 #include <opencv2/opencv.hpp>
 #include <arpa/inet.h>
 #include <regex>
@@ -54,6 +55,7 @@ int main(int argc, char* argv[]){
 
     std::vector<Hand_Landmarks> all_images_landmarks;
     std::vector<float> all_labels;
+    std::unordered_map<float, std::string> stringLabelMap;
     // std::vector<int> all_images_labels;
     // Iterate over all images
 
@@ -87,8 +89,10 @@ int main(int argc, char* argv[]){
                     all_images_landmarks.push_back(lm);
                     all_labels.push_back(imageData.label);
                 }
+                // (d) Add label_string pair to the map
+                stringLabelMap[imageData.label] = imageData.classStr;
 
-                // (d) The first landmarks corresponding to at least one hand being detected is selected
+                // (e) The first landmarks corresponding to at least one hand being detected is selected
                 std::cout << "\nGetting landmarks for " << imageData.filePath << " landmarks.size(): " << landmarks.size() << " imageData.label: " << imageData.label << "\n";
                 if (landmarks.size() > 0) break;
             }
@@ -106,6 +110,9 @@ int main(int argc, char* argv[]){
     // (5) Save the two vectors all_images_landmarks, all_labels in csv files
     saveToCSV(all_images_landmarks , "../gesture_asl/data/asl_landmarks.csv");
     saveLabelsToCSV(all_labels, "../gesture_asl/data/asl_labels.csv");
+
+    // (5.2) Save the map to csv_file
+    saveMapToCSV(stringLabelMap, "../gesture_asl/data/asl_labels.csv")
 
     // The rest of the code below can be in a seprate program once ready
     // (6) Load the data
@@ -130,8 +137,9 @@ int main(int argc, char* argv[]){
     // (7) Split the Data into train and test /* HANDLED IN KNN Classifier */
     // (8) Train the data using K classiffier
     // Create KNN classifier
-    float accuracy = KNN_build(all_images_landmarks, all_labels);
-    std::cout << "accuracy: " << accuracy << "\n";
+    cv::Ptr<cv::ml::KNearest> knn = KNN_build(all_images_landmarks, all_labels);
+
+    //save the model
 
     // (9) Get results
 
