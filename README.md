@@ -1,6 +1,17 @@
 # Gesture-Recognition
 Gesture-Recognition Libary in C++
 
+COMS W4995: Design Using C++
+
+Fall 2023
+
+Yana Botvinnik, Maitar Asher, Noam Zaid, Elvina Wibisono, Elifia Muthia
+
+# About
+This is a Gesture Recognition library written for C++ that allows for easy gesture recognitions in images and live videostreams. As of December 2023, this library is **only tested and compatible with MacOS**. Intended to be run alongside this [repository](https://github.com/elifia-muthia/mediapipe) containing Google's Mediapipe that has been configured to MacOS as a default and modified to function as a server to obtain hand landmarks – a vector of detected/tracked hands in an image represented as a list of 21 3D (x,y,z) coordinates.
+
+This project takes inspiration from a similar gesture recognition library in Python, the [GRLib](https://github.com/mikhail-vlasenko/grlib/tree/master), that's algorithm has been nicely documented [here](https://arxiv.org/pdf/2310.14919v1.pdf).
+
 ## OpenCV Setup
 1. Install Homebrew
    
