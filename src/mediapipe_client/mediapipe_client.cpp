@@ -1,4 +1,3 @@
-
 #include "./mediapipe_client.hpp"
 
 int connectToServer(const int PORT, const char* SERVER_IP) {
@@ -70,7 +69,7 @@ bool getLandmarksFromServer(int clientSocket, const cv::Mat& inputImage, std::ve
         return false;
     }
 
-    std::cout << "Image sent!" << std::endl;
+    // std::cout << "Image sent!" << std::endl;
 
     // Receive the size of the landmarks data
     size_t landmarksSize;
@@ -116,7 +115,7 @@ bool getLandmarksFromServer(int clientSocket, const cv::Mat& inputImage, std::ve
         delimiterPos = receivedData.find("##LANDMARK_DELIMITER##");
     }
 
-    std::cout << "Number of Landmarks: " << landmarks.size();
+    // std::cout << "Number of Landmarks: " << landmarks.size();
 
     return true;
 }
