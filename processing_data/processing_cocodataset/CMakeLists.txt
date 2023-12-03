@@ -47,7 +47,7 @@ find_path(Jsoncpp_INCLUDE_DIR
 
 SET(SOURCE_FILES
 
-    gesture_training.cpp
+    process_coco.cpp
  
     ../src/mediapipe_client/mediapipe_client.hpp
     ../src/mediapipe_client/mediapipe_client.cpp
