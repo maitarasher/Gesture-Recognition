@@ -36,6 +36,7 @@ int main(int argc, char* argv[]){
 
     // // (8) Train the data using K classiffier
     // // Create KNN classifier
+    // auto [knn,accuracy] = KNN_build(all_data,labels,classes_count);
     cv::Ptr<cv::ml::KNearest> knn = KNN_build(all_images_landmarks_from_csv, all_labels_from_csv);
 
     ///// SEND VIDEO TO MEDIAPIPE, GET LANDMARKS BACK, GET ACTION FROM CLASSIFIER, DO ACTION
@@ -69,6 +70,7 @@ int main(int argc, char* argv[]){
             cv::Mat result;
             cv::Mat input_cvMat(1, 63, CV_32F);
             input_cvMat = lm.toMatRow();
+            // knn->findNearest(test_data_cvMat, classes_count,result);
             knn->findNearest(input_cvMat, 3, result);
 
             float predict = result.at<float>(0, 0);
