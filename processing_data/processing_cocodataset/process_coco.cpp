@@ -10,7 +10,7 @@
 
 int main() {
     // Read the JSON file
-    std::ifstream file("/Users/elvinawibisono/Desktop/designusingc+/pptx_data/subsample/two_up_inverted/two_up_inverted.json");
+    std::ifstream file("/Users/elvinawibisono/Downloads/ok/ok.json");
     Json::Value jsonData;
     file >> jsonData;
 
@@ -39,7 +39,7 @@ int main() {
         std::cout << "height: " << height << "\n\n";
 
         // Load image using OpenCV
-        std::string imagePath = "/Users/elvinawibisono/Desktop/designusingc+/pptx_data/subsample/two_up_inverted/" + imageName + ".jpg";
+        std::string imagePath = "/Users/elvinawibisono/Downloads/ok/" + imageName + ".jpg";
         std::cout << "ImagePath: " << imagePath << "\n";
         cv::Mat image = cv::imread(imagePath);
 
