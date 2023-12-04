@@ -1,10 +1,11 @@
 /**
- * @file knn.hpp
- * @brief KNN model for Gesture Recognition
+ * @file svm.hpp
+ * @brief Statis model for Gesture Recognition
  * @version 0.1
  * @date 2023-12-01
  *
  */
+
 
 #pragma once
 #include <vector>
@@ -21,16 +22,18 @@ using namespace std;
 
 
 /**
- * @brief Creates and trains KNN model for Gesture Recognition by taking in all_data, all_labels, num_classes.
+ * @brief Creates and trains SVM model for Gesture Recognition by taking in all_data, all_labels, num_classes.
  * The function separates the data into training and testing sets (80/20) and returns Ptr<cv::ml::KNearest> and float accuracy of the model.
  * The model is trained with cv::ml::Knearest->train. To learn more about cv::ml::Knearest follow https://docs.opencv.org/3.4/dd/de1/classcv_1_1ml_1_1KNearest.html
  *
  * @param all_data  A vector of <Hand_Landmarks> that contains all the data from csv files.
  * @param all_labels A vector of <float> of corresponding labels.
  * @param num_classes Number of unique labels in data
- * @return tuple of KNearest pointer (trained KNN model) and an accuracy of the model.
+ * @return 
  */
-tuple<cv::Ptr<cv::ml::KNearest>, float> KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<float>& all_labels, int num_classes) {
+
+
+tuple<cv::Ptr<cv::ml::SVM>, float> SVM_build(const std::vector<Hand_Landmarks>& all_data, const vector<float>& all_labels, int num_classes) {
 
     // Split the data into training and testing sets
     float train_percentage = 0.8;
@@ -60,7 +63,6 @@ tuple<cv::Ptr<cv::ml::KNearest>, float> KNN_build(const std::vector<Hand_Landmar
         train_labels[i] = all_labels[train_indx[i]];
     }
 
-
     //Create test dataset
     std::vector<Hand_Landmarks> test_data;
     std::vector<float> test_labels(test_size);
@@ -87,31 +89,31 @@ tuple<cv::Ptr<cv::ml::KNearest>, float> KNN_build(const std::vector<Hand_Landmar
         test_labels_cvMat.at<float>(i, 0) = test_labels[i];
     }
 
-    //Create KNN model within cv::ml::KNearest
-    cv::Ptr<cv::ml::KNearest> knn = cv::ml::KNearest::create();
+    //Create SVM model within cv::ml::SVM
+    cv::Ptr<cv::ml::SVM> svm = cv::ml::SVM::create();
+    cv::Ptr<cv::ml::TrainData> trainData = cv::ml::TrainData::create(train_data, cv::ml::ROW_SAMPLE, train_labels);
+    svm->trainAuto(trainData);
 
-    // Set KNN parameters to classifier and K=num_classes
-    knn->setDefaultK(num_classes);
-    knn->setIsClassifier(true); 
-    
-
-    //Train the KNN model
-    knn->train(train_data_cvMat, cv::ml::ROW_SAMPLE, train_labels_cvMat);
-
-    //evaluate the model on the testing set
-    cv::Mat eval;
-    knn->findNearest(test_data_cvMat,num_classes, eval);
-    float error = knn->calcError(test_data_cvMat, false, test_labels_cvMat);
-    float accracy = (1- error)*100;
+    // Set SVM parameters 
     /*
-    //check the evaluation results of test data, for now using the simplest Accuracy
-    cv::Mat correctLabels = (eval == test_labels_cvMat);
-    float accuracy = cv::countNonZero(correctLabels) / static_cast<float>(test_labels_cvMat.rows);
-    
+    svm->setType(cv::ml::SVM::C_SVC);
+    svm->setKernel(cv::ml::SVM::RBF); // Check what kernel type do we need
+    svm->setGamma(0.5); // Check what gamma do we need
+    svm->setC(1); // check what setC do we need
+*/
+
+    //Train the SVM model
+    //svm->train(train_data_cvMat, cv::ml::ROW_SAMPLE, train_labels_cvMat);
+    float error = svm->calcError(test_data, test_labels, false);
+    float accuracy = (1-error)*100;
     if(accuracy>90) {
         cout<<"high accuracy"<<endl;
-    }*/
+    }
     
     return make_tuple(knn,accuracy);
 }
+
+    //new example of SVM
+   // cv::Mat results;
+   // svm->predict(new_features,results);
 
