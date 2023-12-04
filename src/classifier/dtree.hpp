@@ -1,6 +1,6 @@
 /**
  * @file svm.hpp
- * @brief Statistic Vector Model for Gesture Recognition
+ * @brief  Decision trees model for Gesture Recognition
  * @version 0.1
  * @date 2023-12-01
  *
@@ -22,9 +22,9 @@ using namespace std;
 
 
 /**
- * @brief Creates and trains SVM model for Gesture Recognition by taking in all_data, all_labels, num_classes.
- * The function separates the data into training and testing sets (80/20) and returns Ptr<cv::ml::SVM> and float accuracy of the model.
- * The model is trained with cv::ml::svm->Autotrain. To learn more about cv::ml::Knearest follow https://docs.opencv.org/4.x/d1/d2d/classcv_1_1ml_1_1SVM.html
+ * @brief Creates and trains Dtree model for Gesture Recognition by taking in all_data, all_labels, num_classes.
+ * The function separates the data into training and testing sets (80/20) and returns Ptr<cv::ml::DTree> and float accuracy of the model.
+ * The model is trained with cv::ml::Dtree->train. To learn more about cv::ml::Knearest follow https://docs.opencv.org/4.x/d8/d89/classcv_1_1ml_1_1DTrees.html
  *
  * @param all_data  A vector of <Hand_Landmarks> that contains all the data from csv files.
  * @param all_labels A vector of <float> of corresponding labels.
@@ -32,8 +32,7 @@ using namespace std;
  * @return 
  */
 
-
-tuple<cv::Ptr<cv::ml::SVM>, float> SVM_build(const std::vector<Hand_Landmarks>& all_data, const vector<float>& all_labels, int num_classes) {
+tuple<cv::Ptr<cv::ml::SVM>, float> DTree_build(const std::vector<Hand_Landmarks>& all_data, const vector<float>& all_labels, int num_classes) {
 
     // Split the data into training and testing sets
     float train_percentage = 0.8;
@@ -90,9 +89,9 @@ tuple<cv::Ptr<cv::ml::SVM>, float> SVM_build(const std::vector<Hand_Landmarks>& 
     }
 
     //Create SVM model within cv::ml::SVM
-    cv::Ptr<cv::ml::SVM> svm = cv::ml::SVM::create();
+    cv::Ptr<cv::ml::DTrees> dtree = cv::ml::SVM::create();
     cv::Ptr<cv::ml::TrainData> trainData = cv::ml::TrainData::create(train_data_cvMat, cv::ml::ROW_SAMPLE, train_labels_cvMat);
-    svm->trainAuto(trainData);
+    dtree->train(trainData);
 
     // Set SVM parameters 
     /*
@@ -105,7 +104,7 @@ tuple<cv::Ptr<cv::ml::SVM>, float> SVM_build(const std::vector<Hand_Landmarks>& 
     //Train the SVM model
     //svm->train(train_data_cvMat, cv::ml::ROW_SAMPLE, train_labels_cvMat);
     cv::Ptr<cv::ml::TrainData> testData = cv::ml::TrainData::create(test_data_cvMat, cv::ml::ROW_SAMPLE, test_labels_cvMat);
-    float error = svm->calcError(test_data, test_labels, false);
+    float error = svm->calcError(testData);
     float accuracy = (1-error)*100;
     if(accuracy>90) {
         cout<<"high accuracy"<<endl;
@@ -113,8 +112,3 @@ tuple<cv::Ptr<cv::ml::SVM>, float> SVM_build(const std::vector<Hand_Landmarks>& 
     
     return make_tuple(svm,accuracy);
 }
-
-    //new example of SVM
-   // cv::Mat results;
-   // svm->predict(new_features,results);
-
