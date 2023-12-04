@@ -36,8 +36,8 @@ int main(int argc, char* argv[]){
 
     // // (8) Train the data using K classiffier
     // // Create KNN classifier
-    // auto [knn,accuracy] = KNN_build(all_data,labels,classes_count);
-    cv::Ptr<cv::ml::KNearest> knn = KNN_build(all_images_landmarks_from_csv, all_labels_from_csv);
+    auto [knn,accuracy] = KNN_build(all_data,labels,classes_count);
+    //cv::Ptr<cv::ml::KNearest> knn = KNN_build(all_images_landmarks_from_csv, all_labels_from_csv);
 
     ///// SEND VIDEO TO MEDIAPIPE, GET LANDMARKS BACK, GET ACTION FROM CLASSIFIER, DO ACTION
     cv::VideoCapture capture;
