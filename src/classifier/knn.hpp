@@ -20,6 +20,7 @@ using namespace std;
 
 
 
+<<<<<<< HEAD
 /**
  * @brief Creates and trains KNN model for Gesture Recognition by taking in all_data, all_labels, num_classes.
  * The function separates the data into training and testing sets (80/20) and returns Ptr<cv::ml::KNearest> and float accuracy of the model.
@@ -31,6 +32,10 @@ using namespace std;
  * @return tuple of KNearest pointer (trained KNN model) and an accuracy of the model.
  */
 tuple<cv::Ptr<cv::ml::KNearest>, float> KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<float>& all_labels, int num_classes) {
+=======
+//right now returns accuracy later change to KNN
+tuple<cv::Ptr<cv::ml::KNearest>,float> KNN_build(const std::vector<Hand_Landmarks>& all_data, const vector<int>& all_labels, int num_of_classes) {
+>>>>>>> f04a9ab (some changes to KNN)
 
     // Split the data into training and testing sets
     float train_percentage = 0.8;
@@ -78,7 +83,7 @@ tuple<cv::Ptr<cv::ml::KNearest>, float> KNN_build(const std::vector<Hand_Landmar
         train_labels_cvMat.at<float>(i, 0) = train_labels[i];
     }
     
-    //Conver test Hand_Landmarks
+    //Convert test Hand_Landmarks
     cv::Mat test_data_cvMat(test_size, 63, CV_32F);
     cv::Mat test_labels_cvMat(test_size, 1, CV_32F);
     for (int i = 0; i < test_size; ++i) {
@@ -89,22 +94,32 @@ tuple<cv::Ptr<cv::ml::KNearest>, float> KNN_build(const std::vector<Hand_Landmar
 
     //Create KNN model within cv::ml::KNearest
     cv::Ptr<cv::ml::KNearest> knn = cv::ml::KNearest::create();
+<<<<<<< HEAD
 
     // Set KNN parameters to classifier and K=num_classes
     knn->setDefaultK(num_classes);
     knn->setIsClassifier(true); 
     
+=======
+    // Set KNN parameters if we want to adjust the default K=32
+    knn->setDefaultK(num__of_classes);
+    knn->setIsClassifier(true); 
+>>>>>>> f04a9ab (some changes to KNN)
 
     //Train the KNN model
     knn->train(train_data_cvMat, cv::ml::ROW_SAMPLE, train_labels_cvMat);
 
     //evaluate the model on the testing set
     cv::Mat eval;
+<<<<<<< HEAD
     knn->findNearest(test_data_cvMat,num_classes, eval);
+=======
+    knn->findNearest(test_data_cvMat, num_of_classes, eval);
+>>>>>>> f04a9ab (some changes to KNN)
 
     //check the evaluation results of test data, for now using the simplest Accuracy
     cv::Mat correctLabels = (eval == test_labels_cvMat);
-    double accuracy = cv::countNonZero(correctLabels) / static_cast<double>(test_labels_cvMat.rows);
+    float accuracy = cv::countNonZero(correctLabels) / static_cast<float>(test_labels_cvMat.rows);
     
     if(accuracy>90) {
         cout<<"high accuracy"<<endl;
