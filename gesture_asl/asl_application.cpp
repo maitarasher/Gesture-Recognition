@@ -67,11 +67,11 @@ int main(int argc, char* argv[]){
         
         std::string text;
         for (auto& lm : landmarks) {
-            cv::Mat result;
+            cv::Mat result,neighbor,dist;
             cv::Mat input_cvMat(1, 63, CV_32F);
             input_cvMat = lm.toMatRow();
             // knn->findNearest(test_data_cvMat, classes_count,result);
-            knn->findNearest(input_cvMat, 3, result);
+            knn->findNearest(input_cvMat, 3, result,neighbor dist);
 
             float predict = result.at<float>(0, 0);
 
