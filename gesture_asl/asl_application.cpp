@@ -1,11 +1,3 @@
-#include <iostream>
-#include <cstring>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <unistd.h>
-#include <opencv2/opencv.hpp>
-#include <arpa/inet.h>
-#include <regex>
 #include "../src/feature_extraction/pipeline.hpp"
 #include "../src/feature_extraction/stage.hpp"
 #include "../src/load_data/folder_loader.hpp"
@@ -18,17 +10,23 @@ const int PORT = 8080;
 const char* SERVER_IP = "127.0.0.1";
 
 int main(int argc, char* argv[]){
-    // (1) create a client socket and connect to the MediaPipe Server
+    // Check if the folder path is provided as a command-line argument
+    if (argc != 2){
+        std::cerr << "Usage: " << argv[0] << " <prefix_save_path>\n";
+        std::cerr << "example: " << argv[0] <<" ../data/asl\n";
+        return -1;
+    }
 
+    // (1) create a client socket and connect to the MediaPipe Server
     int clientSocket = connectToServer(PORT, SERVER_IP);
     if (clientSocket == -1) {
         return -1;
     }
 
     // (6) Load the data
-    std::vector<Hand_Landmarks> all_images_landmarks_from_csv = readFromCSV("../gesture_asl/data/asl_landmarks.csv");
-    std::vector<float> all_labels_from_csv = readLabelsFromCSV("../gesture_asl/data/asl_labels.csv");
-    std::unordered_map<float, std::string> stringLabelMap = readMapFromCSV("../gesture_asl/data/asl_label_map.csv");
+    std::vector<Hand_Landmarks> all_images_landmarks_from_csv = readFromCSV("../../data/asl/landmarks.csv");
+    std::vector<float> all_labels_from_csv = readLabelsFromCSV("../../data/asl/labels.csv");
+    std::unordered_map<float, std::string> stringLabelMap = readMapFromCSV("../../data/asl/map.csv");
 
     // // get number of classes - 
     // std::set<float> unique_classes(all_labels_from_csv.begin(), all_labels_from_csv.end());
@@ -36,7 +34,7 @@ int main(int argc, char* argv[]){
 
     // // (8) Train the data using K classiffier
     // // Create KNN classifier
-    auto [knn,accuracy] = KNN_build(all_data,labels,classes_count);
+    auto [knn,accuracy] = KNN_build(all_images_landmarks_from_csv,all_labels_from_csv,stringLabelMap.size());
     //cv::Ptr<cv::ml::KNearest> knn = KNN_build(all_images_landmarks_from_csv, all_labels_from_csv);
 
     ///// SEND VIDEO TO MEDIAPIPE, GET LANDMARKS BACK, GET ACTION FROM CLASSIFIER, DO ACTION
@@ -71,12 +69,15 @@ int main(int argc, char* argv[]){
             cv::Mat input_cvMat(1, 63, CV_32F);
             input_cvMat = lm.toMatRow();
             // knn->findNearest(test_data_cvMat, classes_count,result);
-            knn->findNearest(input_cvMat, 3, result,neighbor dist);
+            knn->findNearest(input_cvMat, stringLabelMap.size(), result,neighbor, dist);
 
             float predict = result.at<float>(0, 0);
 
             // convert class prediction number into string class label
             text = stringLabelMap[predict];
+
+            std::cout << "Prediction: " << text << std::endl;
+            std::cout << "Distance: " << dist.at<float>(0,0) << std::endl;
         }
 
         // std::string text = "A"; // THE PREDICTION
