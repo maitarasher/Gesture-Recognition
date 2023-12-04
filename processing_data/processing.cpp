@@ -1,12 +1,5 @@
 #include <iostream>
 #include <cstring>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <unistd.h>
-#include <unordered_map>
-#include <opencv2/opencv.hpp>
-#include <arpa/inet.h>
-#include <regex>
 #include "../src/feature_extraction/pipeline.hpp"
 #include "../src/feature_extraction/stage.hpp"
 #include "../src/load_data/folder_loader.hpp"
@@ -46,9 +39,12 @@ int main(int argc, char* argv[]){
 
     // Add stages to the pipeline (brightness, rotation)
     my_pipeline.add_stage(40.0, 0.0);
+    my_pipeline.add_stage(40.0, -15.0);
+    my_pipeline.add_stage(40.0, 15.0);
+    my_pipeline.add_stage(40.0, -30.0);
+    my_pipeline.add_stage(40.0, 30.0);
     my_pipeline.add_stage(40.0, -45.0);
     my_pipeline.add_stage(40.0, 45.0);
-    my_pipeline.add_stage(40.0, 90.0);
 
     // (3) Load images by folder - call folder_loader, ImageData contians the image_path and the classlabel
     std::vector<ImageData> images = loadImgsFromFolder(folderPath);
