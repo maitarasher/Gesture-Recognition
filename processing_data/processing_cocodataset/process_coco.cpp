@@ -8,9 +8,23 @@
 // using namespace std;
 
 
-int main() {
+int main(int argc, char* argv[]) {
+
+    if (argc != 3){
+        std::cerr << "Usage: " << argv[0] << " <coco_folder_path> <output_folder>\n";
+        std::cerr << "example: " << argv[0] <<" /Users/elifiamuthia/Desktop/like /Users/elifiamuthia/Desktop/output_folder\n";
+        return -1;
+    }
+
+    std::string path = argv[1];
+    std::string output_folder = argv[2];
+
+    size_t lastSlashPos = path.find_last_of('/');
+    std::string folderName = path.substr(lastSlashPos + 1);
+    
+
     // Read the JSON file
-    std::ifstream file("/Users/elvinawibisono/Downloads/ok/ok.json");
+    std::ifstream file(path + "/" + folderName + ".json");
     Json::Value jsonData;
     file >> jsonData;
 
@@ -39,7 +53,7 @@ int main() {
         std::cout << "height: " << height << "\n\n";
 
         // Load image using OpenCV
-        std::string imagePath = "/Users/elvinawibisono/Downloads/ok/" + imageName + ".jpg";
+        std::string imagePath = path + "/" + imageName + ".jpg";
         std::cout << "ImagePath: " << imagePath << "\n";
         cv::Mat image = cv::imread(imagePath);
 
@@ -53,7 +67,7 @@ int main() {
         std::cout << "label:  " << label << "\n";
 
         // std::string label = values["labels"][0].asString();
-        std::string outputFolder = "/Users/elvinawibisono/Desktop/designusingc+/Gesture-Recognition/gesture_pptx/output_folder/" + label + "/";
+        std::string outputFolder = output_folder + "/" + label + "/";
 
         if (!std::filesystem::exists(outputFolder))
             std::filesystem::create_directories(outputFolder);
