@@ -78,7 +78,7 @@ tuple<cv::Ptr<cv::ml::KNearest>, float> KNN_build(const std::vector<Hand_Landmar
         train_labels_cvMat.at<float>(i, 0) = train_labels[i];
     }
     
-    //Conver test Hand_Landmarks
+    //Convert test Hand_Landmarks
     cv::Mat test_data_cvMat(test_size, 63, CV_32F);
     cv::Mat test_labels_cvMat(test_size, 1, CV_32F);
     for (int i = 0; i < test_size; ++i) {

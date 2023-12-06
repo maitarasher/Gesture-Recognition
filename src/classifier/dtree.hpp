@@ -2,7 +2,7 @@
  * @file dtree.hpp
  * @brief  Decision trees model for Gesture Recognition
  * @version 0.1
- * @date 2023-12-01
+ * @date 2023-12-05
  *
  */
 
@@ -91,15 +91,13 @@ tuple<cv::Ptr<cv::ml::DTrees>, float> DTree_build(const std::vector<Hand_Landmar
     //Create Dtree model within cv::ml::DTrees default parameters
     cv::Ptr<cv::ml::DTrees> dtree = cv::ml::DTrees::create();
     cv::Ptr<cv::ml::TrainData> trainData = cv::ml::TrainData::create(train_data_cvMat, cv::ml::ROW_SAMPLE, train_labels_cvMat);
-    dtree->train(trainData);
 
     //specify parameters yourself when known
-    /*
     dtree->setCVFolds(1);  // Number of cross-validation folds
     dtree->setMaxDepth(10);  // Maximum depth of the tree
     dtree->setMinSampleCount(1);  // Minimum samples in a leaf node
     dtree->train(trainData);
-    */
+    
 
     cv::Mat eval;
     dtree->predict(test_data_cvMat,eval);
