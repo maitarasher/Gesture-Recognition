@@ -2,6 +2,8 @@
 #include "../src/data_classes.hpp"
 #include "../src/load_data/save_and_read.cpp"
 #include "../src/classifier/knn.hpp"
+#include "../src/classifier/svm.hpp"
+#include "../src/classifier/dtree.hpp"
 
 #include <iostream>
 #include <filesystem>
@@ -93,7 +95,15 @@ int main(int argc, char* argv[]) {
     std::vector<float> all_labels_from_csv = readLabelsFromCSV("../../data/pptx/labels.csv");
     std::unordered_map<float, std::string> stringLabelMap = readMapFromCSV("../../data/pptx/map.csv");
 
-    cv::Ptr<cv::ml::KNearest> knn = KNN_build(all_images_landmarks_from_csv, all_labels_from_csv);
+    auto [knn,knn_accuracy] = KNN_build(all_images_landmarks_from_csv, all_labels_from_csv, stringLabelMap.size());
+    std::cout << "KNN Accuracy: " << knn_accuracy << std::endl;
+    
+    auto [svm,svm_accuracy] = SVM_build(all_images_landmarks_from_csv, all_labels_from_csv, stringLabelMap.size());
+    std::cout << "SVM Accuracy: " << svm_accuracy << std::endl;
+
+    auto [dtree,dtree_accuracy] = DTree_build(all_images_landmarks_from_csv, all_labels_from_csv, stringLabelMap.size());
+    std::cout << "DTree Accuracy: " << dtree_accuracy << std::endl;
+
 
     /** APPLICATION **/
 
@@ -142,7 +152,7 @@ int main(int argc, char* argv[]) {
             cv::Mat result;
             cv::Mat input_cvMat(1, 63, CV_32F);
             input_cvMat = lm.toMatRow();
-            knn->findNearest(input_cvMat, stringLabelMap.size(), result);
+            svm->predict(input_cvMat,result);
 
             float predict = result.at<float>(0, 0);
 
