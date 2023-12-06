@@ -5,17 +5,23 @@
 #include "../src/data_classes.hpp"
 #include "../src/mediapipe_client/mediapipe_client.hpp"
 #include "../src/classifier/knn.hpp"
+#include "../src/classifier/svm.hpp"
+#include "../src/classifier/dtree.hpp"
 
 const int PORT = 8080;
 const char* SERVER_IP = "127.0.0.1";
 
 int main(int argc, char* argv[]){
     // Check if the folder path is provided as a command-line argument
+
     if (argc != 2){
         std::cerr << "Usage: " << argv[0] << " <prefix_save_path>\n";
-        std::cerr << "example: " << argv[0] <<" ../data/asl\n";
+        std::cerr << "example: " << argv[0] <<" ../../data/asl\n";
         return -1;
     }
+
+    // Extract the prefix path
+    std::string prefixPath = argv[1];
 
     // (1) create a client socket and connect to the MediaPipe Server
     int clientSocket = connectToServer(PORT, SERVER_IP);
@@ -23,19 +29,22 @@ int main(int argc, char* argv[]){
         return -1;
     }
 
-    // (6) Load the data
-    std::vector<Hand_Landmarks> all_images_landmarks_from_csv = readFromCSV("../../data/asl/landmarks.csv");
-    std::vector<float> all_labels_from_csv = readLabelsFromCSV("../../data/asl/labels.csv");
-    std::unordered_map<float, std::string> stringLabelMap = readMapFromCSV("../../data/asl/map.csv");
+    // (2) Load the data
+    std::vector<Hand_Landmarks> all_images_landmarks_from_csv = readFromCSV(prefixPath + "/landmarks.csv");
+    std::vector<float> all_labels_from_csv = readLabelsFromCSV(prefixPath + "/labels.csv");
+    std::unordered_map<float, std::string> stringLabelMap = readMapFromCSV(prefixPath + "/map.csv");
 
-    // // get number of classes - 
-    // std::set<float> unique_classes(all_labels_from_csv.begin(), all_labels_from_csv.end());
-    // std::size_t classes_count = unique_classes.size();
-
-    // // (8) Train the data using K classiffier
+    // // (3) Train the data using K classiffier
     // // Create KNN classifier
-    auto [knn,accuracy] = KNN_build(all_images_landmarks_from_csv,all_labels_from_csv,stringLabelMap.size());
-    //cv::Ptr<cv::ml::KNearest> knn = KNN_build(all_images_landmarks_from_csv, all_labels_from_csv);
+    // auto [knn,knn_accuracy] = KNN_build(all_images_landmarks_from_csv, all_labels_from_csv, 3);
+    // std::cout << "KNN Accuracy: " << knn_accuracy << std::endl;
+
+    auto [svm,svm_accuracy] = SVM_build(all_images_landmarks_from_csv, all_labels_from_csv, stringLabelMap.size());
+    std::cout << "SVM Accuracy: " << svm_accuracy << std::endl;
+
+    // auto [dtree,dtree_accuracy] = DTree_build(all_images_landmarks_from_csv, all_labels_from_csv, stringLabelMap.size());
+    // std::cout << "DTree Accuracy: " << svm_accuracy << std::endl;
+
 
     ///// SEND VIDEO TO MEDIAPIPE, GET LANDMARKS BACK, GET ACTION FROM CLASSIFIER, DO ACTION
     cv::VideoCapture capture;
@@ -58,29 +67,23 @@ int main(int argc, char* argv[]){
             return -1;
         }
 
-        // std::cout << landmarks.size() << std::endl;
-
-        // TODO
-        // RUN LANDMARKS THROUGH CLASSIFIER 
-        
         std::string text;
         for (auto& lm : landmarks) {
-            cv::Mat result,neighbor,dist;
+            cv::Mat result;
             cv::Mat input_cvMat(1, 63, CV_32F);
             input_cvMat = lm.toMatRow();
-            // knn->findNearest(test_data_cvMat, classes_count,result);
-            knn->findNearest(input_cvMat, stringLabelMap.size(), result,neighbor, dist);
+            // knn->findNearest(input_cvMat, 3, result);
+            svm->predict(input_cvMat,result);
 
             float predict = result.at<float>(0, 0);
 
             // convert class prediction number into string class label
             text = stringLabelMap[predict];
 
-            std::cout << "Prediction: " << text << std::endl;
-            std::cout << "Distance: " << dist.at<float>(0,0) << std::endl;
+            std::cout << "Prediction: " << predict << std::endl;
+            std::cout << "Text: " << text << std::endl;
+            // std::cout << "Distance: " << dist.at<float>(0,0) << std::endl;
         }
-
-        // std::string text = "A"; // THE PREDICTION
 
         int fontScale = 8;
         int textBaseline = 0;
@@ -101,15 +104,7 @@ int main(int argc, char* argv[]){
         if (key == 'q') {
             break;
         }
-
-    
-        
-        
-        //AND GET CORRESPONDING ACTION
-
-
-
     }
-    // close(clientSocket);
+    close(clientSocket);
     return 0;   
 }
