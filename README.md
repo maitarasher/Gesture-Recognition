@@ -1,6 +1,6 @@
 # Gesture-Recognition in C++
 
-This library is a collaborative effort developed as the final group project for the COMS W4995: Design Using C++ course in Fall 2023, taught by Bjarne Stroustrup.
+This library is a collaborative effort developed as the final group project for the COMS W4995: Design Using C++ course in Fall 2023, taught by Professor Bjarne Stroustrup.
 
 
 Authors: Yana Botvinnik, Maitar Asher, Noam Zaid, Elvina Wibisono, Elifia Muthia
@@ -12,13 +12,15 @@ Note: As of December 2023, **this library is exclusively tested and compatible w
 
 This project takes inspiration from a similar gesture recognition library in Python, the [GRLib](https://github.com/mikhail-vlasenko/grlib/tree/master), that's algorithm has been nicely documented [here](https://arxiv.org/pdf/2310.14919v1.pdf).
 
-## Additional Resources
+## Additional Resources and Documentation
 
 - [Gesture Recognition Tutorial](https://docs.google.com/document/d/1tlUAKTq5tPwRVC3Sa62UZCwkMtCfloZU4QGTxBQKAxg/edit?usp=sharing): Explore the step-by-step tutorial on setting up the environment, processing data, training models, and making predictions.
 
 - [Gesture Recognition Manual](https://docs.google.com/document/d/1wTPNB_bm-LVUp-C2Qwciy0hg1adNCyv1YlQNXkRBiFI/edit?usp=sharing): For more detailed information about each step, configuration options, and advanced features, refer to our comprehensive manual.
 
 - [Design Documentation](https://docs.google.com/document/d/1OGW2GpuXKYR4RbnvIpiwjtReCL4Vc0j5KpZ1pBwtPT0/edit?usp=sharing): Read our design documentation for an in-depth understanding of the architecture, system components, and implementation details.
+
+- Powerpoint Gesture Control Application [Demo](https://drive.google.com/file/d/1XTBg3h4tOdtW5FdmhVe3VDZS2ABo-JPC/view?usp=sharing): See the tool in action here!
 
 ## Set Up the Environment
 
@@ -46,6 +48,8 @@ This project takes inspiration from a similar gesture recognition library in Pyt
 
 ```brew install numpy```
 
+7. Install XCode from the [App Store](https://apps.apple.com/us/app/xcode/id497799835?mt=12)
+
 ## Set Up the MediaPipe Server
 
 1. Clone the modified Mediapipe [repository](https://github.com/elifia-muthia/mediapipe)
@@ -63,6 +67,10 @@ This project takes inspiration from a similar gesture recognition library in Pyt
 ```GLOG_logtostderr=1 bazel-bin/mediapipe/mediapipe_samples/mediapipe_sample/mediapipe_sample --calculator_graph_config_file=mediapipe/graphs/hand_tracking/hand_tracking_desktop_live.pbtxt```
 
 ## Clone this Gesture-Recognition repository
+
+Execute the following command to clone this repository
+
+```git clone https://github.com/maitarasher/Gesture-Recognition.git```
 
 ## Process Training Data
 
@@ -146,4 +154,4 @@ You may add/remove stages into your pipeline. The code is located at: ```Gesture
 
 ```make```
 
-```.\CrossPlatformPowerPoint ???```
+```.\gesture_pptx ../../data/pptx <path_to_pptx>```
