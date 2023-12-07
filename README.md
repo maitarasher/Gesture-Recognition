@@ -12,6 +12,14 @@ Note: As of December 2023, **this library is exclusively tested and compatible w
 
 This project takes inspiration from a similar gesture recognition library in Python, the [GRLib](https://github.com/mikhail-vlasenko/grlib/tree/master), that's algorithm has been nicely documented [here](https://arxiv.org/pdf/2310.14919v1.pdf).
 
+## Additional Resources
+
+- [Gesture Recognition Tutorial](https://docs.google.com/document/d/1tlUAKTq5tPwRVC3Sa62UZCwkMtCfloZU4QGTxBQKAxg/edit?usp=sharing): Explore the step-by-step tutorial on setting up the environment, processing data, training models, and making predictions.
+
+- [Gesture Recognition Manual](https://docs.google.com/document/d/1wTPNB_bm-LVUp-C2Qwciy0hg1adNCyv1YlQNXkRBiFI/edit?usp=sharing): For more detailed information about each step, configuration options, and advanced features, refer to our comprehensive manual.
+
+- [Design Documentation](https://docs.google.com/document/d/1OGW2GpuXKYR4RbnvIpiwjtReCL4Vc0j5KpZ1pBwtPT0/edit?usp=sharing): Read our design documentation for an in-depth understanding of the architecture, system components, and implementation details.
+
 # Set Up the Environment
 
 1. Install Homebrew (a package manager to install library dependencies)
