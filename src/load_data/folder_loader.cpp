@@ -4,6 +4,17 @@
 #include <iostream>
 #include "folder_loader.hpp"
 
+/*
+- loadImgsFromFolder function
+  Description: Facilitates the systematic loading of image data for machine learning tasks by collecting file paths and associated labels from a specified folder.
+  Parameters:
+    folderPath: Path to the folder containing class-subfolder structures.
+    Return Type: std::vector<ImageData>
+  Why: Enables efficient loading of image data information, optimizing memory usage.
+       Assigns numeric labels to classes for compatibility with machine learning classifiers.
+       Incorporates error handling to ensure the validity of the folder path.
+*/
+
 std::vector<ImageData> loadImgsFromFolder(const std::string& folderPath)
 {
     std::vector<ImageData> images;
@@ -33,7 +44,6 @@ std::vector<ImageData> loadImgsFromFolder(const std::string& folderPath)
                 // std::cout << "File path: " << filePath << "\n";
                 ImageData imageData{filePath, classStr, label};
                 images.push_back(imageData);
-
             }
             label += 1.;
         }
