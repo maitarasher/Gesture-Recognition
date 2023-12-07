@@ -3,14 +3,38 @@
 #include <iostream>
 #include <stdexcept> // Include for std::invalid_argument
 
+/*
+Type: class Pipeline
+Description: Manages a sequence of image augmentation stages.
+Functions:
+
+-  Pipeline(int num_hands): Constructor, initializes the pipeline with the specified number of hands.
+    Type: Constructor
+    Parameters:
+      num_hands: Number of hands (1).
+    Why: Ensures the correct number of hands is provided for the pipeline.
+
+- void add_stage(double brightness, double rotation): Adds a new stage to the pipeline with specified brightness and rotation.
+  Type: Member Function
+  Parameters:
+    brightness: Degree of brightness adjustment.
+    rotation: Degree of image rotation.
+  Why: Facilitates the addition of customizable augmentation stages to the pipeline.
+
+- const std::vector<Stage>& getStages() const: Retrieves the vector of stages in the pipeline.
+  Type: Member Function
+  Return Type: const std::vector<Stage>&
+  Why: Allows external access to the stages for further usage.
+*/
+
 class Pipeline
 {
 public:
     Pipeline(int num_hands) : num_hands(num_hands), stages()
     {
-      if (num_hands > 2 || num_hands < 1)
+      if (num_hands != 1)
       {
-        throw std::invalid_argument("num_hands must be 1 or 2.");
+        throw std::invalid_argument("num_hands must be 1");
       }
     }
 
@@ -26,10 +50,7 @@ public:
       return stages;
     }
 
-    //void optimize();
 private:
   int num_hands;
-  std::vector<Stage> stages;  // Change the container type to std::vector
-  //std::list<Stage> stages;
-    //threadpool?
+  std::vector<Stage> stages;
 };

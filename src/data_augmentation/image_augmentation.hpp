@@ -8,8 +8,17 @@
 /*
 The paper proposed the use of image augmentations in an attempt
 to increase the detection rates of MediaPipe Hands.
+*/
 
-in python git it it under preprocessing/images.py
+/*
+- increaseBrightness Function
+  cv::Mat increaseBrightness(const cv::Mat& image, double value = 30)
+  Description: Increases the brightness of the input image.
+  Parameters:
+    image: Input image.
+    value: Degree of brightness adjustment (default: 30).
+  Return Type: cv::Mat
+  Why: Modifies the brightness of the image in HSV color space, ensuring that values do not exceed the valid range.
 */
 
 cv::Mat increaseBrightness(const cv::Mat& image, double value = 30) {
@@ -31,6 +40,17 @@ cv::Mat increaseBrightness(const cv::Mat& image, double value = 30) {
     return result;
 }
 
+/*
+- rotate Function
+  cv::Mat rotate(const cv::Mat& image, double degrees = 0)
+  Description: Rotates the input image by the specified degrees.
+  Parameters:
+    image: Input image.
+    degrees: Degree of rotation (default: 0).
+  Return Type: cv::Mat
+  Why: Applies an affine transformation to rotate the image, preserving lines and parallelism.
+*/
+
 cv::Mat rotate(const cv::Mat& image, double degrees = 0){
     // credit: https://cppsecrets.com/users/204211510411798104971091085153504964103109971051084699111109/C00-OpenCV-to-rotate-an-image.php
     cv::Mat result;
@@ -42,28 +62,3 @@ cv::Mat rotate(const cv::Mat& image, double degrees = 0){
 }
 
 #endif // IMAGE_AUGMENTATION_HPP
-
-/*
-FOR TESTING change file to .cpp, comment defs and add main
-int main(){
-    // Read an image
-    cv::Mat image = cv::imread("/Users/maitarasher/Downloads/image.jpg");
-    if (image.empty()) {
-    std::cerr << "Error: Could not read the image file." << std::endl;
-    return -1;
-    }
-
-    // Increase brightness
-    cv::Mat brightenedImage = increaseBrightness(image, 30);
-
-    // Rotate by 45 degrees
-    cv::Mat rotatedImage = rotate(image, 30);
-
-    // Display the images (requires user to press a key to close the windows)
-    cv::imshow("Original Image", image);
-    cv::imshow("Brightened Image", brightenedImage);
-    cv::imshow("Rotated Image", rotatedImage);
-    cv::waitKey(0);
-    return 0;
-}
-*/

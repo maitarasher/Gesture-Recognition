@@ -4,6 +4,27 @@
 #include <opencv2/opencv.hpp>
 #include "../data_augmentation/image_augmentation.hpp"
 
+/*
+Type: class Stage
+Description: Represents an individual image augmentation stage.
+Functions:
+
+- Stage(int initial_index, double brightness, double rotation): Constructor, initializes the stage with an initial index, brightness, and rotation.
+  Type: Constructor
+  Parameters:
+    initial_index: Index of the stage.
+    brightness: Degree of brightness adjustment.
+    rotation: Degree of image rotation.
+  Why: Sets up the stage with specified parameters.
+
+- cv::Mat process(const cv::Mat& image) const: Processes the input image through brightness adjustment and rotation.
+  Type: Member Function
+  Parameters:
+    image: Input image to be processed.
+    Return Type: cv::Mat
+  Why: Applies the defined augmentation operations to the input image and returns the processed image.
+*/
+
 class Stage{
 public:
     Stage(int initial_index, double brightness, double rotation)
@@ -15,38 +36,10 @@ public:
         return processedImage;
     }
 
-    //void getLandmarks(const cv::Mat& image);
-
-    //void getWorldLandmarks(const cv::Mat& image);
-
 private:
     int initial_index;
     double brightness;
     double rotation;
-    // need to add MediaPipe object
-    //int recognized_counter;
-    //void* last_detected_hands;
-    //void* last_detected_handedness;
 };
 
 #endif // STAGE_HPP
-
-/*
-FOR TESTING change file to .cpp, comment defs and add main
-int main(){
-    // Example usage
-    cv::Mat image = cv::imread("/Users/maitarasher/Downloads/image.jpg");
-    if (image.empty()){
-    std::cerr << "Error: Could not read the image file." << std::endl;
-    return -1;
-    }
-
-    Stage stage(0, 30.0, 45.0);
-    cv::Mat processedImage = stage.process(image);
-
-    cv::imshow("Original Image", image);
-    cv::imshow("Brightened Image", processedImage);
-    cv::waitKey(0);
-    return 0;
-}
-*/

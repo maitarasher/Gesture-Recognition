@@ -16,7 +16,7 @@ int main(int argc, char* argv[]){
     // Check if the folder path is provided as a command-line argument
     if (argc != 3){
         std::cerr << "Usage: " << argv[0] << " <folder_path> <prefix_save_path>\n";
-        std::cerr << "example: " << argv[0] <<"  /Users/maitarasher/data ../data/asl\n";
+        std::cerr << "example: " << argv[0] << "  /Users/maitarasher/data ../data/asl\n";
         return -1;
     }
 
@@ -26,7 +26,6 @@ int main(int argc, char* argv[]){
     std::string prefixPath = argv[2];
 
     // (1) create a client socket and connect to the MediaPipe Server
-
     int clientSocket = connectToServer(PORT, SERVER_IP);
     if (clientSocket == -1) {
         return -1;
@@ -34,8 +33,8 @@ int main(int argc, char* argv[]){
 
     // (2) Create Pipeline structure
 
-    // Create a pipeline with 2 hands
-    Pipeline my_pipeline(2);
+    // Create a pipeline with 1 hands
+    Pipeline my_pipeline(1);
 
     // Add stages to the pipeline (brightness, rotation)
     my_pipeline.add_stage(40.0, 0.0);
