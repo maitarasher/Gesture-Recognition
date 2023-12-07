@@ -88,12 +88,15 @@ int main(int argc, char* argv[]) {
     std::vector<float> all_labels_from_csv = readLabelsFromCSV(prefixPath + "/labels.csv");
     std::unordered_map<float, std::string> stringLabelMap = readMapFromCSV(prefixPath + "/map.csv");
 
+    // std::cout << "Training KNN...\n";
     // auto [knn,knn_accuracy] = KNN_build(all_images_landmarks_from_csv, all_labels_from_csv, stringLabelMap.size());
     // std::cout << "KNN Accuracy: " << knn_accuracy << std::endl;
     
+    std::cout << "Training SVM...\n";
     auto [svm,svm_accuracy] = SVM_build(all_images_landmarks_from_csv, all_labels_from_csv, stringLabelMap.size());
     std::cout << "SVM Accuracy: " << svm_accuracy << std::endl;
 
+    // std::cout << "Training Decision Tree...\n";
     // auto [dtree,dtree_accuracy] = DTree_build(all_images_landmarks_from_csv, all_labels_from_csv, stringLabelMap.size());
     // std::cout << "Decision Tree Accuracy: " << dtree_accuracy << std::endl;
 
