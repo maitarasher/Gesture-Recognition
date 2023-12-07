@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
-project(CrossPlatformPowerPoint)
+project(gesture_pptx)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -19,10 +19,10 @@ include_directories(
 )
     
 
-add_executable(CrossPlatformPowerPoint ${SOURCE_FILES})
+add_executable(gesture_pptx ${SOURCE_FILES})
 
-target_link_libraries(CrossPlatformPowerPoint PRIVATE ${OpenCV_LIBS})
+target_link_libraries(gesture_pptx PRIVATE ${OpenCV_LIBS})
 
 # macOS-specific code
 find_library(APPKIT_LIBRARY AppKit)
-target_link_libraries(CrossPlatformPowerPoint PRIVATE ${APPKIT_LIBRARY})
+target_link_libraries(gesture_pptx PRIVATE ${APPKIT_LIBRARY})

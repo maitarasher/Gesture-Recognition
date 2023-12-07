@@ -69,40 +69,33 @@ void openNewPresentation(){
 
 }
 
-std::string getFullPathFromRelativePath(const char* relativePath) {
-    // Get the current working directory
-    fs::path currentPath = fs::current_path();
-    currentPath = currentPath.parent_path().parent_path();
-    fs::path fullPath = currentPath / relativePath;
-
-    return fullPath.string();
-}
-
-
 int main(int argc, char* argv[]) {
 
     std::cout << "Hello, MacOS PowerPoint Application!" << std::endl;
 
-    const char* relativePath = "gesture_pptx/test.pptx";
-    std::string fullPath = getFullPathFromRelativePath(relativePath);
-    std::cout << "Full Path: " << fullPath << std::endl;
-    const char* filePath = fullPath.c_str();
+    if (argc != 3){
+        std::cerr << "Usage: " << argv[0] << " <prefix_save_path> <absolute_path_to_pptx>\n";
+        std::cerr << "example: " << argv[0] <<" ../../data/pptx /Desktop/test.pptx\n";
+        return -1;
+    }
 
+    std::string prefixPath = argv[1];
+    const char* filePath = argv[2];
     /** TRAINING **/
 
     // prepare data
-    std::vector<Hand_Landmarks> all_images_landmarks_from_csv = readFromCSV("../../data/pptx/landmarks.csv");
-    std::vector<float> all_labels_from_csv = readLabelsFromCSV("../../data/pptx/labels.csv");
-    std::unordered_map<float, std::string> stringLabelMap = readMapFromCSV("../../data/pptx/map.csv");
+    std::vector<Hand_Landmarks> all_images_landmarks_from_csv = readFromCSV(prefixPath + "/landmarks.csv");
+    std::vector<float> all_labels_from_csv = readLabelsFromCSV(prefixPath + "/labels.csv");
+    std::unordered_map<float, std::string> stringLabelMap = readMapFromCSV(prefixPath + "/map.csv");
 
-    auto [knn,knn_accuracy] = KNN_build(all_images_landmarks_from_csv, all_labels_from_csv, stringLabelMap.size());
-    std::cout << "KNN Accuracy: " << knn_accuracy << std::endl;
+    // auto [knn,knn_accuracy] = KNN_build(all_images_landmarks_from_csv, all_labels_from_csv, stringLabelMap.size());
+    // std::cout << "KNN Accuracy: " << knn_accuracy << std::endl;
     
     auto [svm,svm_accuracy] = SVM_build(all_images_landmarks_from_csv, all_labels_from_csv, stringLabelMap.size());
     std::cout << "SVM Accuracy: " << svm_accuracy << std::endl;
 
-    auto [dtree,dtree_accuracy] = DTree_build(all_images_landmarks_from_csv, all_labels_from_csv, stringLabelMap.size());
-    std::cout << "DTree Accuracy: " << dtree_accuracy << std::endl;
+    // auto [dtree,dtree_accuracy] = DTree_build(all_images_landmarks_from_csv, all_labels_from_csv, stringLabelMap.size());
+    // std::cout << "Decision Tree Accuracy: " << dtree_accuracy << std::endl;
 
 
     /** APPLICATION **/
@@ -110,14 +103,11 @@ int main(int argc, char* argv[]) {
     // Open the existing PowerPoint presentation
     openExistingPresentation(filePath);
 
-    // model 
-
     // Establish connection with server
     int clientSocket = connectToServer(PORT, SERVER_IP);
     if (clientSocket == -1) {
         return -1;
     }
-
 
     // Camera capture and gesture recognition
     cv::VideoCapture cap(0);  // Open the default camera (usually the built-in webcam)
@@ -152,7 +142,10 @@ int main(int argc, char* argv[]) {
             cv::Mat result;
             cv::Mat input_cvMat(1, 63, CV_32F);
             input_cvMat = lm.toMatRow();
+
+            // knn->findNearest(input_cvMat, 3, result);
             svm->predict(input_cvMat,result);
+            // dtree->predict(input_cvMat,result);
 
             float predict = result.at<float>(0, 0);
 
@@ -161,42 +154,21 @@ int main(int argc, char* argv[]) {
         }
 
         std::cout << prev_gesture << "\t" << curr_gesture << std::endl;
-        if (prev_gesture != curr_gesture && curr_gesture == "ok") {
+        if (prev_gesture == curr_gesture && curr_gesture == "ok") {
             std::cout << "START SLIDE\n";
             handleGesture("StartSlide");
         }
-        else if (prev_gesture != curr_gesture && curr_gesture == "fist") {
+        else if (prev_gesture == curr_gesture && curr_gesture == "fist") {
             std::cout << "END SLIDE\n";
             handleGesture("EndSlide");
         }
-        else if (prev_gesture == "stop_inverted" && curr_gesture == "stop") {
+        else if (prev_gesture == curr_gesture && curr_gesture == "like") {
             std::cout << "NEXT SLIDE\n";
             handleGesture("NextSlide");
         }
-        else if (prev_gesture == "stop" && curr_gesture == "stop") {
+        else if (prev_gesture == curr_gesture && curr_gesture == "dislike") {
             std::cout << "PREV SLIDE\n";
             handleGesture("PrevSlide");
-        }
-
-
-        int fontScale = 4;
-        int textBaseline = 0;
-        int thickness = 20;
-        cv::Scalar outlineColor(0, 0, 0);
-        cv::Scalar textColor(255, 255, 255);
-
-        cv::Size textSize = cv::getTextSize(curr_gesture, cv::FONT_HERSHEY_SIMPLEX, fontScale, thickness, nullptr);
-        cv::Point textPosition(frameWidth - textSize.width - 500, frameHeight - 20);
-        cv::putText(inputImage, curr_gesture, textPosition, cv::FONT_HERSHEY_SIMPLEX, fontScale, outlineColor, thickness + 10);
-        cv::putText(inputImage, curr_gesture, textPosition, cv::FONT_HERSHEY_SIMPLEX, fontScale, textColor, thickness);
-
-
-        cv::imshow("PPT Controls - Video Feed", inputImage);
-        int key = cv::waitKey(1);
-
-        // Check for user input (press 'q' to exit)
-        if (key == 'q') {
-            break;
         }
 
         prev_gesture = curr_gesture;
@@ -206,11 +178,6 @@ int main(int argc, char* argv[]) {
 
     cap.release();
     cv::destroyAllWindows();
-
-
-
-   
-
 
     return 0;
 }
