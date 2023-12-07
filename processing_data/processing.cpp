@@ -16,7 +16,7 @@ int main(int argc, char* argv[]){
     // Check if the folder path is provided as a command-line argument
     if (argc != 3){
         std::cerr << "Usage: " << argv[0] << " <folder_path> <prefix_save_path>\n";
-        std::cerr << "example: " << argv[0] << "  /Users/maitarasher/data ../data/asl\n";
+        std::cerr << "example: " << argv[0] << "  /Users/maitarasher/data ../../data/asl\n";
         return -1;
     }
 
