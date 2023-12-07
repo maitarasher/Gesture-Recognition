@@ -154,4 +154,4 @@ You may add/remove stages into your pipeline. The code is located at: ```Gesture
 
 ```make```
 
-```.\gesture_pptx ../../data/pptx <path_to_pptx>```
+```./gesture_pptx ../../data/pptx <path_to_pptx>```
