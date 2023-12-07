@@ -4,6 +4,7 @@
 #include "../src/classifier/knn.hpp"
 #include "../src/classifier/svm.hpp"
 #include "../src/classifier/dtree.hpp"
+#include <chrono>
 
 #include <iostream>
 #include <filesystem>
@@ -45,27 +46,6 @@ void openExistingPresentation(const char* filePath){
     char script[256];
     snprintf(script, sizeof(script), "osascript -e 'tell application \"Microsoft PowerPoint\" to open \"%s\"'", filePath);
     system(script);
-
-}
-
-void openNewPresentation(){
-     //Open a new powerpoint file 
-    FILE* pipe = popen("osascript -e 'tell application \"Microsoft PowerPoint\"' -e 'activate' -e 'set myPresentation to make new presentation' -e 'set mySlide to make new slide at end of slides of myPresentation' -e 'set title of mySlide to \"Hello, PowerPoint from C++ on macOS!\"' -e 'end tell' 2>&1", "r");
-
-    if (pipe) {
-        char buffer[128];
-        std::string result;
-
-        while (!feof(pipe)) {
-            if (fgets(buffer, 128, pipe) != NULL)
-                result += buffer;
-        }
-
-        int status = pclose(pipe);
-
-        std::cout << "Command returned: " << status << std::endl;
-        std::cout << "Output and error message: " << result << std::endl;
-    }
 
 }
 
