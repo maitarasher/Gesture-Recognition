@@ -1,27 +1,72 @@
-# Gesture-Recognition
-Gesture-Recognition Libary in C++
+# Gesture-Recognition in C++
 
-COMS W4995: Design Using C++
+This library is a collaborative effort developed as the final group project for the COMS W4995: Design Using C++ course in Fall 2023, taught by Bjarne Stroustrup.
 
-Fall 2023
 
-Yana Botvinnik, Maitar Asher, Noam Zaid, Elvina Wibisono, Elifia Muthia
-
+Authors: Yana Botvinnik, Maitar Asher, Noam Zaid, Elvina Wibisono, Elifia Muthia
 # About
-This is a Gesture Recognition library written for C++ that allows for easy gesture recognitions in images and live videostreams. As of December 2023, this library is **only tested and compatible with MacOS**. Intended to be run alongside this [repository](https://github.com/elifia-muthia/mediapipe) containing Google's Mediapipe that has been configured to MacOS as a default and modified to function as a server to obtain hand landmarks – a vector of detected/tracked hands in an image represented as a list of 21 3D (x,y,z) coordinates.
+This is a Gesture Recognition library written for C++ that allows users to effortlessly create models capable of recognizing gestures in images, live video streams, or recordings. 
+Note: As of December 2023, **this library is exclusively tested and compatible with MacOS**. Our library is designed to run alongside Google's MediaPipe Libraries. We've set up a server that leverages Google’s MediaPipe and has been configured to work for MacOS as a default. The server plays a vital role in obtaining hand landmarks, a crucial step in our program that simplifies the classification problem. Instead of dealing with numerous pixels for each image, our approach involves working with 21 landmarks for each image.
+
+# Acknowledgment
 
 This project takes inspiration from a similar gesture recognition library in Python, the [GRLib](https://github.com/mikhail-vlasenko/grlib/tree/master), that's algorithm has been nicely documented [here](https://arxiv.org/pdf/2310.14919v1.pdf).
 
-## OpenCV Setup
-1. Install Homebrew
-   
+# Set Up the Environment
+
+1. Install Homebrew (a package manager to install library dependencies)
+
 ```/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"```
 
 2. Install OpenCV
-   
+
 ```brew install opencv```
 
-3. Go to the project on VSCode and execute the following commands in the root
+3. Install [bazelisk](https://bazel.build/install/bazelisk)
+
+```brew install bazelisk```
+
+4. Install opencv@3
+
+```brew install opencv@3```
+
+5. Install ffmpeg  
+
+```brew install ffmpeg```
+
+6. Install Numpy
+
+```brew install numpy```
+
+# Set Up the MediaPipe Server
+
+1. Clone the modified Mediapipe [repository](https://github.com/elifia-muthia/mediapipe)
+
+2. Move into the newly cloned Mediapipe repository
+
+```cd mediapipe```
+
+3. Build the file
+
+```bazel build -c opt --define MEDIAPIPE_DISABLE_GPU=1 mediapipe/mediapipe_samples/mediapipe_sample:mediapipe_sample```
+
+4. Execute the following command to run the server
+
+```GLOG_logtostderr=1 bazel-bin/mediapipe/mediapipe_samples/mediapipe_sample/mediapipe_sample --calculator_graph_config_file=mediapipe/graphs/hand_tracking/hand_tracking_desktop_live.pbtxt```
+
+# Clone this Gesture-Recognition repository
+
+# Process Training Data
+
+1. Optional: Customize your augmentation pipeline
+
+You may add/remove stages into your pipeline. The code is located at: ```Gesture-Recognition/processing_data/processing.cpp```
+
+2. Navigate to Gesture-Recognition root directory
+
+3. Build the processing application
+
+```cd processing_data```
 
 ```mkdir build```
 
@@ -31,25 +76,66 @@ This project takes inspiration from a similar gesture recognition library in Pyt
 
 ```make```
 
-```./gesture-project```
+4. Compile the processing application to generate landmarks representation of your data
 
-To locally get the submodules the first time:
+```./processing <training_images_dir_path> <output_folder>```
 
-```git submodule update --init```
+# Running the ASL Application Example
 
-For any time after that use the command:
+1. Navigate to Gesture-Recognition root directory
 
-```git submodule update --recursive --remote```
+2. Build the application
 
-## Running Mediapipe
-1. Install bazel https://bazel.build/install/bazelisk
+``` cd gesture_asl ```
 
-2. In Gesture-Recognition/src/dependencies/mediapipe, run the following command to build
+```mkdir build```
 
-```bazel build -c opt --define MEDIAPIPE_DISABLE_GPU=1 mediapipe/mediapipe_samples/mediapipe_sample:mediapipe_sample```
+```cd build```
 
-3. To run mediapipe, execute the following command
+```cmake ..```
 
-```GLOG_logtostderr=1 bazel-bin/mediapipe/mediapipe_samples/mediapipe_sample/mediapipe_sample --calculator_graph_config_file=mediapipe/graphs/hand_tracking/hand_tracking_desktop_live.pbtxt /Users/elifiamuthia/Desktop/test-image.jpg```
+```make```
 
-**replace the last command line argument with your test image
+3. Run the Application
+
+```./asl_application ../../data/asl```
+
+# Running the Powerpoint Controller Example
+
+1. Run the commands below for the dependencies
+
+```brew install jsoncpp ```
+
+```brew install pkg-config```
+
+2. Navigate to Gesture-Recognition root directory
+
+2. Run the script to prepare the data
+
+``` cd processing_data/processing_cocodataset ```
+
+```mkdir build```
+
+```cd build```
+
+```cmake ..```
+
+```make```
+
+```./coco_dataset_export <coco_folder_path> <output_folder>```
+
+3. Navigate to Gesture-Recognition root directory
+
+4. Build the application
+
+```cd gesture_pptx```
+
+```mkdir build```
+
+```cd build```
+
+```cmake ..```
+
+```make```
+
+```.\CrossPlatformPowerPoint ???```
