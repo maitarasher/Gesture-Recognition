@@ -14,11 +14,13 @@ This project takes inspiration from a similar gesture recognition library in Pyt
 
 ## Additional Resources and Documentation
 
-- [Gesture Recognition Tutorial](https://docs.google.com/document/d/1tlUAKTq5tPwRVC3Sa62UZCwkMtCfloZU4QGTxBQKAxg/edit?usp=sharing): Explore the step-by-step tutorial on setting up the environment, processing data, training models, and making predictions.
+- [Gesture Recognition Tutorial](https://github.com/maitarasher/Gesture-Recognition/blob/main/docs/Tutorial.pdf): Explore the step-by-step tutorial on setting up the environment, processing data, training models, and making predictions.
 
-- [Gesture Recognition Manual](https://docs.google.com/document/d/1wTPNB_bm-LVUp-C2Qwciy0hg1adNCyv1YlQNXkRBiFI/edit?usp=sharing): For more detailed information about each step, configuration options, and advanced features, refer to our comprehensive manual.
+- [Gesture Recognition Manual](https://github.com/maitarasher/Gesture-Recognition/blob/main/docs/Manual.pdf): For more detailed information about each step, configuration options, and advanced features, refer to our comprehensive manual.
 
-- [Design Documentation](https://docs.google.com/document/d/1OGW2GpuXKYR4RbnvIpiwjtReCL4Vc0j5KpZ1pBwtPT0/edit?usp=sharing): Read our design documentation for an in-depth understanding of the architecture, system components, and implementation details.
+- [Design Documentation](https://github.com/maitarasher/Gesture-Recognition/blob/main/docs/Design%20Documentation.pdf): Read our design documentation for an in-depth understanding of the architecture, system components, and implementation details.
+
+- ASL Alphabet Recognition Application [Demo](https://drive.google.com/file/d/1fu2iGk8lLIuuLQ5xNbEdJnsoC_aNrfTY/view?usp=sharing): See the tool in action here!
 
 - Powerpoint Gesture Control Application [Demo](https://drive.google.com/file/d/1XTBg3h4tOdtW5FdmhVe3VDZS2ABo-JPC/view?usp=sharing): See the tool in action here!
 
